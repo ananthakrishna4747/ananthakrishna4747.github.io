@@ -90,11 +90,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .pcard{max-width:920px;margin:0 auto;background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;overflow:hidden;}
 .pcard-banner{height:120px;background:linear-gradient(120deg,#08192E,#060F1B,#0A1E0C);position:relative;}
 .pcard-body{padding:0 32px 32px;}
-.pcard-avatar{width:84px;height:84px;border-radius:50%;background:var(--bg3);border:3px solid var(--bg2);margin-top:-42px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:26px;color:var(--g);position:relative;}
+.pcard-avatar{width:84px;height:84px;border-radius:50%;background:var(--bg3);border:3px solid var(--bg2);margin-top:-42px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:26px;color:var(--g);position:relative;overflow:visible;}
 .pcard-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px dashed rgba(0,255,136,.4);animation:spinSlow 9s linear infinite;}
-.pcard-gem{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,var(--g),var(--b));clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%);animation:gpulse 2.2s ease-in-out infinite;opacity:.85;z-index:0;}
-.pcard-avatar span.pcard-initials{position:relative;z-index:1;}
-@keyframes gpulse{0%,100%{transform:scale(1);}50%{transform:scale(.82);}}
+.pcard-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;position:relative;z-index:1;}
 @keyframes spinSlow{to{transform:rotate(360deg);}}
 .pcard-dot{position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;background:var(--g);border:3px solid var(--bg2);}
 .pcard-name{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;margin-top:14px;}
@@ -279,7 +277,7 @@ footer a:hover{color:var(--g);}
   <div class="pcard">
     <div class="pcard-banner"></div>
     <div class="pcard-body">
-      <div class="pcard-avatar"><div class="pcard-gem"></div><span class="pcard-initials">AK</span><span class="pcard-dot"></span></div>
+      <div class="pcard-avatar"><img class="pcard-photo" src="assets/photos/avatar.jpg" alt="Anantha Krishna"><span class="pcard-dot"></span></div>
       <div class="pcard-name">Anantha Krishna Chilappagari</div>
       <div class="pcard-handle">@ananthakrishna4747 · Denton, TX</div>
       <div class="pcard-stats">
@@ -403,7 +401,7 @@ const CARDS = {
        'Designed a schema-generation engine combining YOLO-based layout detection with LLM workflows for consistent structured extraction across diverse PDF formats.',
        'Implemented JWT authentication and RBAC for multi-level approval workflows, and a Pytest suite covering permission and workflow logic.'
      ]},
-    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · Jan 2021 – Dec 2022 · Hyderabad, India',
+    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · 2021 – 2023 · Hyderabad, India',
      desc:'Automated ETL orchestration on AWS and shipped an ML-based real-time threat-scoring API.',
      tags:['AWS Step Functions','ECS','PySpark','Flask','Grafana'],
      bullets:[
@@ -422,9 +420,9 @@ const CARDS = {
      ]},
   ],
   edu: [
-    {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', name:'University of North Texas', org:'M.S. Data Science · Aug 2023 – May 2025 · Denton, TX',
+    {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', name:'University of North Texas', org:'M.S. Data Science · Denton, TX',
      desc:'CGPA 3.99 / 4.0', tags:['Data Science','Statistics','ML'], bullets:['Master of Science in Data Science, CGPA 3.99/4.0.']},
-    {id:'jntu', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', name:'JNTU Hyderabad', org:'B.Tech Computer Science · 2018 – 2022 · Hyderabad, India',
+    {id:'kmit', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', name:'Keshav Memorial Institute of Technology', org:'B.Tech Computer Science · Hyderabad, India',
      desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
   ],
   cert: [
@@ -835,7 +833,7 @@ const FAQ=[
   {keys:['financial','finance','rag','faiss'], a:"The Financial Document QA project is a RAG pipeline over financial articles, comparing GPT-3.5, a fine-tuned RoBERTa model, and a stock Hugging Face QA pipeline — scored with ROUGE/BLEU/BERTScore. Built with two teammates. Code: github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-"},
   {keys:['skill','tech stack','stack','tools','technolog'], a:"Core stack: Python, FastAPI/Flask, MCP, LangChain, Claude API, RAG/FAISS, AWS (Lambda/ECS/Step Functions), Docker/Kubernetes, and applied NLP/Deep Learning. Check the Skills Graph above for the full picture."},
   {keys:['experience','work','job','sunplusdata','constella'], a:"Currently a Gen AI / Backend Engineer at SunPlusData (since Jan 2025), building MCP tooling and document-intelligence services. Previously a Software Engineer at Constella Intelligence, automating AWS ETL pipelines. Also a Teaching Assistant at UNT."},
-  {keys:['education','study','degree','gpa','university','school'], a:"M.S. in Data Science from the University of North Texas (CGPA 3.99/4.0), B.Tech in Computer Science from JNTU Hyderabad (CGPA 3.5/4.0)."},
+  {keys:['education','study','degree','gpa','university','school'], a:"M.S. in Data Science from the University of North Texas (CGPA 3.99/4.0), B.Tech in Computer Science from Keshav Memorial Institute of Technology, Hyderabad (CGPA 3.5/4.0)."},
   {keys:['resume','cv'], a:"You can download the full résumé from the 📄 Resume button near the top of the page."},
   {keys:['contact','reach','email','hire','schedule','meet','call'], a:"Best way is email — akshaychilappa47@gmail.com — or hit the 📅 Schedule a Meet button up top, which opens a pre-filled email. I'll also drop the link in chat: " },
   {keys:['github','repo','code'], a:"All public work is at github.com/ananthakrishna4747 — 19 repos covering Gen AI agents, RAG, and applied ML."},
@@ -875,4 +873,3 @@ document.querySelectorAll('.chip').forEach(chip=>chip.addEventListener('click', 
 </script>
 </body>
 </html>
-<!-- redeploy trigger -->
