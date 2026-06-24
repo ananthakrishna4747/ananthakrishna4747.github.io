@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anantha Krishna — Gen AI Engineer</title>
+<meta name="description" content="Anantha Krishna Chilappagari — Gen AI Engineer building MCP servers, RAG pipelines, and cloud-native agent systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Sora:wght@300;400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070D1A;--bg2:#0B1220;--bg3:#0F1728;
+  --sur:rgba(255,255,255,0.038);--bdr:rgba(255,255,255,0.09);--bdr2:rgba(255,255,255,0.05);
+  --txt:#E2EAF5;--txt2:#7A8FA8;--txt3:#3D5068;
+  --g:#00FF88;--b:#4A9EFF;--p:#9B7BFF;--c:#00D4FF;--a:#FFB547;--r:#FF6B6B;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+button{font-family:inherit;font-size:inherit;background:none;border:none;cursor:pointer;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;min-height:100vh;}
+::-webkit-scrollbar{width:8px;} ::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:4px;}
+a{color:inherit;text-decoration:none;}
+@media (hover:hover){ body{cursor:none;} a,button,.nmc,.pcard{cursor:none;} }
+
+/* ===== BACKGROUND LAYERS ===== */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(0,255,136,0.055) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 75%, rgba(74,158,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(155,123,255,0.03) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 80% at 50% 100%, rgba(0,15,35,0.9) 0%, transparent 70%);
+  animation: bgShift 18s ease-in-out infinite alternate;
+}
+@keyframes bgShift{ from{background-position:0 0;} to{background-position:2% 1%;} }
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.6;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100'><path d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z' fill='none' stroke='rgba(74,158,255,0.06)' stroke-width='1'/></svg>");
+  background-size:56px 100px;
+}
+#bgc{position:fixed;inset:0;z-index:-3;pointer-events:none;}
+
+/* ===== CURSOR ===== */
+#cd{position:fixed;width:9px;height:9px;background:var(--g);border-radius:50%;box-shadow:0 0 10px var(--g),0 0 20px rgba(0,255,136,.35);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);display:none;}
+#cr{position:fixed;width:32px;height:32px;border:1.5px solid rgba(0,255,136,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-radius .22s;display:none;}
+body.hov #cr{width:48px;height:48px;border-radius:7px;}
+@media (hover:hover){ #cd,#cr{display:block;} }
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;height:54px;z-index:500;background:rgba(7,13,26,.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+.nav-brand{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--g);font-weight:500;letter-spacing:.03em;}
+.nping{width:6px;height:6px;border-radius:50%;background:var(--g);animation:ningp 1.8s infinite;}
+@keyframes ningp{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.6);}70%{box-shadow:0 0 0 6px rgba(0,255,136,0);}}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);padding:7px 14px;border-radius:20px;transition:.2s;letter-spacing:.02em;}
+.nav-links a:hover{background:var(--sur);color:var(--g);}
+.nav-social{display:flex;gap:8px;}
+.nav-social a{width:29px;height:29px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--sur);border:1px solid var(--bdr2);transition:.2s;}
+.nav-social a:hover{border-color:var(--g);color:var(--g);transform:translateY(-1px);}
+.nav-social svg{width:14px;height:14px;}
+@media (max-width:720px){.nav-links{display:none;}}
+
+/* ===== LAYOUT ===== */
+main{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px;}
+section{padding:90px 0;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;}
+.reveal.vis{opacity:1;transform:none;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--g);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:block;}
+h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3vw,34px);margin-bottom:36px;letter-spacing:-0.01em;}
+
+/* ===== HERO ===== */
+#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:80px;}
+.hero-greet{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;}
+.hero-sig{display:block;max-width:480px;width:100%;height:auto;margin-bottom:6px;}
+.hero-name{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(34px,5.2vw,64px);letter-spacing:-0.03em;color:#fff;line-height:1.05;margin-bottom:14px;}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.8vw,19px);color:var(--g);min-height:1.6em;border-right:2px solid var(--g);padding-right:6px;animation:caret 1s steps(1) infinite;display:inline-block;}
+@keyframes caret{50%{border-color:transparent;}}
+.hero-sub{margin-top:18px;color:var(--txt2);font-size:15px;max-width:540px;line-height:1.65;}
+.hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:13px 24px;border-radius:10px;display:inline-flex;align-items:center;gap:8px;transition:.2s;border:1px solid transparent;}
+.btn-fill{background:var(--g);color:#03130B;}
+.btn-fill:hover{box-shadow:0 0 24px rgba(0,255,136,.4);transform:translateY(-1px);}
+.btn-ghost{border-color:var(--bdr);color:var(--txt);}
+.btn-ghost:hover{border-color:var(--g);color:var(--g);}
+.scroll-cue{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5;width:fit-content;}
+.scroll-cue .line{width:1px;height:30px;background:var(--g);transform-origin:top;animation:scl 2s ease-in-out infinite;}
+@keyframes scl{0%{transform:scaleY(0);}50%{transform:scaleY(1);}100%{transform:scaleY(0);}}
+.scroll-cue span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--txt3);}
+
+/* ===== PROFILE CARD ===== */
+.pcard{max-width:920px;margin:0 auto;background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;overflow:hidden;}
+.pcard-banner{height:120px;background:linear-gradient(120deg,#08192E,#060F1B,#0A1E0C);position:relative;}
+.pcard-body{padding:0 32px 32px;}
+.pcard-avatar{width:84px;height:84px;border-radius:50%;background:var(--bg3);border:3px solid var(--bg2);margin-top:-42px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:26px;color:var(--g);position:relative;}
+.pcard-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px dashed rgba(0,255,136,.4);animation:spinSlow 9s linear infinite;}
+@keyframes spinSlow{to{transform:rotate(360deg);}}
+.pcard-dot{position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;background:var(--g);border:3px solid var(--bg2);}
+.pcard-name{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;margin-top:14px;}
+.pcard-handle{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);margin-top:2px;}
+.pcard-stats{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--txt2);}
+.pcard-stats b{color:var(--g);font-weight:600;}
+.pcard-bio{font-size:13.5px;color:var(--txt2);max-width:560px;line-height:1.7;margin-bottom:22px;}
+.pcard-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.pcard-social{display:flex;gap:8px;margin-left:auto;}
+.pcard-social a{width:32px;height:32px;border-radius:8px;background:var(--sur);border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:center;transition:.2s;}
+.pcard-social a:hover{border-color:var(--g);transform:translateY(-1px);}
+.pcard-social svg{width:15px;height:15px;}
+
+/* ===== LIBRARY ===== */
+#library-grid{display:grid;grid-template-columns:84px 1fr;gap:28px;}
+.lib-robot-col{position:sticky;top:90px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:14px;}
+@media (max-width:720px){#library-grid{grid-template-columns:1fr;} .lib-robot-col{display:none;}}
+.shelf{margin-bottom:46px;}
+.shelf-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--txt2);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--bdr2);margin-bottom:20px;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+.nmc{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;}
+.nmc:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35);}
+.nmc-art{height:120px;width:100%;display:block;object-fit:cover;background:var(--bg3);}
+.nmc-accent{height:3px;width:100%;}
+.nmc-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;}
+.nmc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.nmc-badge{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:var(--sur);}
+.nmc-name{font-family:'Sora',sans-serif;font-weight:600;font-size:15px;margin-bottom:3px;}
+.nmc-org{font-size:12px;color:var(--txt2);margin-bottom:8px;}
+.nmc-desc{font-size:12.5px;color:var(--txt2);line-height:1.55;flex:1;margin-bottom:12px;}
+.nmc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.nmc-tags span{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--txt2);background:var(--sur);padding:3px 7px;border-radius:5px;}
+.nmc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--bdr2);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);}
+.show-more-row{text-align:center;margin-top:22px;}
+.btn-toggle{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--g);background:none;border:1px solid var(--bdr);padding:9px 20px;border-radius:20px;}
+.btn-toggle:hover{border-color:var(--g);}
+#hidden-projects{display:none;}
+#hidden-projects.open{display:contents;}
+.lib-rbody{width:78px;height:78px;}
+
+/* ===== SKILLS ===== */
+#skills-svg{width:100%;height:auto;}
+.skills-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);}
+.skills-legend span{display:inline-flex;align-items:center;gap:6px;}
+.dotleg{width:8px;height:8px;border-radius:50%;display:inline-block;}
+
+/* ===== CHAT FAB ===== */
+#chat-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;font-size:22px;box-shadow:0 6px 24px rgba(0,255,136,.3);transition:transform .2s;}
+#chat-fab:hover{transform:scale(1.06);}
+#chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;}
+#chat-panel{position:fixed;bottom:90px;right:24px;width:min(370px,92vw);height:min(520px,72vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+#chat-panel.open{display:flex;}
+.chat-head{padding:14px 16px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;gap:10px;}
+.chat-head .rb{width:30px;height:30px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.chat-head .info b{display:block;font-size:13px;}
+.chat-head .info span{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2);}
+.chat-head .x{margin-left:auto;cursor:pointer;color:var(--txt2);font-size:18px;}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.msg{max-width:80%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;animation:msgIn .28s ease;overflow-wrap:break-word;word-break:break-word;}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.msg.bot{background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.25);align-self:flex-start;}
+.msg.user{background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.25);align-self:flex-end;}
+.chat-suggest{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;border:1px solid var(--bdr);color:var(--txt2);padding:5px 10px;border-radius:14px;cursor:pointer;transition:.2s;}
+.chip:hover{border-color:var(--g);color:var(--g);}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--bdr2);}
+.chat-input-row input{flex:1;background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:10px 12px;color:var(--txt);font-size:13px;outline:none;}
+.chat-input-row input:focus{border-color:var(--g);}
+.chat-send{background:var(--g);color:#03130B;border:none;border-radius:10px;padding:0 16px;font-weight:600;cursor:pointer;}
+
+/* ===== ROBO GUIDE ===== */
+#robo-guide{position:fixed;bottom:24px;left:24px;z-index:899;display:flex;align-items:flex-end;gap:10px;max-width:300px;}
+#robo-guide .rg-bot{width:48px;height:48px;border-radius:50%;background:var(--bg2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:22px;animation:rgbob 3s ease-in-out infinite;flex-shrink:0;}
+@keyframes rgbob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+#robo-guide .rg-bubble{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:12px;color:var(--txt2);position:relative;max-width:230px;transition:opacity .3s;}
+@media (max-width:640px){#robo-guide{display:none;}}
+
+/* ===== DETAIL PANEL ===== */
+#overlay{position:fixed;inset:0;background:rgba(4,8,18,.82);backdrop-filter:blur(10px);z-index:950;display:none;align-items:center;justify-content:center;padding:20px;}
+#overlay.open{display:flex;}
+#detail-panel{background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;width:min(720px,94vw);max-height:85vh;overflow-y:auto;padding:30px;position:relative;animation:dpIn .32s cubic-bezier(.34,1.56,.64,1);}
+@keyframes dpIn{from{opacity:0;transform:scale(.93) translateY(14px);}to{opacity:1;transform:none;}}
+#detail-panel .dp-close{position:absolute;top:18px;right:18px;cursor:pointer;color:var(--txt2);font-size:20px;}
+#detail-panel img.dp-art{width:100%;border-radius:10px;margin:16px 0;border:1px solid var(--bdr2);}
+#detail-panel h3{font-family:'Sora',sans-serif;font-size:21px;margin-bottom:4px;}
+#detail-panel .dp-sub{color:var(--txt2);font-size:13px;margin-bottom:14px;}
+#detail-panel .dp-badge{display:inline-block;background:rgba(0,255,136,.12);color:var(--g);border:1px solid rgba(0,255,136,.3);font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+#detail-panel ul{margin:14px 0;padding-left:0;list-style:none;}
+#detail-panel ul li{padding-left:20px;position:relative;font-size:13.5px;color:var(--txt2);line-height:1.7;margin-bottom:8px;}
+#detail-panel ul li::before{content:'→';position:absolute;left:0;color:var(--g);}
+.dp-links{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
+.dp-tagrow{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;}
+.dp-tagrow span{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--txt2);background:var(--sur);padding:4px 9px;border-radius:6px;}
+
+footer{padding:50px 0 80px;text-align:center;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:11px;}
+footer a{color:var(--txt2);}
+footer a:hover{color:var(--g);}
+</style>
+</head>
+<body>
+
+<canvas id="bgc"></canvas>
+<div id="cd"></div><div id="cr"></div>
+
+<nav>
+  <div class="nav-brand"><span class="nping"></span> AK · PORTFOLIO</div>
+  <div class="nav-links">
+    <a href="#profile">Profile</a><a href="#library">Library</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+  </div>
+  <div class="nav-social">
+    <a href="https://github.com/ananthakrishna4747" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.01 3.24 9.26 7.74 10.76.56.1.78-.24.78-.54v-1.9c-3.15.34-3.97-1.36-4.22-1.84-.14-.36-.74-1.46-1.27-1.76-.43-.23-1.05-.8-.02-.81.97-.02 1.66.89 1.89 1.26 1.1 1.85 2.86 1.33 3.56 1 .1-.79.43-1.33.78-1.64-2.72-.3-5.57-1.36-5.57-6.05 0-1.34.48-2.44 1.27-3.3-.14-.31-.6-1.56.12-3.24 0 0 1.04-.33 3.42 1.27.99-.28 2.05-.42 3.1-.42 1.05 0 2.11.14 3.1.42 2.38-1.61 3.42-1.27 3.42-1.27.72 1.68.27 2.93.13 3.24.79.86 1.27 1.95 1.27 3.3 0 4.7-2.86 5.74-5.59 6.04.45.39.83 1.14.83 2.31v3.43c0 .3.22.65.78.54 4.49-1.51 7.73-5.76 7.73-10.77C23.5 5.74 18.27.5 12 .5Z"/></svg></a>
+    <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+    <a href="mailto:akshaychilappa47@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <span class="hero-greet">Hello, I'm</span>
+  <svg class="hero-sig" viewBox="0 0 460 110" xmlns="http://www.w3.org/2000/svg">
+    <defs><clipPath id="sigClip"><rect id="sigReveal" x="0" y="0" width="0" height="110"/></clipPath></defs>
+    <text x="6" y="72" font-family="Dancing Script" font-size="54" fill="none" stroke="rgba(0,255,136,0.08)" stroke-width="1.5">Anantha Krishna C</text>
+    <g clip-path="url(#sigClip)">
+      <text x="6" y="72" font-family="Dancing Script" fill="none" stroke="#00FF88" stroke-width="2">
+        <tspan font-weight="700" font-size="62">A</tspan><tspan font-weight="600" font-size="50" stroke="rgba(0,255,136,0.75)" stroke-width="1.6">nantha </tspan><tspan font-weight="700" font-size="62">K</tspan><tspan font-weight="600" font-size="50" stroke="rgba(0,255,136,0.75)" stroke-width="1.6">rishna </tspan><tspan font-weight="700" font-size="62">C</tspan>
+      </text>
+    </g>
+    <path id="sig-ul" d="M 8,94 Q 230,104 452,94" fill="none" stroke="#00FF88" stroke-width="1.5" stroke-dasharray="460" stroke-dashoffset="460"/>
+    <circle id="sig-dot" cx="452" cy="93" r="3.5" fill="#00FF88" opacity="0"/>
+  </svg>
+  <div class="hero-name">Anantha Krishna</div>
+  <div><span class="hero-role" id="typing-role">Gen AI Engineer</span></div>
+  <p class="hero-sub">I build MCP servers, RAG pipelines, and cloud-native agent systems — turning enterprise APIs into tools LLMs can actually use, and turning research papers into things you can listen to.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-fill" id="schedule-btn" href="#">📅 Schedule a Meet</a>
+    <a class="btn btn-ghost" href="#library">Explore Library →</a>
+  </div>
+  <div class="scroll-cue"><div class="line"></div><span>SCROLL</span></div>
+</section>
+
+<!-- ===== PROFILE ===== -->
+<section id="profile" class="reveal">
+  <div class="pcard">
+    <div class="pcard-banner"></div>
+    <div class="pcard-body">
+      <div class="pcard-avatar">AK<span class="pcard-dot"></span></div>
+      <div class="pcard-name">Anantha Krishna Chilappagari</div>
+      <div class="pcard-handle">@ananthakrishna4747 · Denton, TX</div>
+      <div class="pcard-stats">
+        <span><b>3.99</b> MS GPA</span><span><b>1</b> Published Paper</span><span><b>2nd</b> — AIS Nat'l Competition 2025</span><span><b>19</b> GitHub Repos</span>
+      </div>
+      <p class="pcard-bio">Gen AI / Backend Engineer specializing in MCP servers, agent-facing APIs, and RAG workflows. I've shipped LLM-callable tool layers over enterprise REST APIs, built multi-agent pipelines for document intelligence and research summarization, and published peer-reviewed work on AI-driven IT automation. MS in Data Science from the University of North Texas.</p>
+      <div class="pcard-actions">
+        <a class="btn btn-ghost" href="resume.pdf" target="_blank">📄 Resume</a>
+        <a class="btn btn-fill" id="contact-btn" href="#">💬 Contact</a>
+        <div class="pcard-social">
+          <a href="https://github.com/ananthakrishna4747" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.01 3.24 9.26 7.74 10.76.56.1.78-.24.78-.54v-1.9c-3.15.34-3.97-1.36-4.22-1.84-.14-.36-.74-1.46-1.27-1.76-.43-.23-1.05-.8-.02-.81.97-.02 1.66.89 1.89 1.26 1.1 1.85 2.86 1.33 3.56 1 .1-.79.43-1.33.78-1.64-2.72-.3-5.57-1.36-5.57-6.05 0-1.34.48-2.44 1.27-3.3-.14-.31-.6-1.56.12-3.24 0 0 1.04-.33 3.42 1.27.99-.28 2.05-.42 3.1-.42 1.05 0 2.11.14 3.1.42 2.38-1.61 3.42-1.27 3.42-1.27.72 1.68.27 2.93.13 3.24.79.86 1.27 1.95 1.27 3.3 0 4.7-2.86 5.74-5.59 6.04.45.39.83 1.14.83 2.31v3.43c0 .3.22.65.78.54 4.49-1.51 7.73-5.76 7.73-10.77C23.5 5.74 18.27.5 12 .5Z"/></svg></a>
+          <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIBRARY ===== -->
+<section id="library" class="reveal">
+  <span class="eyebrow">Neural Library</span>
+  <h2 class="sectitle">Experience, Projects &amp; Education</h2>
+  <div id="library-grid">
+    <div class="lib-robot-col">
+      <svg class="lib-rbody" viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="50" rx="14" fill="#0F1728" stroke="#4A9EFF" stroke-width="2"/><circle cx="38" cy="54" r="6" fill="#00FF88"/><circle cx="62" cy="54" r="6" fill="#00FF88"/><rect x="40" y="68" width="20" height="4" rx="2" fill="#7A8FA8"/><rect x="44" y="14" width="12" height="18" rx="4" fill="#0F1728" stroke="#9B7BFF" stroke-width="2"/></svg>
+      <div id="lib-bubble" style="font-size:10px;color:var(--txt2);text-align:center;max-width:118px;">Click any card — I'll show you the details.</div>
+    </div>
+    <div id="shelves"></div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="reveal">
+  <span class="eyebrow">Skills Graph</span>
+  <h2 class="sectitle">What I build with</h2>
+  <svg id="skills-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="skills-legend">
+    <span><i class="dotleg" style="background:#00FF88"></i>AI &amp; Agents</span>
+    <span><i class="dotleg" style="background:#9B7BFF"></i>Backend</span>
+    <span><i class="dotleg" style="background:#4A9EFF"></i>Cloud &amp; Infra</span>
+    <span><i class="dotleg" style="background:#FFB547"></i>Data &amp; ML</span>
+  </div>
+</section>
+
+<!-- ===== PROJECTS (anchor target, same data as library projects shelf) ===== -->
+<section id="projects" class="reveal">
+  <span class="eyebrow">All Projects</span>
+  <h2 class="sectitle">More from the lab</h2>
+  <p style="color:var(--txt2);font-size:14px;max-width:600px;margin-bottom:24px;">Coursework, computer-vision, and applied ML projects — jump to the <a href="#library" style="color:var(--g);">Library</a> above for the flagship Gen AI work.</p>
+  <div class="card-grid" id="projects-extra-grid"></div>
+</section>
+
+</main>
+
+<div id="overlay"><div id="detail-panel"></div></div>
+
+<div id="robo-guide">
+  <div class="rg-bot">🤖</div>
+  <div class="rg-bubble" id="rg-text">Welcome to AK's portfolio! Scroll or click around — I'll point things out.</div>
+</div>
+
+<div id="chat-fab"><span>💬</span><span class="badge" id="chat-badge">1</span></div>
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="rb">🤖</div>
+    <div class="info"><b>Krishna.AI</b><span>Pre-written Q&amp;A · no live API</span></div>
+    <span class="x" id="chat-close">✕</span>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="msg bot">Hi! I'm a lightweight FAQ bot — ask me about Anantha's projects, skills, experience, or how to get in touch.</div>
+  </div>
+  <div class="chat-suggest">
+    <span class="chip" data-q="suraksha">SURAKSHA</span><span class="chip" data-q="skills">AI Skills</span><span class="chip" data-q="schedule">Schedule</span><span class="chip" data-q="sunplusdata">SunPlusData</span>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" maxlength="200" placeholder="Ask a question…">
+    <button class="chat-send" id="chat-send">➤</button>
+  </div>
+</div>
+
+<footer>
+  <p>Built by Anantha Krishna · <a href="https://github.com/ananthakrishna4747" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank">LinkedIn</a> · <a href="mailto:akshaychilappa47@gmail.com">Email</a></p>
+  <p style="margin-top:6px;">Static build — no backend, no tracking.</p>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const CARDS = {
+  exp: [
+    {id:'sunplusdata', type:'EXPERIENCE', color:'g', art:'assets/cards/exp-sunplusdata.svg', name:'SunPlusData', org:'Gen AI / Backend Engineer · Jan 2025 – Present · Atlanta, GA',
+     desc:'Built MCP-based agent tooling over enterprise APIs and containerized document-intelligence services.',
+     tags:['MCP','FastAPI','Docker','JWT/RBAC','LLM Workflows'],
+     bullets:[
+       'Designed an MCP server wrapping REST APIs and stored procedures as schema-validated, LLM-callable tools for natural-language queries over physical access records.',
+       'Engineered a JSON-RPC communication layer with typed tool contracts, authentication handshakes, rate limiting, and structured error handling for production agent-tool calls.',
+       'Built containerized document-extraction services (Docker/FastAPI) for PDF ingestion, schema-driven field extraction, and CSV export into SAP.',
+       'Designed a schema-generation engine combining YOLO-based layout detection with LLM workflows for consistent structured extraction across diverse PDF formats.',
+       'Implemented JWT authentication and RBAC for multi-level approval workflows, and a Pytest suite covering permission and workflow logic.'
+     ]},
+    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · Jan 2021 – Dec 2022 · Hyderabad, India',
+     desc:'Automated ETL orchestration on AWS and shipped an ML-based real-time threat-scoring API.',
+     tags:['AWS Step Functions','ECS','PySpark','Flask','Grafana'],
+     bullets:[
+       'Migrated ETL orchestration from Airflow to AWS Step Functions with CloudWatch monitoring, cutting end-to-end processing time by 40%.',
+       'Built containerized ingestion services on AWS ECS with Application Load Balancer autoscaling, reducing idle resource utilization by 20%.',
+       'Developed a Flask REST API for real-time threat assessment with ML-based risk scoring (0–1 scale).',
+       'Optimized PySpark jobs on EMR, lowering processing costs by 15% and operational overhead by 25%.',
+       'Contributed NLP feature engineering to a cybersecurity pipeline that reached 93% accuracy classifying malicious emails.'
+     ]},
+    {id:'unt-ta', type:'EXPERIENCE', color:'a', art:'assets/cards/exp-unt-ta.svg', name:'University of North Texas', org:'Teaching Assistant, Data Analytics · 2024 – Present · Denton, TX',
+     desc:'Mentored students in DBMS/analytics and built dashboards for departmental decision-making.',
+     tags:['Dashboards','SQL','Mentorship'],
+     bullets:[
+       'Built interactive dashboards covering student intake trends, department performance, and research output to support data-driven decisions.',
+       'Mentored students through labs and project reviews in statistics, machine learning, and applied analytics.'
+     ]},
+  ],
+  edu: [
+    {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', name:'University of North Texas', org:'M.S. Data Science · Aug 2023 – May 2025 · Denton, TX',
+     desc:'CGPA 3.99 / 4.0', tags:['Data Science','Statistics','ML'], bullets:['Master of Science in Data Science, CGPA 3.99/4.0.']},
+    {id:'jntu', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', name:'JNTU Hyderabad', org:'B.Tech Computer Science · 2018 – 2022 · Hyderabad, India',
+     desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
+  ],
+  proj: [
+    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/diagrams/suraksha.svg', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
+     desc:'Conversational IT service-desk agent over SolarWinds, plus a self-healing log-anomaly loop.',
+     tags:['MCP','Claude API','LangChain','scikit-learn'],
+     bullets:[
+       'MCP server exposing the SolarWinds Service Desk API as typed, schema-validated tools for incidents, problems, changes, and users.',
+       'Claude-powered conversational client that plans tool calls and maintains context across a support session.',
+       'Self-healing subsystem: TF-IDF + Random Forest anomaly scoring over log streams, automated remediation, periodic retraining.',
+       'Published as "SURAKSHA: AI-Driven IT Support and Automation" (ISSRJ, 2025); 2nd place, AIS National Competition 2025.'
+     ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf'},
+    {id:'intellipod', type:'PROJECT', color:'p', art:'assets/diagrams/intellipod.svg', name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
+     desc:'Turns an arXiv paper into a multi-speaker podcast — search, parse, script, and synthesize, end to end.',
+     tags:['OpenAI Agents SDK','MCP','Streamlit','TTS'],
+     bullets:[
+       'Multi-agent pipeline (search, download, script, audio) coordinated by an orchestrator with shared session memory.',
+       'Dedicated ArXiv MCP server decouples paper search/download from the agent logic.',
+       'Configurable script duration (5–30 min) and speaker count/gender mix, rendered through a conversational Streamlit UI.'
+     ], repo:'https://github.com/ananthakrishna4747/paper_to_podcast'},
+    {id:'finllm', type:'PROJECT', color:'c', art:'assets/diagrams/finllm.svg', name:'Financial Document QA', org:'RAG · FAISS · RoBERTa · Team project',
+     desc:'Retrieval-augmented QA over financial articles, benchmarking 3 answer-generation strategies.',
+     tags:['FAISS','LangChain','RoBERTa','BERTScore'],
+     bullets:[
+       'FAISS vector index over Sentence-Transformer embeddings for financial-article retrieval.',
+       'Compares OpenAI GPT-3.5, a fine-tuned RoBERTa-large-SQuAD2, and a stock HF QA pipeline on the same retrieved context.',
+       'Evaluation harness scoring all three with ROUGE, BLEU, and BERTScore.',
+       'Built with 2 teammates — led the Streamlit app, Hugging Face integration, and human-centric evaluation.'
+     ], repo:'https://github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-'},
+    {id:'pregnancy', type:'PROJECT', color:'r', art:'assets/cards/project-pregnancy.svg', name:'Adaptive Pregnancy Quiz & Flashcards', org:'RAG over medical data · Private repository',
+     desc:'Week-specific quizzes and spaced-repetition flashcards generated from a medical knowledge base.',
+     tags:['RAG','FastAPI','Docker','JWT'],
+     bullets:[
+       'Personalized quiz system delivering week-specific, non-repetitive questions via RAG over medical data.',
+       'Daily flashcard generation using interaction history for spaced repetition.',
+       'FastAPI microservices, containerized with Docker, JWT-secured profile management.'
+     ]},
+  ],
+  extra: [
+    {id:'drowsiness', type:'ML PROJECT', color:'r', art:'assets/diagrams/drowsiness.svg', name:'Driver Drowsiness Detection', org:'OpenCV + Keras CNN',
+     desc:'Real-time webcam pipeline detecting sustained eye closure and triggering an audio alarm.',
+     tags:['OpenCV','Keras','Computer Vision'], bullets:['Haar cascade face/eye localization feeding a small CNN eye-state classifier, with a persistence-based drowsiness score.'],
+     repo:'https://github.com/ananthakrishna4747/driver_drowsiness_detection'},
+    {id:'meme', type:'ML PROJECT', color:'a', art:'assets/diagrams/meme.svg', name:'Multimodal Meme Classification', org:'MultiOFF dataset · VGG16/InceptionV3 + LSTM',
+     desc:'Compares 4 architectures for classifying offensive memes from image + text.',
+     tags:['NLP','Computer Vision','Keras'], bullets:['Stacked LSTM, BiLSTM, CNN-text + VGG16, and classical baselines compared on the published MultiOFF dataset.'],
+     repo:'https://github.com/ananthakrishna4747/offensive_meme_detection'},
+    {id:'captioning', type:'ML PROJECT', color:'b', art:'assets/diagrams/captioning.svg', name:'CNN-LSTM Image Captioning', org:'PyTorch encoder-decoder',
+     desc:'Encoder-decoder captioning model trained on the Open Images caption dataset.',
+     tags:['PyTorch','Computer Vision','NLP'], bullets:['Pretrained CNN encoder + LSTM decoder generating captions word-by-word from learned image embeddings.'],
+     repo:'https://github.com/ananthakrishna4747/ImageCaptioning'},
+    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/diagrams/player11.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
+     desc:'Recommends a fantasy-cricket XI from historical batting performance.',
+     tags:['scikit-learn','pandas'], bullets:['Regression model for opposition/ground-conditioned performance, plus K-Means clustering into batsman archetypes.'],
+     repo:'https://github.com/ananthakrishna4747/Player11prediction'},
+    {id:'automotive', type:'ML PROJECT', color:'p', art:'assets/diagrams/automotive.svg', name:'Automotive Pricing Insights', org:'EDA + regression modeling',
+     desc:'Quantifies which factors actually drive used-car prices.',
+     tags:['pandas','seaborn'], bullets:['Structured EDA plus regression modeling to separate genuine price drivers from spurious correlation.'],
+     repo:'https://github.com/ananthakrishna4747/Insights-on-Automotive-Data'},
+    {id:'salaries', type:'ML PROJECT', color:'c', art:'assets/diagrams/salaries.svg', name:'Data Science Salaries Analysis', org:'Random Forest Regressor',
+     desc:'Predicts and explains global data-science compensation.',
+     tags:['scikit-learn','pycountry'], bullets:['Random Forest regressor over role/geo/company features, with feature-importance ranking of salary drivers.'],
+     repo:'https://github.com/ananthakrishna4747/Datascience_salaries_analysis'},
+  ]
+};
+
+const SKILLS = {
+  center: {x:450, y:230, label:'Anantha\nKrishna', color:'#fff', r:34},
+  nodes: [
+    {id:'claude', label:'Claude API', color:'g', x:300, y:90},
+    {id:'mcp', label:'MCP', color:'g', x:420, y:60},
+    {id:'lc', label:'LangChain', color:'g', x:540, y:80},
+    {id:'rag', label:'RAG', color:'g', x:610, y:140},
+    {id:'faiss', label:'FAISS', color:'g', x:640, y:220},
+    {id:'agentsdk', label:'Agents SDK', color:'g', x:200, y:150},
+    {id:'py', label:'Python', color:'p', x:160, y:260},
+    {id:'fapi', label:'FastAPI', color:'p', x:170, y:340},
+    {id:'flask', label:'Flask', color:'p', x:270, y:400},
+    {id:'jwt', label:'JWT / RBAC', color:'p', x:380, y:420},
+    {id:'pytest', label:'Pytest', color:'p', x:490, y:420},
+    {id:'aws', label:'AWS', color:'b', x:600, y:380},
+    {id:'docker', label:'Docker', color:'b', x:700, y:330},
+    {id:'k8s', label:'Kubernetes', color:'b', x:740, y:250},
+    {id:'stepfn', label:'Step Functions', color:'b', x:760, y:160},
+    {id:'cw', label:'CloudWatch', color:'b', x:730, y:90},
+    {id:'nlp', label:'NLP', color:'a', x:300, y:330},
+    {id:'dl', label:'Deep Learning', color:'a', x:230, y:200},
+    {id:'pyspark', label:'PySpark', color:'a', x:560, y:330},
+    {id:'prompt', label:'Prompt Eng.', color:'a', x:480, y:140},
+  ],
+  // edges from center
+  centerEdges: ['claude','mcp','lc','agentsdk','py','aws','nlp','docker','fapi'],
+  // a few peer edges for texture
+  edges: [['claude','mcp'],['mcp','lc'],['lc','rag'],['rag','faiss'],['py','fapi'],['fapi','flask'],['flask','jwt'],['jwt','pytest'],['aws','stepfn'],['stepfn','cw'],['aws','docker'],['docker','k8s'],['nlp','dl'],['dl','prompt'],['pyspark','aws']]
+};
+
+const COLORS = {g:'#00FF88',b:'#4A9EFF',p:'#9B7BFF',c:'#00D4FF',a:'#FFB547',r:'#FF6B6B'};
+
+/* ============ CURSOR ============ */
+const cd=document.getElementById('cd'), cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+window.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
+  const t=e.target;
+  document.body.classList.toggle('hov', !!t.closest('a,button,.nmc,.pcard,.chip,.btn-toggle'));
+});
+function lerp(){ rx+=(mx-rx)*0.11; ry+=(my-ry)*0.11; cr.style.left=rx+'px'; cr.style.top=ry+'px'; requestAnimationFrame(lerp); }
+lerp();
+
+/* ============ BACKGROUND PARTICLES ============ */
+const canvas=document.getElementById('bgc'), ctx=canvas.getContext('2d');
+let W,H,particles=[],frame=0;
+function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+const pcolors=['rgba(0,255,136,', 'rgba(74,158,255,', 'rgba(155,123,255,'];
+for(let i=0;i<80;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*0.56, vy:(Math.random()-.5)*0.56, r:0.4+Math.random()*0.7, c:pcolors[i%3]}); }
+function drawBG(){
+  ctx.clearRect(0,0,W,H);
+  frame++;
+  if(frame%3===0){ ctx.fillStyle='rgba(0,255,136,0.022)'; ctx.fillRect(0,(frame*1.3)%H,W,1.5); }
+  for(const p of particles){
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r*2.2,0,Math.PI*2); ctx.fillStyle=p.c+'0.06)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c+'0.55)'; ctx.fill();
+  }
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const a=particles[i], b=particles[j];
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<130){ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle='rgba(255,255,255,'+(0.05*(1-d/130))+')'; ctx.lineWidth=1; ctx.stroke(); }
+    }
+  }
+  requestAnimationFrame(drawBG);
+}
+drawBG();
+
+/* ============ SIGNATURE ANIMATION ============ */
+window.addEventListener('load', ()=>{
+  const reveal=document.getElementById('sigReveal');
+  let w=0; const iv=setInterval(()=>{ w+=9; reveal.setAttribute('width', Math.min(w,460)); if(w>=460) clearInterval(iv); }, 16);
+  setTimeout(()=>{ document.getElementById('sig-ul').style.transition='stroke-dashoffset 1.1s ease'; document.getElementById('sig-ul').style.strokeDashoffset='0'; }, 1200);
+  setTimeout(()=>{ document.getElementById('sig-dot').style.transition='opacity .4s'; document.getElementById('sig-dot').style.opacity='1'; }, 2200);
+});
+
+/* ============ TYPING ROLES ============ */
+const ROLES=['Gen AI Engineer','MCP & Agent Tooling Engineer','RAG Pipeline Architect','Backend Engineer','Cloud-Native Systems Builder','Published AI Researcher'];
+let ri=0, ci=0, deleting=false;
+const roleEl=document.getElementById('typing-role');
+function typeLoop(){
+  const word=ROLES[ri];
+  if(!deleting){ ci++; roleEl.textContent=word.slice(0,ci); if(ci>=word.length){ deleting=true; setTimeout(typeLoop,1800); return; } }
+  else{ ci--; roleEl.textContent=word.slice(0,ci); if(ci<=0){ deleting=false; ri=(ri+1)%ROLES.length; } }
+  setTimeout(typeLoop, deleting?28:55);
+}
+typeLoop();
+
+/* ============ SCROLL REVEAL ============ */
+const io=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); }); }, {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============ SCHEDULE / CONTACT (mailto) ============ */
+function mailtoLink(){
+  const subject=encodeURIComponent("Let's connect");
+  const body=encodeURIComponent("Hi Anantha,\n\nI came across your portfolio and would like to schedule some time to chat about ");
+  return `mailto:akshaychilappa47@gmail.com?subject=${subject}&body=${body}`;
+}
+document.getElementById('schedule-btn').href=mailtoLink();
+document.getElementById('contact-btn').href=mailtoLink();
+
+/* ============ RENDER LIBRARY SHELVES ============ */
+function nmcHTML(card){
+  return `<div class="nmc" data-id="${card.id}">
+    <img class="nmc-art" src="${card.art}" alt="">
+    <div class="nmc-accent" style="background:${COLORS[card.color]}"></div>
+    <div class="nmc-body">
+      <div class="nmc-top"><span class="nmc-badge" style="color:${COLORS[card.color]}">${card.type}</span></div>
+      <div class="nmc-name">${card.name}</div>
+      <div class="nmc-org">${card.org}</div>
+      <div class="nmc-desc">${card.desc}</div>
+      <div class="nmc-tags">${card.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="nmc-foot"><span>${card.tags[0]||''}</span><span>→</span></div>
+    </div>
+  </div>`;
+}
+const shelves=document.getElementById('shelves');
+shelves.innerHTML=`
+  <div class="shelf"><div class="shelf-label">Experience</div><div class="card-grid">${CARDS.exp.map(nmcHTML).join('')}</div></div>
+  <div class="shelf"><div class="shelf-label">Projects</div><div class="card-grid">${CARDS.proj.map(nmcHTML).join('')}</div>
+    <div class="show-more-row"><button class="btn-toggle" id="toggle-more">▼ Show more projects</button></div>
+  </div>
+  <div class="shelf"><div class="shelf-label">Education</div><div class="card-grid">${CARDS.edu.map(nmcHTML).join('')}</div></div>
+`;
+document.getElementById('projects-extra-grid').innerHTML = CARDS.extra.map(nmcHTML).join('');
+
+document.getElementById('toggle-more').addEventListener('click', ()=>{ document.getElementById('projects').scrollIntoView({behavior:'smooth'}); });
+
+/* ============ DETAIL PANEL ============ */
+const ALL_CARDS=[...CARDS.exp,...CARDS.edu,...CARDS.proj,...CARDS.extra];
+const overlay=document.getElementById('overlay'), panel=document.getElementById('detail-panel');
+function openCard(id){
+  const c=ALL_CARDS.find(x=>x.id===id); if(!c) return;
+  panel.innerHTML=`
+    <span class="dp-close" id="dp-close">✕</span>
+    <span class="dp-badge">${c.type}</span>
+    <h3>${c.name}</h3>
+    <div class="dp-sub">${c.org}</div>
+    <img class="dp-art" src="${c.art}" alt="">
+    <ul>${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    <div class="dp-tagrow">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+    <div class="dp-links">
+      ${c.repo?`<a class="btn btn-fill" href="${c.repo}" target="_blank">View Code →</a>`:''}
+      ${c.paper?`<a class="btn btn-ghost" href="${c.paper}" target="_blank">Read Paper →</a>`:''}
+      <button class="btn btn-ghost" id="speak-btn">▶ Hear summary</button>
+    </div>`;
+  overlay.classList.add('open');
+  document.getElementById('dp-close').onclick=closeCard;
+  document.getElementById('speak-btn').onclick=()=>speakSummary(c);
+}
+function closeCard(){ overlay.classList.remove('open'); if(window.speechSynthesis) speechSynthesis.cancel(); }
+overlay.addEventListener('click', e=>{ if(e.target===overlay) closeCard(); });
+document.addEventListener('click', e=>{ const nmc=e.target.closest('.nmc'); if(nmc) openCard(nmc.dataset.id); });
+
+function speakSummary(c){
+  if(!window.speechSynthesis){ alert('Speech synthesis is not supported in this browser.'); return; }
+  speechSynthesis.cancel();
+  const text=`${c.name}. ${c.org}. ${c.desc}`;
+  const u=new SpeechSynthesisUtterance(text);
+  u.rate=0.92; u.pitch=1.0; u.volume=0.9;
+  const voices=speechSynthesis.getVoices();
+  const v=voices.find(v=>v.name.includes('Google') && v.lang.startsWith('en'));
+  if(v) u.voice=v;
+  speechSynthesis.speak(u);
+}
+
+/* ============ SKILLS GRAPH ============ */
+const svgNS='http://www.w3.org/2000/svg';
+const skillsSvg=document.getElementById('skills-svg');
+function el(tag,attrs){ const e=document.createElementNS(svgNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
+const nodeById={}; SKILLS.nodes.forEach(n=>nodeById[n.id]=n);
+const edgeEls=[];
+// edges first (under nodes)
+SKILLS.centerEdges.forEach(id=>{
+  const n=nodeById[id];
+  const line=el('line',{x1:SKILLS.center.x,y1:SKILLS.center.y,x2:n.x,y2:n.y,stroke:'rgba(255,255,255,0.12)','stroke-width':1});
+  line.dataset.a='center'; line.dataset.b=id;
+  skillsSvg.appendChild(line); edgeEls.push(line);
+});
+SKILLS.edges.forEach(([a,b])=>{
+  const na=nodeById[a], nb=nodeById[b];
+  const line=el('line',{x1:na.x,y1:na.y,x2:nb.x,y2:nb.y,stroke:'rgba(255,255,255,0.08)','stroke-width':1});
+  line.dataset.a=a; line.dataset.b=b;
+  skillsSvg.appendChild(line); edgeEls.push(line);
+});
+// center node
+(function(){
+  const g=el('circle',{cx:SKILLS.center.x,cy:SKILLS.center.y,r:SKILLS.center.r+8,fill:'#fff','fill-opacity':0.06});
+  skillsSvg.appendChild(g);
+  const c=el('circle',{cx:SKILLS.center.x,cy:SKILLS.center.y,r:SKILLS.center.r,fill:'#0B1220',stroke:'#fff','stroke-opacity':0.45,'stroke-width':1.4});
+  skillsSvg.appendChild(c);
+  const t1=el('text',{x:SKILLS.center.x,y:SKILLS.center.y-2,'text-anchor':'middle','font-family':'Sora,sans-serif','font-size':11,'font-weight':600,fill:'#E2EAF5'}); t1.textContent='Anantha';
+  const t2=el('text',{x:SKILLS.center.x,y:SKILLS.center.y+12,'text-anchor':'middle','font-family':'Sora,sans-serif','font-size':11,'font-weight':600,fill:'#E2EAF5'}); t2.textContent='Krishna';
+  skillsSvg.appendChild(t1); skillsSvg.appendChild(t2);
+})();
+SKILLS.nodes.forEach(n=>{
+  const col=COLORS[n.color];
+  const grp=el('g',{class:'skill-node',style:'cursor:pointer'});
+  grp.dataset.id=n.id;
+  const glow=el('circle',{cx:n.x,cy:n.y,r:22,fill:col,'fill-opacity':0.14});
+  const circ=el('circle',{cx:n.x,cy:n.y,r:16,fill:'#0F1728',stroke:col,'stroke-width':1.6});
+  const txt=el('text',{x:n.x,y:n.y+30,'text-anchor':'middle','font-family':'JetBrains Mono,monospace','font-size':10,fill:'#E2EAF5'});
+  txt.textContent=n.label;
+  grp.appendChild(glow); grp.appendChild(circ); grp.appendChild(txt);
+  skillsSvg.appendChild(grp);
+  grp.addEventListener('mouseenter', ()=>{
+    edgeEls.forEach(line=>{
+      const hot = line.dataset.a===n.id || line.dataset.b===n.id;
+      line.setAttribute('stroke', hot?col:'rgba(255,255,255,0.03)');
+      line.setAttribute('stroke-width', hot?1.5:0.5);
+    });
+  });
+  grp.addEventListener('mouseleave', ()=>{
+    edgeEls.forEach(line=>{ line.setAttribute('stroke', line.dataset.a==='center'?'rgba(255,255,255,0.12)':'rgba(255,255,255,0.08)'); line.setAttribute('stroke-width',1); });
+  });
+});
+
+/* ============ ROBO GUIDE (section-aware) ============ */
+const RG_MSGS={
+  hero:"Welcome to AK's portfolio! Scroll or click around — I'll point things out.",
+  profile:"3.99 GPA, 1 published paper, 2nd place at AIS Nationals 2025.",
+  library:"Click any card — Experience, Projects, or Education — for the full story.",
+  skills:"Hover a skill node to see how it connects to everything else.",
+  projects:"More applied ML work — computer vision, NLP, and predictive models."
+};
+const rgText=document.getElementById('rg-text');
+const sectionIds=['hero','profile','library','skills','projects'];
+const rgObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ rgText.textContent = RG_MSGS[e.target.id] || RG_MSGS.hero; } });
+}, {threshold:0.5});
+sectionIds.forEach(id=>{ const s=document.getElementById(id); if(s) rgObserver.observe(s); });
+
+/* ============ CHAT (pre-written Q&A, keyword matched) ============ */
+const FAQ=[
+  {keys:['suraksha','it support','solarwinds','self-heal','self heal','hackathon'], a:"SURAKSHA is a conversational IT service-desk agent — an MCP server wraps SolarWinds Service Desk as LLM-callable tools, with Claude + LangChain handling the conversation. It placed 2nd at the AIS National Competition 2025 and was published in ISSRJ. Code: github.com/ananthakrishna4747/ai_driven_IT_support_system"},
+  {keys:['intellipod','podcast','arxiv'], a:"Intellipod turns an arXiv paper into a podcast — a multi-agent pipeline (built on the OpenAI Agents SDK) searches arXiv via a dedicated MCP server, extracts the PDF text, writes a script, and synthesizes audio. Code: github.com/ananthakrishna4747/paper_to_podcast"},
+  {keys:['financial','finance','rag','faiss'], a:"The Financial Document QA project is a RAG pipeline over financial articles, comparing GPT-3.5, a fine-tuned RoBERTa model, and a stock Hugging Face QA pipeline — scored with ROUGE/BLEU/BERTScore. Built with two teammates. Code: github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-"},
+  {keys:['skill','tech stack','stack','tools','technolog'], a:"Core stack: Python, FastAPI/Flask, MCP, LangChain, Claude API, RAG/FAISS, AWS (Lambda/ECS/Step Functions), Docker/Kubernetes, and applied NLP/Deep Learning. Check the Skills Graph above for the full picture."},
+  {keys:['experience','work','job','sunplusdata','constella'], a:"Currently a Gen AI / Backend Engineer at SunPlusData (since Jan 2025), building MCP tooling and document-intelligence services. Previously a Software Engineer at Constella Intelligence, automating AWS ETL pipelines. Also a Teaching Assistant at UNT."},
+  {keys:['education','study','degree','gpa','university','school'], a:"M.S. in Data Science from the University of North Texas (CGPA 3.99/4.0), B.Tech in Computer Science from JNTU Hyderabad (CGPA 3.5/4.0)."},
+  {keys:['resume','cv'], a:"You can download the full résumé from the 📄 Resume button near the top of the page."},
+  {keys:['contact','reach','email','hire','schedule','meet','call'], a:"Best way is email — akshaychilappa47@gmail.com — or hit the 📅 Schedule a Meet button up top, which opens a pre-filled email. I'll also drop the link in chat: " },
+  {keys:['github','repo','code'], a:"All public work is at github.com/ananthakrishna4747 — 19 repos covering Gen AI agents, RAG, and applied ML."},
+];
+function answerFor(q){
+  const ql=q.toLowerCase();
+  for(const f of FAQ){ if(f.keys.some(k=>ql.includes(k))) return f.a; }
+  return "I don't have a pre-written answer for that — try asking about SURAKSHA, Intellipod, skills, experience, education, or how to get in touch. Or just email akshaychilappa47@gmail.com directly!";
+}
+const chatFab=document.getElementById('chat-fab'), chatPanel=document.getElementById('chat-panel'), chatMsgs=document.getElementById('chat-msgs');
+chatFab.addEventListener('click', ()=>{ chatPanel.classList.add('open'); document.getElementById('chat-badge').style.display='none'; });
+document.getElementById('chat-close').addEventListener('click', ()=>chatPanel.classList.remove('open'));
+function pushMsg(text, who){ const d=document.createElement('div'); d.className='msg '+who; d.textContent=text; chatMsgs.appendChild(d); chatMsgs.scrollTop=chatMsgs.scrollHeight; }
+function askChat(q){ pushMsg(q,'user'); setTimeout(()=>pushMsg(answerFor(q),'bot'), 300); }
+document.getElementById('chat-send').addEventListener('click', ()=>{ const inp=document.getElementById('chat-input'); if(inp.value.trim()){ askChat(inp.value.trim()); inp.value=''; } });
+document.getElementById('chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('chat-send').click(); });
+document.querySelectorAll('.chip').forEach(chip=>chip.addEventListener('click', ()=>askChat(chip.dataset.q)));
+</script>
+</body>
+</html>

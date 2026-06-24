@@ -1,0 +1,12 @@
+<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="g1" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#FFB547" stop-opacity="0.16"/><stop offset="100%" stop-color="#FFB547" stop-opacity="0"/></radialGradient>
+<pattern id="hx" width="34" height="60" patternUnits="userSpaceOnUse"><path d="M17 0 L34 10 L34 30 L17 40 L0 30 L0 10 Z" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/></pattern></defs>
+<rect width="300" height="140" fill="#0F1728"/>
+<rect width="300" height="140" fill="url(#hx)"/>
+<rect width="300" height="140" fill="url(#g1)"/>
+<polygon points="104.0,58.8 150.0,36.8 196.0,58.8 150.0,80.8" fill="none" stroke="#FFB547" stroke-width="2.2"/>
+<rect x="136.0" y="66.8" width="28" height="20" fill="#0F1728" stroke="#FFB547" stroke-width="1.6"/>
+<line x1="190.0" y1="54.8" x2="190.0" y2="92.8" stroke="#FFB547" stroke-width="1.6"/>
+<circle cx="190.0" cy="92.8" r="4" fill="#FFB547"/>
+<rect x="0.5" y="0.5" width="299" height="139" fill="none" stroke="#FFB547" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

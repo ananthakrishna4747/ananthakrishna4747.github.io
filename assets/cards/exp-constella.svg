@@ -1,0 +1,19 @@
+<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="g1" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#4A9EFF" stop-opacity="0.16"/><stop offset="100%" stop-color="#4A9EFF" stop-opacity="0"/></radialGradient>
+<pattern id="hx" width="34" height="60" patternUnits="userSpaceOnUse"><path d="M17 0 L34 10 L34 30 L17 40 L0 30 L0 10 Z" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/></pattern></defs>
+<rect width="300" height="140" fill="#0F1728"/>
+<rect width="300" height="140" fill="url(#hx)"/>
+<rect width="300" height="140" fill="url(#g1)"/>
+<circle cx="70.00000000000001" cy="58.8" r="16" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+<circle cx="94.00000000000001" cy="50.8" r="20" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+<circle cx="114.00000000000001" cy="58.8" r="14" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+<rect x="58.000000000000014" y="62.8" width="78" height="16" rx="8" fill="none" stroke="#4A9EFF" stroke-width="2"/>
+<circle cx="54.0" cy="109.2" r="9" fill="#0F1728" stroke="#00FF88" stroke-width="2"/>
+<line x1="63.0" y1="109.2" x2="111.0" y2="109.2" stroke="#00FF88" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="120.0" cy="109.2" r="9" fill="#0F1728" stroke="#9B7BFF" stroke-width="2"/>
+<line x1="129.0" y1="109.2" x2="177.0" y2="109.2" stroke="#9B7BFF" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="186.0" cy="109.2" r="9" fill="#0F1728" stroke="#00D4FF" stroke-width="2"/>
+<line x1="195.0" y1="109.2" x2="243.0" y2="109.2" stroke="#00D4FF" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="252.0" cy="109.2" r="9" fill="#0F1728" stroke="#FFB547" stroke-width="2"/>
+<rect x="0.5" y="0.5" width="299" height="139" fill="none" stroke="#4A9EFF" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="g1" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#FFB547" stop-opacity="0.16"/><stop offset="100%" stop-color="#FFB547" stop-opacity="0"/></radialGradient>
+<pattern id="hx" width="34" height="60" patternUnits="userSpaceOnUse"><path d="M17 0 L34 10 L34 30 L17 40 L0 30 L0 10 Z" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/></pattern></defs>
+<rect width="300" height="140" fill="#0F1728"/>
+<rect width="300" height="140" fill="url(#hx)"/>
+<rect width="300" height="140" fill="url(#g1)"/>
+<rect x="66.0" y="68.46" width="20" height="32.34" rx="3" fill="#4A9EFF" fill-opacity="0.85"/>
+<rect x="100.0" y="53.76" width="20" height="47.04" rx="3" fill="#00FF88" fill-opacity="0.85"/>
+<rect x="134.0" y="77.28" width="20" height="23.52" rx="3" fill="#9B7BFF" fill-opacity="0.85"/>
+<rect x="168.0" y="44.940000000000005" width="20" height="55.85999999999999" rx="3" fill="#FFB547" fill-opacity="0.85"/>
+<rect x="202.0" y="62.58" width="20" height="38.22" rx="3" fill="#00D4FF" fill-opacity="0.85"/>
+<line x1="56.0" y1="100.8" x2="236.0" y2="100.8" stroke="#7A8FA8" stroke-width="1.4"/>
+<rect x="0.5" y="0.5" width="299" height="139" fill="none" stroke="#FFB547" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

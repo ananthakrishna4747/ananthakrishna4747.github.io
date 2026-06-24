@@ -1,0 +1,16 @@
+<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="g1" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.16"/><stop offset="100%" stop-color="#FF6B6B" stop-opacity="0"/></radialGradient>
+<pattern id="hx" width="34" height="60" patternUnits="userSpaceOnUse"><path d="M17 0 L34 10 L34 30 L17 40 L0 30 L0 10 Z" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/></pattern></defs>
+<rect width="300" height="140" fill="#0F1728"/>
+<rect width="300" height="140" fill="url(#hx)"/>
+<rect width="300" height="140" fill="url(#g1)"/>
+<rect x="76.00000000000001" y="44.0" width="16" height="52" rx="3" fill="#FF6B6B"/>
+<rect x="58.000000000000014" y="62.0" width="52" height="16" rx="3" fill="#FF6B6B"/>
+<line x1="114.00000000000001" y1="70.0" x2="186.0" y2="39.2" stroke="#00FF88" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="186.0" cy="39.2" r="8" fill="#0F1728" stroke="#00FF88" stroke-width="2"/>
+<line x1="114.00000000000001" y1="70.0" x2="245.99999999999997" y2="70.0" stroke="#9B7BFF" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="245.99999999999997" cy="70.0" r="8" fill="#0F1728" stroke="#9B7BFF" stroke-width="2"/>
+<line x1="114.00000000000001" y1="70.0" x2="186.0" y2="100.8" stroke="#4A9EFF" stroke-opacity="0.5" stroke-width="1.4"/>
+<circle cx="186.0" cy="100.8" r="8" fill="#0F1728" stroke="#4A9EFF" stroke-width="2"/>
+<rect x="0.5" y="0.5" width="299" height="139" fill="none" stroke="#FF6B6B" stroke-opacity="0.35" stroke-width="1"/>
+</svg>
