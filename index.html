@@ -371,7 +371,7 @@ const CARDS = {
      desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
   ],
   proj: [
-    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/diagrams/suraksha.svg', art2:'assets/diagrams/suraksha-flow.svg', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
+    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-banner.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
      desc:'Conversational IT service-desk agent over SolarWinds, plus a self-healing log-anomaly loop.',
      tags:['MCP','Claude API','LangChain','scikit-learn'],
      bullets:[
@@ -382,7 +382,7 @@ const CARDS = {
        'Mirrors the natural-language ops pattern used in enterprise ITSM tools (e.g. ServiceNow Virtual Agent), applied here directly to SolarWinds via MCP.'
      ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf',
      sample:{q:'Show me all unauthorized entry attempts to Server Room B this week, and create an incident for the most recent one.', a:'Found 3 unauthorized attempts: Tue 9:14 AM (badge #4471, denied), Thu 2:03 PM (badge #2290, denied), Fri 11:47 PM (badge unknown, denied). Created Incident #INC-10432 for the Friday 11:47 PM attempt — flagged high priority due to after-hours timing.'}},
-    {id:'intellipod', type:'PROJECT', color:'p', art:'assets/diagrams/intellipod.svg', art2:'assets/diagrams/intellipod-flow.svg', name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
+    {id:'intellipod', type:'PROJECT', color:'p', art:'assets/photos/intellipod-banner.jpg', art2:'assets/diagrams/intellipod.svg', art3:'assets/diagrams/intellipod-flow.svg', video:'assets/video/intellipod-demo.mp4', name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
      desc:'Turns an arXiv paper into a multi-speaker podcast — search, parse, script, and synthesize, end to end.',
      tags:['OpenAI Agents SDK','MCP','Streamlit','TTS'],
      bullets:[
@@ -392,7 +392,7 @@ const CARDS = {
        'Same "research-to-audio" category as tools like Google\u2019s NotebookLM, scoped to arXiv with independently testable agent stages.'
      ], repo:'https://github.com/ananthakrishna4747/paper_to_podcast',
      sample:{q:'Turn arXiv 2305.14314 into a 10-minute, 2-speaker podcast.', a:"Found 'QLoRA: Efficient Finetuning of Quantized LLMs' (2305.14314). Generating a 10-minute, 2-speaker script… done — here's your episode: qlora_episode.mp3"}},
-    {id:'finllm', type:'PROJECT', color:'c', art:'assets/diagrams/finllm.svg', art2:'assets/diagrams/finllm-flow.svg', name:'Financial Document QA', org:'RAG · FAISS · RoBERTa · Team project',
+    {id:'finllm', type:'PROJECT', color:'c', art:'assets/photos/finllm-banner.jpg', art2:'assets/diagrams/finllm.svg', art3:'assets/diagrams/finllm-flow.svg', name:'Financial Document QA', org:'RAG · FAISS · RoBERTa · Team project',
      desc:'Retrieval-augmented QA over financial articles, benchmarking 3 answer-generation strategies.',
      tags:['FAISS','LangChain','RoBERTa','BERTScore'],
      bullets:[
@@ -425,7 +425,7 @@ const CARDS = {
      desc:'Encoder-decoder captioning model trained on the Open Images caption dataset.',
      tags:['PyTorch','Computer Vision','NLP'], bullets:['Pretrained CNN encoder + LSTM decoder generating captions word-by-word from learned image embeddings.'],
      repo:'https://github.com/ananthakrishna4747/ImageCaptioning'},
-    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/cards/player11-cricket.svg', art2:'assets/diagrams/player11.svg', art3:'assets/diagrams/player11-flow.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
+    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/photos/player11-banner.jpg', art2:'assets/diagrams/player11.svg', art3:'assets/diagrams/player11-flow.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
      desc:'Recommends a fantasy-cricket XI from historical batting performance.',
      tags:['scikit-learn','pandas'], bullets:['Regression model for opposition/ground-conditioned performance, plus K-Means clustering into batsman archetypes.','Same recommendation pattern behind DFS optimizers (Dream11/FanDuel-style platforms): prediction plus a diversity constraint, not just top-N highest scorers.'],
      repo:'https://github.com/ananthakrishna4747/Player11prediction',
@@ -584,6 +584,7 @@ function openCard(id){
     <h3>${c.name}</h3>
     <div class="dp-sub">${c.org}</div>
     <img class="dp-art" src="${c.art}" alt="">
+    ${c.video?`<video class="dp-art" src="${c.video}" autoplay loop muted playsinline></video>`:''}
     ${c.art2?`<img class="dp-art" src="${c.art2}" alt="">`:''}
     ${c.art3?`<img class="dp-art" src="${c.art3}" alt="">`:''}
     <ul>${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
