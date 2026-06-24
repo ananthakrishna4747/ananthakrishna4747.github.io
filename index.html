@@ -425,7 +425,7 @@ const CARDS = {
      desc:'Encoder-decoder captioning model trained on the Open Images caption dataset.',
      tags:['PyTorch','Computer Vision','NLP'], bullets:['Pretrained CNN encoder + LSTM decoder generating captions word-by-word from learned image embeddings.'],
      repo:'https://github.com/ananthakrishna4747/ImageCaptioning'},
-    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/diagrams/player11.svg', art2:'assets/diagrams/player11-flow.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
+    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/cards/player11-cricket.svg', art2:'assets/diagrams/player11.svg', art3:'assets/diagrams/player11-flow.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
      desc:'Recommends a fantasy-cricket XI from historical batting performance.',
      tags:['scikit-learn','pandas'], bullets:['Regression model for opposition/ground-conditioned performance, plus K-Means clustering into batsman archetypes.','Same recommendation pattern behind DFS optimizers (Dream11/FanDuel-style platforms): prediction plus a diversity constraint, not just top-N highest scorers.'],
      repo:'https://github.com/ananthakrishna4747/Player11prediction',
@@ -585,6 +585,7 @@ function openCard(id){
     <div class="dp-sub">${c.org}</div>
     <img class="dp-art" src="${c.art}" alt="">
     ${c.art2?`<img class="dp-art" src="${c.art2}" alt="">`:''}
+    ${c.art3?`<img class="dp-art" src="${c.art3}" alt="">`:''}
     <ul>${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
     ${c.sample?`<div class="dp-sample"><div class="dp-sample-label">SAMPLE INTERACTION <span>(illustrative)</span></div><div class="dp-sample-q">${c.sample.q}</div><div class="dp-sample-a">${c.sample.a}</div></div>`:''}
     <div class="dp-tagrow">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div>
