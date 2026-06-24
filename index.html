@@ -92,6 +92,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .pcard-body{padding:0 32px 32px;}
 .pcard-avatar{width:84px;height:84px;border-radius:50%;background:var(--bg3);border:3px solid var(--bg2);margin-top:-42px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:26px;color:var(--g);position:relative;}
 .pcard-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px dashed rgba(0,255,136,.4);animation:spinSlow 9s linear infinite;}
+.pcard-gem{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,var(--g),var(--b));clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%);animation:gpulse 2.2s ease-in-out infinite;opacity:.85;z-index:0;}
+.pcard-avatar span.pcard-initials{position:relative;z-index:1;}
+@keyframes gpulse{0%,100%{transform:scale(1);}50%{transform:scale(.82);}}
 @keyframes spinSlow{to{transform:rotate(360deg);}}
 .pcard-dot{position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;background:var(--g);border:3px solid var(--bg2);}
 .pcard-name{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;margin-top:14px;}
@@ -139,9 +142,12 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .dotleg{width:8px;height:8px;border-radius:50%;display:inline-block;}
 
 /* ===== CHAT FAB ===== */
-#chat-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;font-size:22px;box-shadow:0 6px 24px rgba(0,255,136,.3);transition:transform .2s;}
+#chat-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;font-size:22px;box-shadow:0 6px 24px rgba(0,255,136,.3);transition:transform .2s;transform:scale(0);}
+#chat-fab.in{animation:fabIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes fabIn{to{transform:scale(1);}}
 #chat-fab:hover{transform:scale(1.06);}
-#chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;}
+#chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .3s;}
+#chat-fab .badge.in{opacity:1;}
 #chat-panel{position:fixed;bottom:90px;right:24px;width:min(370px,92vw);height:min(520px,72vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);}
 #chat-panel.open{display:flex;}
 .chat-head{padding:14px 16px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;gap:10px;}
@@ -196,6 +202,30 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 footer{padding:50px 0 80px;text-align:center;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:11px;}
 footer a{color:var(--txt2);}
 footer a:hover{color:var(--g);}
+
+/* ===== SCHEDULING MODAL ===== */
+#sched-overlay{position:fixed;inset:0;background:rgba(4,8,18,.82);backdrop-filter:blur(10px);z-index:960;display:none;align-items:center;justify-content:center;padding:20px;}
+#sched-overlay.open{display:flex;}
+#sched-modal{width:min(640px,94vw);max-height:80vh;background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;display:grid;grid-template-columns:1fr 180px;overflow:hidden;animation:dpIn .32s cubic-bezier(.34,1.56,.64,1);}
+@media (max-width:640px){#sched-modal{grid-template-columns:1fr;}.sched-log-col{display:none;}}
+.sched-chat-col{display:flex;flex-direction:column;height:520px;}
+.sched-head{padding:14px 16px;border-bottom:1px solid var(--bdr2);font-size:13px;display:flex;align-items:center;gap:8px;}
+.sched-head .rb{font-size:18px;}
+.sched-head b{flex:1;}
+.sched-close{cursor:pointer;color:var(--txt2);}
+.sched-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.sched-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--bdr2);}
+.sched-input-row input{flex:1;background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:10px 12px;color:var(--txt);font-size:13px;outline:none;}
+.sched-input-row input:focus{border-color:var(--a);}
+.sched-log-col{background:rgba(0,0,0,.18);padding:18px 14px;}
+.sched-log-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--txt3);margin-bottom:14px;}
+.sched-step{font-size:12px;color:var(--txt3);display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bdr2);transition:color .2s;}
+.sched-step .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--txt3);flex-shrink:0;transition:.2s;}
+.sched-step.done{color:var(--g);}
+.sched-step.done .dot{background:var(--g);border-color:var(--g);box-shadow:0 0 8px rgba(0,255,136,.6);}
+.sched-step.active{color:var(--a);}
+.sched-step.active .dot{border-color:var(--a);}
+.sched-log-note{font-size:10.5px;color:var(--txt3);line-height:1.5;margin-top:16px;}
 </style>
 </head>
 <body>
@@ -246,7 +276,7 @@ footer a:hover{color:var(--g);}
   <div class="pcard">
     <div class="pcard-banner"></div>
     <div class="pcard-body">
-      <div class="pcard-avatar">AK<span class="pcard-dot"></span></div>
+      <div class="pcard-avatar"><div class="pcard-gem"></div><span class="pcard-initials">AK</span><span class="pcard-dot"></span></div>
       <div class="pcard-name">Anantha Krishna Chilappagari</div>
       <div class="pcard-handle">@ananthakrishna4747 · Denton, TX</div>
       <div class="pcard-stats">
@@ -306,6 +336,27 @@ footer a:hover{color:var(--g);}
 <div id="robo-guide">
   <div class="rg-bot">🤖</div>
   <div class="rg-bubble" id="rg-text">Welcome to AK's portfolio! Scroll or click around — I'll point things out.</div>
+</div>
+
+<div id="sched-overlay">
+  <div id="sched-modal">
+    <div class="sched-chat-col">
+      <div class="sched-head"><span class="rb">🤖</span> <b>Let's get this scheduled</b><span class="sched-close" id="sched-close">✕</span></div>
+      <div class="sched-msgs" id="sched-msgs"></div>
+      <div class="sched-input-row">
+        <input id="sched-input" type="text" placeholder="Type your answer…">
+        <button class="chat-send" id="sched-send">➤</button>
+      </div>
+    </div>
+    <div class="sched-log-col">
+      <div class="sched-log-title">PROGRESS</div>
+      <div class="sched-step" id="step-0"><span class="dot"></span> Name &amp; email</div>
+      <div class="sched-step" id="step-1"><span class="dot"></span> Purpose</div>
+      <div class="sched-step" id="step-2"><span class="dot"></span> Timezone</div>
+      <div class="sched-step" id="step-3"><span class="dot"></span> Availability</div>
+      <div class="sched-log-note">No backend — your answers are compiled into a single pre-filled email. Nothing is sent until you hit send in your own mail client.</div>
+    </div>
+  </div>
 </div>
 
 <div id="chat-fab"><span>💬</span><span class="badge" id="chat-badge">1</span></div>
@@ -371,7 +422,7 @@ const CARDS = {
      desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
   ],
   proj: [
-    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-infographic.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
+    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-infographic-original.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
      desc:'Conversational IT service-desk agent over SolarWinds, plus a self-healing log-anomaly loop.',
      tags:['MCP','Claude API','LangChain','scikit-learn'],
      bullets:[
@@ -492,6 +543,9 @@ function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.inne
 window.addEventListener('resize', resize); resize();
 const pcolors=['rgba(0,255,136,', 'rgba(74,158,255,', 'rgba(155,123,255,'];
 for(let i=0;i<80;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*0.56, vy:(Math.random()-.5)*0.56, r:0.4+Math.random()*0.7, c:pcolors[i%3]}); }
+let mouseX=-9999, mouseY=-9999;
+window.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
+window.addEventListener('mouseleave', ()=>{ mouseX=-9999; mouseY=-9999; });
 function drawBG(){
   ctx.clearRect(0,0,W,H);
   frame++;
@@ -499,6 +553,8 @@ function drawBG(){
   for(const p of particles){
     p.x+=p.vx; p.y+=p.vy;
     if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+    const dx=p.x-mouseX, dy=p.y-mouseY, dist=Math.hypot(dx,dy);
+    if(dist<200){ const force=(200-dist)/200*0.6; p.x+=(dx/dist)*force; p.y+=(dy/dist)*force; }
     ctx.beginPath(); ctx.arc(p.x,p.y,p.r*2.2,0,Math.PI*2); ctx.fillStyle=p.c+'0.06)'; ctx.fill();
     ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c+'0.55)'; ctx.fill();
   }
@@ -522,7 +578,7 @@ window.addEventListener('load', ()=>{
 });
 
 /* ============ TYPING ROLES ============ */
-const ROLES=['Gen AI Engineer','MCP & Agent Tooling Engineer','RAG Pipeline Architect','Backend Engineer','Cloud-Native Systems Builder','Published AI Researcher'];
+const ROLES=['Gen AI Engineer','Agentic Systems Builder','LLM Application Developer','RAG Pipeline Architect','Backend Engineer','MCP & Agent Tooling Engineer','Published AI Researcher','Cloud-Native Systems Builder'];
 let ri=0, ci=0, deleting=false;
 const roleEl=document.getElementById('typing-role');
 function typeLoop(){
@@ -537,14 +593,80 @@ typeLoop();
 const io=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); }); }, {threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ============ SCHEDULE / CONTACT (mailto) ============ */
+/* ============ SCHEDULING MODAL (4-question flow -> compiled mailto, no backend) ============ */
 function mailtoLink(){
-  const subject=encodeURIComponent("Let's connect");
-  const body=encodeURIComponent("Hi Anantha,\n\nI came across your portfolio and would like to schedule some time to chat about ");
-  return `mailto:akshaychilappa47@gmail.com?subject=${subject}&body=${body}`;
+  return `mailto:akshaychilappa47@gmail.com?subject=${encodeURIComponent("Let's connect")}&body=${encodeURIComponent("Hi Anantha,\n\nI came across your portfolio and would like to schedule some time to chat about ")}`;
 }
-document.getElementById('schedule-btn').href=mailtoLink();
-document.getElementById('contact-btn').href=mailtoLink();
+const SCHED_Q = [
+  "What's your name and email?",
+  "What's the purpose — job opportunity, collaboration, or consulting?",
+  "What timezone are you in?",
+  "Preferred time — morning or afternoon, and which days work?"
+];
+let schedAnswers = [];
+let schedStep = 0;
+const schedOverlay = document.getElementById('sched-overlay');
+const schedMsgs = document.getElementById('sched-msgs');
+const schedInput = document.getElementById('sched-input');
+
+function schedPush(text, who){ const d=document.createElement('div'); d.className='msg '+who; d.textContent=text; schedMsgs.appendChild(d); schedMsgs.scrollTop=schedMsgs.scrollHeight; }
+function schedSetStep(i){
+  for(let s=0;s<4;s++){
+    const el = document.getElementById('step-'+s);
+    el.classList.remove('active','done');
+    if(s<i) el.classList.add('done');
+    else if(s===i) el.classList.add('active');
+  }
+}
+function openSchedModal(){
+  schedAnswers = []; schedStep = 0;
+  schedMsgs.innerHTML = '';
+  schedPush("Hi! Let's get a meeting on the calendar — just answer a few quick questions.", 'bot');
+  schedPush(SCHED_Q[0], 'bot');
+  schedSetStep(0);
+  schedOverlay.classList.add('open');
+  schedInput.value=''; schedInput.focus();
+}
+function closeSchedModal(){ schedOverlay.classList.remove('open'); }
+function schedSubmit(){
+  const val = schedInput.value.trim();
+  if(!val) return;
+  schedPush(val, 'user');
+  schedAnswers.push(val);
+  schedInput.value='';
+  schedStep++;
+  if(schedStep < 4){
+    schedSetStep(schedStep);
+    setTimeout(()=>schedPush(SCHED_Q[schedStep], 'bot'), 350);
+  } else {
+    schedSetStep(4);
+    const subject = encodeURIComponent("Let's connect — meeting request");
+    const body = encodeURIComponent(
+      `Hi Anantha,\n\nI'd like to schedule some time to talk.\n\n`+
+      `Name & email: ${schedAnswers[0]}\n`+
+      `Purpose: ${schedAnswers[1]}\n`+
+      `Timezone: ${schedAnswers[2]}\n`+
+      `Availability: ${schedAnswers[3]}\n\nLooking forward to connecting.`
+    );
+    const link = `mailto:akshaychilappa47@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(()=>{
+      schedPush("Got it — opening a pre-filled email to Anantha now. Nothing sends until you hit send yourself.", 'bot');
+      const a = document.createElement('a'); a.href = link; a.id='sched-final-link'; a.textContent='Open email →';
+      a.className='btn btn-fill'; a.style.marginTop='6px'; a.style.display='inline-block';
+      schedMsgs.appendChild(a);
+      schedMsgs.scrollTop = schedMsgs.scrollHeight;
+      window.location.href = link;
+    }, 350);
+  }
+}
+document.getElementById('sched-send').addEventListener('click', schedSubmit);
+schedInput.addEventListener('keydown', e=>{ if(e.key==='Enter') schedSubmit(); });
+document.getElementById('sched-close').addEventListener('click', closeSchedModal);
+schedOverlay.addEventListener('click', e=>{ if(e.target===schedOverlay) closeSchedModal(); });
+document.getElementById('schedule-btn').addEventListener('click', e=>{ e.preventDefault(); openSchedModal(); });
+document.getElementById('contact-btn').addEventListener('click', e=>{ e.preventDefault(); openSchedModal(); });
+document.getElementById('schedule-btn').removeAttribute('href');
+document.getElementById('contact-btn').removeAttribute('href');
 
 /* ============ RENDER LIBRARY SHELVES ============ */
 function nmcHTML(card){
@@ -677,9 +799,20 @@ const RG_MSGS={
 const rgText=document.getElementById('rg-text');
 const sectionIds=['hero','profile','library','skills','projects'];
 const rgObserver=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ rgText.textContent = RG_MSGS[e.target.id] || RG_MSGS.hero; } });
+  entries.forEach(e=>{ if(e.isIntersecting){ currentSection = e.target.id; rgText.textContent = RG_MSGS[e.target.id] || RG_MSGS.hero; } });
 }, {threshold:0.5});
 sectionIds.forEach(id=>{ const s=document.getElementById(id); if(s) rgObserver.observe(s); });
+
+// Hero idle cycle: every 7s while on hero, rotate through tips then back to welcome
+let currentSection = 'hero';
+const HERO_IDLE = ["Try the chat — bottom right, ask me anything about Anantha's work.", "Want to talk? Hit \u201cSchedule a Meet\u201d up top — opens a pre-filled email.", RG_MSGS.hero];
+let idleIdx = 0;
+setInterval(()=>{
+  if(currentSection === 'hero'){
+    idleIdx = (idleIdx + 1) % HERO_IDLE.length;
+    rgText.textContent = HERO_IDLE[idleIdx];
+  }
+}, 7000);
 
 /* ============ CHAT (pre-written Q&A, keyword matched) ============ */
 const FAQ=[
@@ -699,6 +832,25 @@ function answerFor(q){
   return "I don't have a pre-written answer for that — try asking about SURAKSHA, Intellipod, skills, experience, education, or how to get in touch. Or just email akshaychilappa47@gmail.com directly!";
 }
 const chatFab=document.getElementById('chat-fab'), chatPanel=document.getElementById('chat-panel'), chatMsgs=document.getElementById('chat-msgs');
+
+// Delayed entrance + notification chime, matching original timing spec
+setTimeout(()=>{ chatFab.classList.add('in'); }, 3000);
+setTimeout(()=>{ document.getElementById('chat-badge').classList.add('in'); }, 3300);
+setTimeout(()=>{
+  try{
+    const ctx2 = new (window.AudioContext||window.webkitAudioContext)();
+    [880, 1320].forEach((freq, i)=>{
+      const osc = ctx2.createOscillator(), gain = ctx2.createGain();
+      osc.frequency.value = freq; osc.type = 'sine';
+      gain.gain.setValueAtTime(0.001, ctx2.currentTime + i*0.12);
+      gain.gain.linearRampToValueAtTime(0.08, ctx2.currentTime + i*0.12 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx2.currentTime + i*0.12 + 0.25);
+      osc.connect(gain); gain.connect(ctx2.destination);
+      osc.start(ctx2.currentTime + i*0.12); osc.stop(ctx2.currentTime + i*0.12 + 0.26);
+    });
+  }catch(e){}
+}, 3500);
+
 chatFab.addEventListener('click', ()=>{ chatPanel.classList.add('open'); document.getElementById('chat-badge').style.display='none'; });
 document.getElementById('chat-close').addEventListener('click', ()=>chatPanel.classList.remove('open'));
 function pushMsg(text, who){ const d=document.createElement('div'); d.className='msg '+who; d.textContent=text; chatMsgs.appendChild(d); chatMsgs.scrollTop=chatMsgs.scrollHeight; }
