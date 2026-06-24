@@ -185,6 +185,13 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .dp-links{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
 .dp-tagrow{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;}
 .dp-tagrow span{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--txt2);background:var(--sur);padding:4px 9px;border-radius:6px;}
+.dp-sample{background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:14px 16px;margin:16px 0;}
+.dp-sample-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--a);margin-bottom:10px;}
+.dp-sample-label span{color:var(--txt3);font-weight:400;letter-spacing:0;}
+.dp-sample-q{font-size:13px;color:var(--txt2);padding-bottom:10px;margin-bottom:10px;border-bottom:1px dashed var(--bdr2);}
+.dp-sample-q::before{content:'Q · ';color:var(--b);font-family:'JetBrains Mono',monospace;}
+.dp-sample-a{font-size:13px;color:var(--txt);line-height:1.6;}
+.dp-sample-a::before{content:'A · ';color:var(--g);font-family:'JetBrains Mono',monospace;}
 
 footer{padding:50px 0 80px;text-align:center;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:11px;}
 footer a{color:var(--txt2);}
@@ -364,32 +371,38 @@ const CARDS = {
      desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
   ],
   proj: [
-    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/diagrams/suraksha.svg', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
+    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/diagrams/suraksha.svg', art2:'assets/diagrams/suraksha-flow.svg', name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
      desc:'Conversational IT service-desk agent over SolarWinds, plus a self-healing log-anomaly loop.',
      tags:['MCP','Claude API','LangChain','scikit-learn'],
      bullets:[
        'MCP server exposing the SolarWinds Service Desk API as typed, schema-validated tools for incidents, problems, changes, and users.',
        'Claude-powered conversational client that plans tool calls and maintains context across a support session.',
        'Self-healing subsystem: TF-IDF + Random Forest anomaly scoring over log streams, automated remediation, periodic retraining.',
-       'Published as "SURAKSHA: AI-Driven IT Support and Automation" (ISSRJ, 2025); 2nd place, AIS National Competition 2025.'
-     ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf'},
-    {id:'intellipod', type:'PROJECT', color:'p', art:'assets/diagrams/intellipod.svg', name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
+       'Published as "SURAKSHA: AI-Driven IT Support and Automation" (ISSRJ, 2025); 2nd place, AIS National Competition 2025.',
+       'Mirrors the natural-language ops pattern used in enterprise ITSM tools (e.g. ServiceNow Virtual Agent), applied here directly to SolarWinds via MCP.'
+     ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf',
+     sample:{q:'Show me all unauthorized entry attempts to Server Room B this week, and create an incident for the most recent one.', a:'Found 3 unauthorized attempts: Tue 9:14 AM (badge #4471, denied), Thu 2:03 PM (badge #2290, denied), Fri 11:47 PM (badge unknown, denied). Created Incident #INC-10432 for the Friday 11:47 PM attempt — flagged high priority due to after-hours timing.'}},
+    {id:'intellipod', type:'PROJECT', color:'p', art:'assets/diagrams/intellipod.svg', art2:'assets/diagrams/intellipod-flow.svg', name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
      desc:'Turns an arXiv paper into a multi-speaker podcast — search, parse, script, and synthesize, end to end.',
      tags:['OpenAI Agents SDK','MCP','Streamlit','TTS'],
      bullets:[
        'Multi-agent pipeline (search, download, script, audio) coordinated by an orchestrator with shared session memory.',
        'Dedicated ArXiv MCP server decouples paper search/download from the agent logic.',
-       'Configurable script duration (5–30 min) and speaker count/gender mix, rendered through a conversational Streamlit UI.'
-     ], repo:'https://github.com/ananthakrishna4747/paper_to_podcast'},
-    {id:'finllm', type:'PROJECT', color:'c', art:'assets/diagrams/finllm.svg', name:'Financial Document QA', org:'RAG · FAISS · RoBERTa · Team project',
+       'Configurable script duration (5–30 min) and speaker count/gender mix, rendered through a conversational Streamlit UI.',
+       'Same "research-to-audio" category as tools like Google\u2019s NotebookLM, scoped to arXiv with independently testable agent stages.'
+     ], repo:'https://github.com/ananthakrishna4747/paper_to_podcast',
+     sample:{q:'Turn arXiv 2305.14314 into a 10-minute, 2-speaker podcast.', a:"Found 'QLoRA: Efficient Finetuning of Quantized LLMs' (2305.14314). Generating a 10-minute, 2-speaker script… done — here's your episode: qlora_episode.mp3"}},
+    {id:'finllm', type:'PROJECT', color:'c', art:'assets/diagrams/finllm.svg', art2:'assets/diagrams/finllm-flow.svg', name:'Financial Document QA', org:'RAG · FAISS · RoBERTa · Team project',
      desc:'Retrieval-augmented QA over financial articles, benchmarking 3 answer-generation strategies.',
      tags:['FAISS','LangChain','RoBERTa','BERTScore'],
      bullets:[
        'FAISS vector index over Sentence-Transformer embeddings for financial-article retrieval.',
        'Compares OpenAI GPT-3.5, a fine-tuned RoBERTa-large-SQuAD2, and a stock HF QA pipeline on the same retrieved context.',
        'Evaluation harness scoring all three with ROUGE, BLEU, and BERTScore.',
-       'Built with 2 teammates — led the Streamlit app, Hugging Face integration, and human-centric evaluation.'
-     ], repo:'https://github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-'},
+       'Built with 2 teammates — led the Streamlit app, Hugging Face integration, and human-centric evaluation.',
+       'Same retrieval-grounded pattern behind financial research copilots — answers stay anchored to retrieved text, not unsupported model recall.'
+     ], repo:'https://github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-',
+     sample:{q:'Why did IT stocks dip this week?', a:'Based on retrieved coverage: IT stocks dipped following weaker-than-expected Q3 guidance from a major US client, with rupee appreciation adding pressure to export margins. (grounded in 2 retrieved articles)'}},
     {id:'pregnancy', type:'PROJECT', color:'r', art:'assets/cards/project-pregnancy.svg', name:'Adaptive Pregnancy Quiz & Flashcards', org:'RAG over medical data · Private repository',
      desc:'Week-specific quizzes and spaced-repetition flashcards generated from a medical knowledge base.',
      tags:['RAG','FastAPI','Docker','JWT'],
@@ -412,10 +425,11 @@ const CARDS = {
      desc:'Encoder-decoder captioning model trained on the Open Images caption dataset.',
      tags:['PyTorch','Computer Vision','NLP'], bullets:['Pretrained CNN encoder + LSTM decoder generating captions word-by-word from learned image embeddings.'],
      repo:'https://github.com/ananthakrishna4747/ImageCaptioning'},
-    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/diagrams/player11.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
+    {id:'player11', type:'ML PROJECT', color:'g', art:'assets/diagrams/player11.svg', art2:'assets/diagrams/player11-flow.svg', name:'Beyond Cricket — Player XI Prediction', org:'Linear Regression + K-Means',
      desc:'Recommends a fantasy-cricket XI from historical batting performance.',
-     tags:['scikit-learn','pandas'], bullets:['Regression model for opposition/ground-conditioned performance, plus K-Means clustering into batsman archetypes.'],
-     repo:'https://github.com/ananthakrishna4747/Player11prediction'},
+     tags:['scikit-learn','pandas'], bullets:['Regression model for opposition/ground-conditioned performance, plus K-Means clustering into batsman archetypes.','Same recommendation pattern behind DFS optimizers (Dream11/FanDuel-style platforms): prediction plus a diversity constraint, not just top-N highest scorers.'],
+     repo:'https://github.com/ananthakrishna4747/Player11prediction',
+     sample:{q:'Predicted XI vs. a pace-heavy attack on a slow pitch', a:'Player A — 64 proj. runs (aggressive starter) ✓ · Player B — 41 (anchor) ✓ · Player D — 58 (aggressive starter) ✓ · Player C — 22 (lower-order) — not selected'}},
     {id:'automotive', type:'ML PROJECT', color:'p', art:'assets/diagrams/automotive.svg', name:'Automotive Pricing Insights', org:'EDA + regression modeling',
      desc:'Quantifies which factors actually drive used-car prices.',
      tags:['pandas','seaborn'], bullets:['Structured EDA plus regression modeling to separate genuine price drivers from spurious correlation.'],
@@ -570,7 +584,9 @@ function openCard(id){
     <h3>${c.name}</h3>
     <div class="dp-sub">${c.org}</div>
     <img class="dp-art" src="${c.art}" alt="">
+    ${c.art2?`<img class="dp-art" src="${c.art2}" alt="">`:''}
     <ul>${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    ${c.sample?`<div class="dp-sample"><div class="dp-sample-label">SAMPLE INTERACTION <span>(illustrative)</span></div><div class="dp-sample-q">${c.sample.q}</div><div class="dp-sample-a">${c.sample.a}</div></div>`:''}
     <div class="dp-tagrow">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div>
     <div class="dp-links">
       ${c.repo?`<a class="btn btn-fill" href="${c.repo}" target="_blank">View Code →</a>`:''}
