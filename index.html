@@ -182,7 +182,7 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 #chat-fab:hover{transform:scale(1.06);}
 #chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .3s;}
 #chat-fab .badge.in{opacity:1;}
-#chat-panel{position:fixed;bottom:90px;right:24px;width:min(480px,94vw);height:min(620px,80vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease;}
+#chat-panel{position:fixed;bottom:90px;right:24px;width:min(560px,94vw);height:min(620px,80vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease;}
 #chat-panel.open{display:flex;}
 #chat-panel.minimized{height:60px!important;min-height:60px;}
 #chat-panel.minimized .chat-msgs,#chat-panel.minimized .chat-suggest,#chat-panel.minimized .chat-input-row{display:none;}
@@ -319,7 +319,7 @@ footer a:hover{color:var(--g);}
       <div class="hero-name">Anantha Krishna</div>
       <div class="hero-handle">@ananthakrishna4747 · Denton, TX</div>
       <div><span class="hero-role" id="typing-role">Gen AI Engineer</span></div>
-      <p class="hero-sub">I build MCP servers, RAG pipelines, and cloud-native agent systems — turning enterprise APIs into tools LLMs can actually use, and turning research papers into things you can listen to. MS in Data Science, University of North Texas.</p>
+      <p class="hero-sub">4+ years building production GenAI and agentic systems on AWS — Bedrock agents, MCP tool-calling, and document-intelligence pipelines that turn enterprise APIs into safe, auditable actions. MS in Data Science, University of North Texas.</p>
       <div class="hero-stats">
         <span><b>3.99</b> MS GPA</span><span><b>1</b> Published Paper</span><span><b>2nd</b> — AIS Nat'l Competition 2025</span><span><b>19</b> GitHub Repos</span>
       </div>
@@ -375,25 +375,25 @@ footer a:hover{color:var(--g);}
     <div class="skill-col">
       <div class="skill-col-h">AI &amp; Agents</div>
       <div class="skill-col-list">
-        <span>Claude API</span><span>MCP</span><span>LangChain</span><span>RAG</span><span>FAISS</span><span>Agents SDK</span><span>Prompt Eng.</span>
+        <span>Claude API</span><span>Amazon Bedrock Agents</span><span>Bedrock Knowledge Bases</span><span>MCP</span><span>LangChain</span><span>RAG</span><span>FAISS</span><span>Agents SDK</span><span>Prompt Eng.</span>
       </div>
     </div>
     <div class="skill-col">
       <div class="skill-col-h">Backend</div>
       <div class="skill-col-list">
-        <span>Python</span><span>FastAPI</span><span>Flask</span><span>JWT / RBAC</span><span>Pytest</span>
+        <span>Python</span><span>FastAPI</span><span>Flask</span><span>JWT / RBAC</span><span>Pytest</span><span>Terraform</span>
       </div>
     </div>
     <div class="skill-col">
       <div class="skill-col-h">Cloud &amp; Infra</div>
       <div class="skill-col-list">
-        <span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Step Functions</span><span>CloudWatch</span>
+        <span>AWS Lambda</span><span>Step Functions</span><span>ECS / EKS</span><span>EMR</span><span>EventBridge</span><span>Athena</span><span>Glue</span><span>CloudWatch</span><span>Docker / Kubernetes</span>
       </div>
     </div>
     <div class="skill-col">
       <div class="skill-col-h">Data &amp; ML</div>
       <div class="skill-col-list">
-        <span>NLP</span><span>Deep Learning</span><span>PySpark</span><span>scikit-learn</span><span>PyTorch</span>
+        <span>NLP</span><span>Deep Learning</span><span>PySpark</span><span>scikit-learn</span><span>PyTorch</span><span>SageMaker</span><span>XGBoost</span><span>Textract</span><span>Rekognition</span>
       </div>
     </div>
   </div>
@@ -433,14 +433,14 @@ footer a:hover{color:var(--g);}
 <div id="chat-panel">
   <div class="chat-head" id="chat-head-bar">
     <div class="rb">🤖</div>
-    <div class="info"><b>Krishna.AI</b><span>Pre-written Q&amp;A · no live API</span></div>
+    <div class="info"><b>Krishna.AI</b></div>
     <div class="hbtns"><span class="min" id="chat-min" title="Minimize">─</span><span class="x" id="chat-close" title="Close">✕</span></div>
   </div>
   <div class="chat-msgs" id="chat-msgs">
     <div class="msg bot">Hi! I'm a lightweight FAQ bot — ask me about Anantha's projects, skills, certifications, or how to get in touch. Try one of these, or type your own:</div>
   </div>
   <div class="chat-suggest">
-    <span class="chip" data-q="suraksha">SURAKSHA</span><span class="chip" data-q="intellipod">Intellipod</span><span class="chip" data-q="player11">Cricket XI</span><span class="chip" data-q="skills">Tech Stack</span><span class="chip" data-q="certifications">Certifications</span><span class="chip" data-q="who used fastapi">FastAPI projects?</span><span class="chip" data-q="schedule">Schedule</span>
+    <span class="chip" data-q="suraksha">SURAKSHA</span><span class="chip" data-q="intellipod">Intellipod</span><span class="chip" data-q="text-to-sql">Text-to-SQL Agent</span><span class="chip" data-q="constella">Constella</span><span class="chip" data-q="skills">Tech Stack</span><span class="chip" data-q="certifications">Certifications</span><span class="chip" data-q="schedule">Schedule</span>
   </div>
   <div class="chat-input-row">
     <input id="chat-input" type="text" maxlength="200" placeholder="Ask a question…">
@@ -457,24 +457,28 @@ footer a:hover{color:var(--g);}
 const CARDS = {
   exp: [
     {id:'sunplusdata', type:'EXPERIENCE', color:'g', art:'assets/cards/exp-sunplusdata.svg', name:'SunPlusData', org:'Gen AI / Backend Engineer · Jan 2025 – Present · Atlanta, GA',
-     desc:'Built MCP-based agent tooling over enterprise APIs and containerized document-intelligence services.',
-     tags:['MCP','FastAPI','Docker','JWT/RBAC','LLM Workflows'],
+     desc:'AI assistant for a Physical Identity & Access Management platform, plus an event-driven, AWS-native document-intelligence pipeline.',
+     tags:['MCP','Amazon Bedrock','Textract','Rekognition','Step Functions','FastAPI'],
      bullets:[
-       'Designed an MCP server wrapping REST APIs and stored procedures as schema-validated, LLM-callable tools for natural-language queries over physical access records.',
-       'Engineered a JSON-RPC communication layer with typed tool contracts, authentication handshakes, rate limiting, and structured error handling for production agent-tool calls.',
-       'Built containerized document-extraction services (Docker/FastAPI) for PDF ingestion, schema-driven field extraction, and CSV export into SAP.',
-       'Designed a schema-generation engine combining YOLO-based layout detection with LLM workflows for consistent structured extraction across diverse PDF formats.',
-       'Implemented JWT authentication and RBAC for multi-level approval workflows, and a Pytest suite covering permission and workflow logic.'
+       'Designed and shipped an AI assistant for a Physical Identity & Access Management platform — MCP exposes existing REST APIs and stored procedures as LLM-callable tools for natural-language queries over access records.',
+       'Deployed the assistant as a containerized FastAPI service secured with JWT authentication, delivering sub-second, structured answers for security administrators.',
+       'Built an event-driven document-processing pipeline: S3 uploads trigger CloudWatch/EventBridge events, Lambda document classification, and Step Functions extraction workflows.',
+       'Routed documents to schema templates for structured extraction; when no template exists, a Bedrock agent generates a dynamic schema for previously unseen layouts.',
+       'Used Amazon Textract for layout-aware OCR and table extraction, Bedrock agents to normalize outputs into validated fields, and Amazon Rekognition to detect embedded logos, stamps, and signatures.',
+       'Implemented RBAC, multi-level approval workflows, status tracking, and audit-ready logs before SAP submission, plus a Pytest suite validating RBAC logic, approvals, and API behavior.',
+       'Built a data quality validation framework with automated checks for schema compliance, completeness, and accuracy ahead of downstream processing.'
      ]},
-    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · 2021 – 2023 · Hyderabad, India',
-     desc:'Automated ETL orchestration on AWS and shipped an ML-based real-time threat-scoring API.',
-     tags:['AWS Step Functions','ECS','PySpark','Flask','Grafana'],
+    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · Jan 2021 – Jul 2023 · Hyderabad, India',
+     desc:'Event-driven AWS ETL orchestration, plus an ML-driven cybersecurity pipeline re-platformed onto SageMaker.',
+     tags:['AWS Step Functions','ECS','PySpark/EMR','SageMaker','XGBoost','CI/CD'],
      bullets:[
-       'Migrated ETL orchestration from Airflow to AWS Step Functions with CloudWatch monitoring, cutting end-to-end processing time by 40%.',
-       'Built containerized ingestion services on AWS ECS with Application Load Balancer autoscaling, reducing idle resource utilization by 20%.',
-       'Developed a Flask REST API for real-time threat assessment with ML-based risk scoring (0–1 scale).',
-       'Optimized PySpark jobs on EMR, lowering processing costs by 15% and operational overhead by 25%.',
-       'Contributed NLP feature engineering to a cybersecurity pipeline that reached 93% accuracy classifying malicious emails.'
+       'Designed and automated event-driven ETL orchestration on AWS Step Functions with CloudWatch monitoring, cutting end-to-end processing time by 40%.',
+       'Built containerized ingestion services on AWS ECS with Application Load Balancer autoscaling for high-volume file intake, reducing idle resource utilization by 20%.',
+       'Optimized large-scale data processing with PySpark on Amazon EMR, lowering operational costs by 15%; automated cluster alerting contributed to a 20% overall cloud-spend reduction.',
+       'Engineered an ML-driven cybersecurity pipeline detecting malicious emails at 93% accuracy, using NLP feature engineering over email content and metadata.',
+       'Developed a Flask REST API for real-time email risk scoring with async request handling, input validation, and structured logging for production observability.',
+       'Re-platformed the malicious-email model onto Amazon SageMaker with an XGBoost classifier — managed training jobs, hyperparameter tuning, versioned artifacts, and SageMaker Model Monitor for drift tracking.',
+       'Built CI/CD pipelines for ML workflows in AWS Step Functions, with Lambda triggers for real-time build-failure monitoring and alerting.'
      ]},
     {id:'unt-ta', type:'EXPERIENCE', color:'a', art:'assets/cards/exp-unt-ta.svg', name:'University of North Texas', org:'Teaching Assistant, Data Analytics · 2024 – Present · Denton, TX',
      desc:'Mentored students in DBMS/analytics and built dashboards for departmental decision-making.',
@@ -517,15 +521,15 @@ const CARDS = {
      link:'https://www.linkedin.com/learning/certificates/879249e5097515186d327580a2c4de5e88dcb7ee8b846275cd95e7f7ba436c3c', linkLabel:'Verify Credential'},
   ],
   proj: [
-    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-infographic-original.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', modalMedia:['art','art2','art3'], name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
-     desc:'Conversational IT service-desk agent over SolarWinds, plus a self-healing log-anomaly loop.',
-     tags:['MCP','Claude API','LangChain','scikit-learn'],
+    {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-infographic-original.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', modalMedia:['art','art2','art3'], name:'SURAKSHA', org:'Amazon Bedrock (Claude 3.7 Sonnet) + MCP · AIS Hackathon — 2nd Place · ISSRJ Published',
+     desc:'Agentic IT-support system where Claude on Amazon Bedrock executes service-desk operations through MCP tools, plus a self-healing log-anomaly loop.',
+     tags:['Amazon Bedrock','MCP','Lambda','Step Functions','DynamoDB'],
      bullets:[
-       'MCP server exposing the SolarWinds Service Desk API as typed, schema-validated tools for incidents, problems, changes, and users.',
-       'Claude-powered conversational client that plans tool calls and maintains context across a support session.',
-       'Self-healing subsystem: TF-IDF + Random Forest anomaly scoring over log streams, automated remediation, periodic retraining.',
+       'Claude 3.7 Sonnet on Amazon Bedrock interprets natural-language requests and executes service-desk operations (incidents, problems, changes, users) through MCP tools exposing the SolarWinds Service Desk API.',
+       'Self-healing loop: monitoring agents track CloudWatch logs and metrics, detect anomalies via TF-IDF + Random Forest scoring, apply validated fixes from a knowledge base, and escalate novel incidents.',
+       'Automated password resets and access updates using AWS Lambda and Step Functions under JWT authentication and RBAC, with DynamoDB for state — a federated design that keeps sensitive logs local.',
        'Published as "SURAKSHA: AI-Driven IT Support and Automation" (ISSRJ, 2025); 2nd place, AIS National Competition 2025.',
-       'Mirrors the natural-language ops pattern used in enterprise ITSM tools (e.g. ServiceNow Virtual Agent), applied here directly to SolarWinds via MCP.'
+       'Mirrors the natural-language ops pattern used in enterprise ITSM tools (e.g. ServiceNow Virtual Agent), applied here directly to SolarWinds via MCP on AWS-native infrastructure.'
      ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf',
      sample:{q:'Show me all unauthorized entry attempts to Server Room B this week, and create an incident for the most recent one.', a:'Found 3 unauthorized attempts: Tue 9:14 AM (badge #4471, denied), Thu 2:03 PM (badge #2290, denied), Fri 11:47 PM (badge unknown, denied). Created Incident #INC-10432 for the Friday 11:47 PM attempt — flagged high priority due to after-hours timing.'}},
     {id:'intellipod', type:'PROJECT', color:'p', art:'assets/photos/intellipod-banner.jpg', art2:'assets/diagrams/intellipod.svg', art3:'assets/diagrams/intellipod-flow.svg', video:'assets/video/intellipod-demo.mp4', modalMedia:['video','art2','art3'], name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
@@ -549,13 +553,24 @@ const CARDS = {
        'Same retrieval-grounded pattern behind financial research copilots — answers stay anchored to retrieved text, not unsupported model recall.'
      ], repo:'https://github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-',
      sample:{q:'Why did IT stocks dip this week?', a:'Based on retrieved coverage: IT stocks dipped following weaker-than-expected Q3 guidance from a major US client, with rupee appreciation adding pressure to export margins. (grounded in 2 retrieved articles)'}},
-    {id:'pregnancy', type:'PROJECT', color:'r', art:'assets/cards/project-pregnancy.svg', name:'Adaptive Pregnancy Quiz & Flashcards', org:'RAG over medical data · Private repository',
-     desc:'Week-specific quizzes and spaced-repetition flashcards generated from a medical knowledge base.',
-     tags:['RAG','FastAPI','Docker','JWT'],
+    {id:'textsql', type:'PROJECT', color:'b', art:'assets/diagrams/textsql.svg', name:'Conversational Data-Analyst Agent', org:'Amazon Bedrock Agents + Athena · Text-to-SQL',
+     desc:'Converts natural-language business questions into validated SQL, runs them against an Athena data lake, and returns explained results.',
+     tags:['Amazon Bedrock Agents','Athena','Glue Data Catalog','Terraform'],
      bullets:[
-       'Personalized quiz system delivering week-specific, non-repetitive questions via RAG over medical data.',
-       'Daily flashcard generation using interaction history for spaced repetition.',
-       'FastAPI microservices, containerized with Docker, JWT-secured profile management.'
+       'A Bedrock Agent converts natural-language business questions into validated SQL against an AWS Glue Data Catalog schema.',
+       'Executes against an Amazon Athena data lake and returns results with a plain-language explanation, not just a raw table.',
+       'Guardrailed execution layer: schema-aware query validation, read-only permissions, row limits, and a dry-run cost check before any query runs.',
+       'Infrastructure provisioned with Terraform — Lambda for orchestration, IAM scoped to read-only data-lake access.'
+     ]},
+    {id:'pregnancy', type:'PROJECT', color:'r', art:'assets/cards/project-pregnancy.svg', name:'Adaptive Pregnancy Quiz & Flashcards', org:'Amazon Bedrock Knowledge Bases + AWS EKS · Private repository',
+     desc:'Agent-driven, week-specific quizzes and spaced-repetition flashcards generated from a Bedrock-backed medical knowledge base.',
+     tags:['Bedrock Knowledge Bases','OpenSearch','EKS','DynamoDB'],
+     bullets:[
+       'Personalized pregnancy-learning agent generating week-specific quizzes via Amazon Bedrock Knowledge Bases and RAG over curated medical content — non-repetitive and context-aware.',
+       'Amazon OpenSearch backs the retrieval layer for the knowledge base.',
+       'Adaptive flashcard service generates 3 daily cards from user progress, quiz history, and spaced-repetition signals, with interaction metadata stored in DynamoDB.',
+       'Quiz and flashcard workflows exposed as secure FastAPI microservices with JWT authentication for profile management and session-specific content.',
+       'Containerized with Docker and deployed on AWS EKS for Kubernetes-based scaling and environment consistency.'
      ]},
   ],
   extra: [
@@ -908,11 +923,22 @@ setInterval(()=>{
 
 /* ============ CHAT (pre-written Q&A, keyword matched) ============ */
 const FAQ_TOPICS={
-  suraksha:{keys:['suraksha','it support','solarwinds','self-heal','self heal','hackathon','issrj'], img:'assets/diagrams/suraksha-flow.svg',
+  suraksha:{keys:['suraksha','it support','solarwinds','self-heal','self heal','hackathon','issrj','bedrock'], img:'assets/diagrams/suraksha-flow.svg',
     links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system'},{label:'Paper (ISSRJ)',url:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf'}], variants:[
-    "SURAKSHA — conversational IT service-desk agent:\n• MCP server exposes SolarWinds Service Desk as typed, schema-validated tools\n• Claude API + LangChain handle planning and tool-calls across a session\n• Self-healing loop: TF-IDF + Random Forest flags log anomalies and auto-remediates",
-    "Quick take on SURAKSHA:\n• 2nd place, AIS National Competition 2025\n• Published as a peer-reviewed paper in ISSRJ (2025)\n• Mirrors the pattern behind enterprise tools like ServiceNow Virtual Agent, applied directly to SolarWinds",
-    "SURAKSHA in 3 lines:\n• Turns SolarWinds into something you can just talk to, via MCP\n• Built-in anomaly detection that fixes some issues before a human looks\n• Built solo, hackathon runner-up, then written up for ISSRJ",
+    "SURAKSHA — agentic IT-support system:\n• Claude 3.7 Sonnet on Amazon Bedrock interprets natural-language requests and executes service-desk operations via MCP tools over SolarWinds\n• Self-healing loop: monitoring agents watch CloudWatch logs/metrics, flag anomalies (TF-IDF + Random Forest), apply validated fixes from a knowledge base\n• Password resets/access updates automated via Lambda + Step Functions, JWT + RBAC, DynamoDB for state",
+    "Quick take on SURAKSHA:\n• 2nd place, AIS National Competition 2025 · published as a peer-reviewed paper in ISSRJ (2025)\n• Federated design keeps sensitive logs local — nothing sensitive leaves the environment\n• Mirrors the pattern behind enterprise tools like ServiceNow Virtual Agent, built on AWS-native infra",
+    "SURAKSHA in 3 lines:\n• Turns SolarWinds into something you can just talk to, via Bedrock + MCP\n• Built-in anomaly detection that fixes some issues before a human looks, escalates the rest\n• Built solo, hackathon runner-up, then written up for ISSRJ",
+  ]},
+  textsql:{keys:['text-to-sql','text to sql','data analyst agent','athena','glue','sql agent'], img:'assets/diagrams/textsql.svg',
+    links:[], variants:[
+    "Conversational Data-Analyst Agent — Text-to-SQL:\n• A Bedrock Agent converts natural-language business questions into validated SQL against an AWS Glue Data Catalog schema\n• Executes against an Amazon Athena data lake, returns results with a plain-language explanation\n• Guardrailed: schema-aware validation, read-only permissions, row limits, and a dry-run cost check before anything runs",
+    "Quick take on the Data-Analyst Agent:\n• You ask a business question in plain English, it writes and runs the SQL for you\n• Read-only by design — no risk of the agent mutating data\n• Infra provisioned with Terraform, Lambda for orchestration",
+    "On the Text-to-SQL agent:\n• Bounded and safe by construction: dry-run cost check catches expensive queries before they execute\n• Built on the same 'guardrailed execution layer' pattern as my other agent work\n• No public repo for this one — happy to walk through the architecture on a call",
+  ]},
+  pregnancy:{keys:['pregnancy','flashcard','quiz','knowledge base','opensearch'], img:null, links:[], variants:[
+    "Adaptive Pregnancy Quiz & Flashcards — agent-driven:\n• Amazon Bedrock Knowledge Bases + RAG over curated medical content generate week-specific, non-repetitive quizzes\n• Amazon OpenSearch backs the retrieval layer\n• 3 daily flashcards from progress/quiz history/spaced-repetition signals, stored in DynamoDB. FastAPI + JWT, Dockerized, deployed on AWS EKS.",
+    "Quick summary — pregnancy quiz app:\n• Bedrock-KB-backed so questions stay grounded in real medical content, tuned to the right week\n• Spaced-repetition flashcards instead of static quiz banks\n• Kubernetes-based scaling via EKS. Private repo — happy to demo it directly.",
+    "Pregnancy Quiz & Flashcards, in short:\n• Personalizes question difficulty/topic by pregnancy week using Bedrock Knowledge Bases\n• Tracks what you've seen (DynamoDB) to avoid repeats and reinforce weak spots\n• Containerized FastAPI services on EKS, behind JWT auth. Code is private; ask via Contact for a live walkthrough.",
   ]},
   intellipod:{keys:['intellipod','samvadh','podcast','arxiv','paper to podcast'], img:'assets/diagrams/intellipod-flow.svg',
     links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/paper_to_podcast'}], variants:[
@@ -925,11 +951,6 @@ const FAQ_TOPICS={
     "Financial Document QA — a RAG pipeline over financial articles:\n• FAISS index over Sentence-Transformer embeddings for retrieval\n• Compares GPT-3.5, a fine-tuned RoBERTa-large-SQuAD2, and a stock HF QA pipeline\n• Scored with ROUGE, BLEU, and BERTScore across all three",
     "On the Financial QA project:\n• Built with 2 teammates — I led the Streamlit app, HF integration, and evaluation\n• Retrieval-grounded: answers stay anchored to retrieved text, not unsupported model recall\n• Same pattern behind real financial research copilots",
     "Financial Document QA, quickly:\n• Question comes in → FAISS retrieves relevant article chunks → 3 different models attempt the answer\n• We benchmark which generation strategy performs best on grounded financial text\n• Team project — 3 people, my piece was the app + eval harness",
-  ]},
-  pregnancy:{keys:['pregnancy','flashcard','quiz'], img:null, links:[], variants:[
-    "Adaptive Pregnancy Quiz & Flashcards:\n• Week-specific, non-repetitive quiz questions generated via RAG over a medical knowledge base\n• Daily flashcards using interaction history for spaced repetition\n• FastAPI microservices, Dockerized, JWT-secured profiles. This one's a private repository — ask via Contact for a walkthrough.",
-    "Quick summary — pregnancy quiz app:\n• RAG-backed so questions stay grounded in real medical content, tuned to the right week\n• Spaced-repetition flashcards instead of static quiz banks\n• Same backend stack as my other work: FastAPI + Docker + JWT. Private repo — happy to demo it directly.",
-    "Pregnancy Quiz & Flashcards, in short:\n• Personalizes question difficulty/topic by pregnancy week\n• Tracks what you've seen to avoid repeats and reinforce weak spots\n• Containerized FastAPI services behind JWT auth. Code is private; ask via Contact for a live walkthrough.",
   ]},
   drowsiness:{keys:['drowsiness','drowsy','driver'], img:'assets/diagrams/drowsiness.svg',
     links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/driver_drowsiness_detection'}], variants:[
@@ -1013,10 +1034,20 @@ const FAQ_TOPICS={
     "On the stack:\n• Gen AI: Claude API + MCP + LangChain, with RAG/FAISS for retrieval\n• Backend: Python (FastAPI/Flask), tested with Pytest\n• Data/ML: NLP, Deep Learning, PySpark, scikit-learn, PyTorch\nTry asking 'where did you use Docker' for project-level detail.",
     "Quick stack summary:\n• 4 domains: AI & Agents, Backend, Cloud & Infra, Data & ML\n• Heaviest usage: MCP/Claude API for agent work, FastAPI for backend services\nFull list with categories is in the Skills section above.",
   ]},
-  experience:{keys:['experience','work','job','sunplusdata','sunplus','constella'], img:null, links:[], variants:[
-    "Currently Gen AI / Backend Engineer at SunPlusData (Jan 2025–present), building MCP tooling and document-intelligence services in Atlanta.\nBefore that: Software Engineer at Constella Intelligence (2021–2023), automating AWS ETL pipelines in Hyderabad.\nAlso a Teaching Assistant in Data Analytics at UNT.",
-    "On work experience:\n• SunPlusData (current): MCP-based agent tooling over enterprise APIs\n• Constella Intelligence (2021–2023): real-time ML threat-scoring API + AWS ETL orchestration\n• UNT: Teaching Assistant, mentoring on DBMS/analytics",
-    "Quick career summary:\n• Now: Gen AI/Backend Engineer, SunPlusData, since Jan 2025\n• Before: Software Engineer, Constella Intelligence, 2021–2023\n• Also: Teaching Assistant, University of North Texas",
+  experience:{keys:['experience','work history','career','job'], img:null, links:[], variants:[
+    "4+ years of experience:\n• Now: Gen AI/Backend Engineer, SunPlusData (Jan 2025–present), Atlanta — Bedrock agents + MCP + document intelligence\n• Before: Software Engineer, Constella Intelligence (2021–2023), Hyderabad — AWS ETL + ML cybersecurity pipeline\n• Also: Teaching Assistant, University of North Texas\nAsk about SunPlusData or Constella by name for the full detail.",
+    "On work experience:\n• SunPlusData (current): AI assistant for a Physical Identity & Access Management platform, plus an AWS document-intelligence pipeline\n• Constella Intelligence (2021–2023): AWS ETL orchestration + an ML cybersecurity pipeline re-platformed onto SageMaker\n• UNT: Teaching Assistant, mentoring on DBMS/analytics",
+    "Quick career summary:\n• Now: Gen AI/Backend Engineer, SunPlusData, since Jan 2025\n• Before: Software Engineer, Constella Intelligence, Jan 2021–Jul 2023\n• Also: Teaching Assistant, University of North Texas\nName a company for the deep dive — SunPlusData or Constella.",
+  ]},
+  expsunplus:{keys:['sunplusdata','sunplus','physical identity','access management'], img:null, links:[], variants:[
+    "SunPlusData (Gen AI/Backend Engineer, Jan 2025–present, Atlanta):\n• Shipped an AI assistant for a Physical Identity & Access Management platform — MCP exposes REST APIs/stored procedures as LLM-callable tools, deployed as a JWT-secured FastAPI service\n• Built an event-driven document pipeline: S3 → EventBridge → Lambda classification → Step Functions extraction\n• Bedrock agents generate a dynamic schema when no template exists; Textract for OCR/tables, Rekognition for logos/stamps/signatures",
+    "More on SunPlusData:\n• RBAC + multi-level approval workflows + audit-ready logs before SAP submission\n• A Pytest suite validates RBAC logic, approvals, and API behavior\n• Also built a data-quality validation framework — automated checks for schema compliance, completeness, accuracy",
+    "Quick take — SunPlusData:\n• The core idea: turn a security admin's plain-English question into a safe, auditable action over access records\n• Document pipeline auto-classifies + extracts structured data from PDFs of any layout, even ones it's never seen\n• Fully AWS-native: S3, EventBridge, Lambda, Step Functions, Bedrock, Textract, Rekognition",
+  ]},
+  expconstella:{keys:['constella','sagemaker','xgboost','malicious email'], img:null, links:[], variants:[
+    "Constella Intelligence (Software Engineer, Jan 2021–Jul 2023, Hyderabad):\n• Designed event-driven ETL orchestration on AWS Step Functions with CloudWatch monitoring — cut end-to-end processing time by 40%\n• Built containerized ingestion on AWS ECS with ALB autoscaling, reducing idle resource utilization by 20%\n• Optimized PySpark on Amazon EMR, lowering operational costs by 15%; automated cluster alerting drove a 20% overall cloud-spend reduction",
+    "More on Constella — the cybersecurity side:\n• Engineered an ML pipeline detecting malicious emails at 93% accuracy via NLP feature engineering over content + metadata\n• Flask REST API for real-time email risk scoring — async request handling, input validation, structured logging\n• Re-platformed the model onto Amazon SageMaker with an XGBoost classifier — training jobs, hyperparameter tuning, versioned artifacts, SageMaker Model Monitor for drift tracking",
+    "Quick take — Constella:\n• Two threads: cloud cost/performance engineering (ETL, ECS, EMR) and applied ML security (malicious-email detection)\n• Built CI/CD pipelines for ML workflows in Step Functions, with Lambda triggers alerting on build failures\n• This is where most of my production AWS depth comes from — Step Functions, ECS, EMR, SageMaker, all at real scale",
   ]},
   education:{keys:['education','study','degree','gpa','university','school'], img:null, links:[], variants:[
     "M.S. in Data Science, University of North Texas — 3.99/4.0 GPA.\nB.Tech in Computer Science, Keshav Memorial Institute of Technology, Hyderabad — 3.5/4.0 GPA.",
@@ -1062,7 +1093,7 @@ function fuzzyScore(ql, keys){
   }
   return score;
 }
-const SKILL_TERMS=['fastapi','flask','docker','kubernetes','python','pytorch','scikit-learn','pandas','aws','mcp','langchain','claude api','rag','faiss','nlp','opencv','keras','pyspark','jwt','pytest','step functions','cloudwatch','deep learning','agents sdk','prompt eng','streamlit','tts','seaborn','pycountry','roberta','bertscore'];
+const SKILL_TERMS=['fastapi','flask','docker','kubernetes','python','pytorch','scikit-learn','pandas','aws','mcp','langchain','claude api','rag','faiss','nlp','opencv','keras','pyspark','jwt','pytest','step functions','cloudwatch','deep learning','agents sdk','prompt eng','streamlit','tts','seaborn','pycountry','roberta','bertscore','bedrock','textract','rekognition','sagemaker','xgboost','athena','glue','terraform','eventbridge','opensearch','eks','ecs','emr','dynamodb','lambda'];
 function answerFor(q){
   const ql=q.toLowerCase();
   if(/which|where|used|use\b/.test(ql)){
