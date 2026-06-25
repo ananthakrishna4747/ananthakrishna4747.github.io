@@ -166,18 +166,14 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 #projects-extra-grid .nmc:active{transform:scale(.985);}
 
 /* ===== SKILLS ===== */
-.skills-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:22px;}
-.skill-cat{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:18px 20px;}
-.skill-cat-h{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin-bottom:13px;}
-.dotleg{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
-.skill-pills{display:flex;flex-wrap:wrap;gap:7px;}
-.pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 11px;border-radius:7px;border:1px solid var(--bdr2);background:var(--sur);color:var(--txt);transition:.2s;}
-.pill:hover{transform:translateY(-1px);}
-.pill-g{border-color:rgba(0,255,136,.3);} .pill-g:hover{border-color:#00FF88;color:#00FF88;}
-.pill-p{border-color:rgba(155,123,255,.3);} .pill-p:hover{border-color:#9B7BFF;color:#9B7BFF;}
-.pill-b{border-color:rgba(74,158,255,.3);} .pill-b:hover{border-color:#4A9EFF;color:#4A9EFF;}
-.pill-a{border-color:rgba(255,181,71,.3);} .pill-a:hover{border-color:#FFB547;color:#FFB547;}
-@media (max-width:680px){.skills-cats{grid-template-columns:1fr;}}
+.skills-row{display:grid;grid-template-columns:90px repeat(4,1fr);gap:32px;align-items:start;}
+.skills-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--b);padding-top:1px;}
+.skill-col-h{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:16px;}
+.skill-col-list{display:flex;flex-direction:column;gap:13px;}
+.skill-col-list span{font-size:13.5px;color:var(--txt2);transition:.2s;}
+.skill-col-list span:hover{color:var(--g);}
+@media (max-width:780px){.skills-row{grid-template-columns:repeat(2,1fr);row-gap:30px;} .skills-label{display:none;}}
+@media (max-width:480px){.skills-row{grid-template-columns:1fr;}}
 
 /* ===== CHAT FAB ===== */
 #chat-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;font-size:22px;box-shadow:0 6px 24px rgba(0,255,136,.3);transition:transform .2s;transform:scale(0);}
@@ -365,31 +361,30 @@ footer a:hover{color:var(--g);}
 
 <!-- ===== SKILLS ===== -->
 <section id="skills" class="reveal">
-  <span class="eyebrow">Skills</span>
-  <h2 class="sectitle">What I build with</h2>
-  <div class="skills-cats">
-    <div class="skill-cat">
-      <div class="skill-cat-h"><i class="dotleg" style="background:#00FF88"></i>AI &amp; Agents</div>
-      <div class="skill-pills">
-        <span class="pill pill-g">Claude API</span><span class="pill pill-g">MCP</span><span class="pill pill-g">LangChain</span><span class="pill pill-g">RAG</span><span class="pill pill-g">FAISS</span><span class="pill pill-g">Agents SDK</span><span class="pill pill-g">Prompt Eng.</span>
+  <div class="skills-row">
+    <span class="skills-label">SKILLS</span>
+    <div class="skill-col">
+      <div class="skill-col-h">AI &amp; Agents</div>
+      <div class="skill-col-list">
+        <span>Claude API</span><span>MCP</span><span>LangChain</span><span>RAG</span><span>FAISS</span><span>Agents SDK</span><span>Prompt Eng.</span>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-h"><i class="dotleg" style="background:#9B7BFF"></i>Backend</div>
-      <div class="skill-pills">
-        <span class="pill pill-p">Python</span><span class="pill pill-p">FastAPI</span><span class="pill pill-p">Flask</span><span class="pill pill-p">JWT / RBAC</span><span class="pill pill-p">Pytest</span>
+    <div class="skill-col">
+      <div class="skill-col-h">Backend</div>
+      <div class="skill-col-list">
+        <span>Python</span><span>FastAPI</span><span>Flask</span><span>JWT / RBAC</span><span>Pytest</span>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-h"><i class="dotleg" style="background:#4A9EFF"></i>Cloud &amp; Infra</div>
-      <div class="skill-pills">
-        <span class="pill pill-b">AWS</span><span class="pill pill-b">Docker</span><span class="pill pill-b">Kubernetes</span><span class="pill pill-b">Step Functions</span><span class="pill pill-b">CloudWatch</span>
+    <div class="skill-col">
+      <div class="skill-col-h">Cloud &amp; Infra</div>
+      <div class="skill-col-list">
+        <span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Step Functions</span><span>CloudWatch</span>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-h"><i class="dotleg" style="background:#FFB547"></i>Data &amp; ML</div>
-      <div class="skill-pills">
-        <span class="pill pill-a">NLP</span><span class="pill pill-a">Deep Learning</span><span class="pill pill-a">PySpark</span><span class="pill pill-a">scikit-learn</span><span class="pill pill-a">PyTorch</span>
+    <div class="skill-col">
+      <div class="skill-col-h">Data &amp; ML</div>
+      <div class="skill-col-list">
+        <span>NLP</span><span>Deep Learning</span><span>PySpark</span><span>scikit-learn</span><span>PyTorch</span>
       </div>
     </div>
   </div>
@@ -488,10 +483,30 @@ const CARDS = {
      desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
   ],
   cert: [
-    {id:'certs-placeholder', type:'CERTIFICATION', color:'a', art:'assets/cards/cert-placeholder.svg', name:'Certifications', org:'In progress',
-     desc:'Currently working through certification coursework. Specific credentials will be listed here as they\u2019re earned — verify current status on LinkedIn in the meantime.',
-     tags:['In progress'], bullets:['Specific certification names are intentionally not listed here until earned and verifiable — check LinkedIn for the most current status.'],
-     link:'https://www.linkedin.com/in/anantha-krishna-ch/', linkLabel:'View on LinkedIn'},
+    {id:'ms-azure-ai', type:'CERTIFICATION', color:'g', art:'assets/certs/cert-ms-azure-ai.jpg', name:'Azure AI Apps and Agents Developer Associate', org:'Microsoft · Earned Jun 20, 2026 · Expires Jun 20, 2027',
+     desc:'Microsoft Certified Associate-level credential for building AI app and agent solutions on Azure.',
+     tags:['Azure AI','Agents','Associate'], bullets:['Credential ID 44C7E9A7912D8BA — online-verifiable through Microsoft Learn.'],
+     link:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/44c7e9a7912d8ba', linkLabel:'Verify Credential'},
+    {id:'ms-fabric', type:'CERTIFICATION', color:'b', art:'assets/certs/cert-ms-fabric.jpg', name:'Fabric Data Engineer Associate', org:'Microsoft · Earned Jun 11, 2026 · Expires Jun 11, 2027',
+     desc:'Microsoft Certified Associate-level credential for data engineering on Microsoft Fabric.',
+     tags:['Microsoft Fabric','Data Engineering','Associate'], bullets:['Credential ID D64CB9A5F3D7D133 — online-verifiable through Microsoft Learn.'],
+     link:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/d64cb9a5f3d7d133', linkLabel:'Verify Credential'},
+    {id:'coursera-dl-spec', type:'CERTIFICATION', color:'p', art:'assets/certs/cert-coursera-dl-spec.jpg', name:'Deep Learning Specialization', org:'DeepLearning.AI (Coursera) · 5 courses · Jun 30, 2020',
+     desc:'CNNs, RNNs/LSTMs, and Transformers — architecture design plus Dropout, BatchNorm, and Xavier/He initialization.',
+     tags:['CNNs','RNNs','Transformers'], bullets:['5-course specialization: Neural Networks & Deep Learning, Hyperparameter Tuning, Structuring ML Projects, CNNs, Sequence Models.','Applied to speech recognition, music synthesis, chatbots, and machine translation case studies.'],
+     link:'https://www.coursera.org/account/accomplishments/specialization/certificate/WYK6WPEQ539T', linkLabel:'Verify Credential'},
+    {id:'li-ai-ml', type:'CERTIFICATION', color:'a', art:'assets/certs/cert-li-ai-ml.jpg', name:'Advance Your Skills in AI and Machine Learning', org:'LinkedIn Learning · 19h 13m · May 12, 2023',
+     desc:'Learning path covering applied ML, NLP, and deep learning fundamentals.',
+     tags:['Machine Learning','NLP','Deep Learning'], bullets:['Top skills covered: Machine Learning, NLP, Text Classification, Deep Learning, AI.'],
+     link:'https://www.linkedin.com/learning/certificates/2e49161b39afd6993f1051c8533d07a00dac6670204034e144a045c66d4a120f', linkLabel:'Verify Credential'},
+    {id:'li-aws', type:'CERTIFICATION', color:'c', art:'assets/certs/cert-li-aws.jpg', name:'Prepare for the AWS Certified Solutions Architect – Associate (SAA-C03)', org:'LinkedIn Learning · 20h 20m · May 12, 2023',
+     desc:'Learning path covering cloud architecture fundamentals ahead of the AWS SAA-C03 exam.',
+     tags:['AWS','Cloud Architecture','Network Virtualization'], bullets:['Top skills covered: Cloud Administration, Network Virtualization, Technical Solution Design, Cloud Services, AWS.'],
+     link:'https://www.linkedin.com/learning/certificates/ad80b033b05cd20a43aa8d91a16d1975452a9ea7c6c135453752f387aebfae1f', linkLabel:'Verify Credential'},
+    {id:'li-python', type:'CERTIFICATION', color:'g', art:'assets/certs/cert-li-python.jpg', name:'Advance Your Python Skills for Data Science', org:'LinkedIn Learning · 18h 20m · May 12, 2023',
+     desc:'Learning path on Python fundamentals for data science work.',
+     tags:['Python','OOP','Big Data'], bullets:['Top skills covered: Big Data, Python (Programming Language), Object-Oriented Programming (OOP).'],
+     link:'https://www.linkedin.com/learning/certificates/879249e5097515186d327580a2c4de5e88dcb7ee8b846275cd95e7f7ba436c3c', linkLabel:'Verify Credential'},
   ],
   proj: [
     {id:'suraksha', type:'PROJECT', color:'g', art:'assets/photos/suraksha-infographic-original.jpg', art2:'assets/diagrams/suraksha.svg', art3:'assets/diagrams/suraksha-flow.svg', video:'assets/video/suraksha-demo.mp4', modalMedia:['art','art2','art3'], name:'SURAKSHA', org:'MCP + LangChain + Claude API · AIS Hackathon — 2nd Place · ISSRJ Published',
