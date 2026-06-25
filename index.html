@@ -182,7 +182,7 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 #chat-fab:hover{transform:scale(1.06);}
 #chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .3s;}
 #chat-fab .badge.in{opacity:1;}
-#chat-panel{position:fixed;bottom:90px;right:24px;width:min(420px,92vw);height:min(600px,78vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease;}
+#chat-panel{position:fixed;bottom:90px;right:24px;width:min(480px,94vw);height:min(620px,80vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease;}
 #chat-panel.open{display:flex;}
 #chat-panel.minimized{height:60px!important;min-height:60px;}
 #chat-panel.minimized .chat-msgs,#chat-panel.minimized .chat-suggest,#chat-panel.minimized .chat-input-row{display:none;}
@@ -199,6 +199,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .msg.typing-caret::after{content:'▍';display:inline-block;color:var(--g);margin-left:1px;animation:caretBlink .8s steps(1) infinite;}
 @keyframes caretBlink{50%{opacity:0;}}
 .msg-thumb{max-width:84%;border-radius:10px;border:1px solid var(--bdr2);margin-top:-2px;display:block;animation:msgIn .28s ease;}
+.msg-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:-2px;animation:msgIn .28s ease;}
+.msg-link-btn{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--g);background:var(--sur);border:1px solid rgba(0,255,136,.35);padding:6px 11px;border-radius:8px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:5px;}
+.msg-link-btn:hover{border-color:var(--g);background:rgba(0,255,136,.08);transform:translateY(-1px);}
 .typing-indicator{display:flex;gap:4px;align-items:center;padding:11px 14px;}
 .typing-indicator span{width:6px;height:6px;border-radius:50%;background:var(--txt2);animation:typingDot 1.2s ease-in-out infinite;}
 .typing-indicator span:nth-child(2){animation-delay:.15s;}
@@ -905,131 +908,159 @@ setInterval(()=>{
 
 /* ============ CHAT (pre-written Q&A, keyword matched) ============ */
 const FAQ_TOPICS={
-  suraksha:{keys:['suraksha','it support','solarwinds','self-heal','self heal','hackathon','issrj'], img:'assets/diagrams/suraksha.svg', variants:[
-    "SURAKSHA — conversational IT service-desk agent:\n• MCP server exposes SolarWinds Service Desk as typed, schema-validated tools\n• Claude API + LangChain handle planning and tool-calls across a session\n• Self-healing loop: TF-IDF + Random Forest flags log anomalies and auto-remediates\nRepo: github.com/ananthakrishna4747/ai_driven_IT_support_system",
-    "Quick take on SURAKSHA:\n• 2nd place, AIS National Competition 2025\n• Published as a peer-reviewed paper in ISSRJ (2025)\n• Mirrors the pattern behind enterprise tools like ServiceNow Virtual Agent, applied directly to SolarWinds\nPaper + code links are on the SURAKSHA card in the Library above.",
-    "SURAKSHA in 3 lines:\n• Turns SolarWinds into something you can just talk to, via MCP\n• Built-in anomaly detection that fixes some issues before a human looks\n• Built solo, hackathon runner-up, then written up for ISSRJ\nWant the repo or the paper? Repo: github.com/ananthakrishna4747/ai_driven_IT_support_system",
+  suraksha:{keys:['suraksha','it support','solarwinds','self-heal','self heal','hackathon','issrj'], img:'assets/diagrams/suraksha-flow.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system'},{label:'Paper (ISSRJ)',url:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf'}], variants:[
+    "SURAKSHA — conversational IT service-desk agent:\n• MCP server exposes SolarWinds Service Desk as typed, schema-validated tools\n• Claude API + LangChain handle planning and tool-calls across a session\n• Self-healing loop: TF-IDF + Random Forest flags log anomalies and auto-remediates",
+    "Quick take on SURAKSHA:\n• 2nd place, AIS National Competition 2025\n• Published as a peer-reviewed paper in ISSRJ (2025)\n• Mirrors the pattern behind enterprise tools like ServiceNow Virtual Agent, applied directly to SolarWinds",
+    "SURAKSHA in 3 lines:\n• Turns SolarWinds into something you can just talk to, via MCP\n• Built-in anomaly detection that fixes some issues before a human looks\n• Built solo, hackathon runner-up, then written up for ISSRJ",
   ]},
-  intellipod:{keys:['intellipod','samvadh','podcast','arxiv','paper to podcast'], img:'assets/photos/intellipod-banner.jpg', variants:[
-    "Intellipod — turns an arXiv paper into a podcast:\n• Multi-agent pipeline on the OpenAI Agents SDK: search → parse → script → synthesize\n• Dedicated arXiv MCP server decouples paper search/download from agent logic\n• Configurable: 5–30 min episodes, choose speaker count and gender mix\nRepo: github.com/ananthakrishna4747/paper_to_podcast",
-    "Intellipod, the short version:\n• Same category as Google's NotebookLM — research-to-audio — scoped to arXiv\n• Each stage (search/parse/script/audio) is independently testable\n• Streamlit front-end — just give it a topic or arXiv ID\nNo published paper for this one — it's the tool, not the subject. Code: github.com/ananthakrishna4747/paper_to_podcast",
-    "Intellipod — paper in, podcast out:\n• You give it an arXiv ID or topic, it finds the paper and reads it\n• A scripting agent writes a natural multi-speaker conversation from the content\n• Audio stage renders it as a real, listenable episode\nExample: \"Turn arXiv 2305.14314 into a 10-minute, 2-speaker podcast\" → resolves the QLoRA paper and generates it.",
+  intellipod:{keys:['intellipod','samvadh','podcast','arxiv','paper to podcast'], img:'assets/diagrams/intellipod-flow.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/paper_to_podcast'}], variants:[
+    "Intellipod — turns an arXiv paper into a podcast:\n• Multi-agent pipeline on the OpenAI Agents SDK: search → parse → script → synthesize\n• Dedicated arXiv MCP server decouples paper search/download from agent logic\n• Configurable: 5–30 min episodes, choose speaker count and gender mix",
+    "Intellipod, the short version:\n• Same category as Google's NotebookLM — research-to-audio — scoped to arXiv\n• Each stage (search/parse/script/audio) is independently testable\n• Streamlit front-end — just give it a topic or arXiv ID. No published paper for this one — it's the tool, not the subject.",
+    "Intellipod — paper in, podcast out:\n• You give it an arXiv ID or topic, it finds the paper and reads it\n• A scripting agent writes a natural multi-speaker conversation from the content\n• Audio stage renders it as a real, listenable episode",
   ]},
-  finllm:{keys:['financial','finance','finllm','roberta','bertscore'], img:'assets/diagrams/finllm.svg', variants:[
-    "Financial Document QA — a RAG pipeline over financial articles:\n• FAISS index over Sentence-Transformer embeddings for retrieval\n• Compares GPT-3.5, a fine-tuned RoBERTa-large-SQuAD2, and a stock HF QA pipeline\n• Scored with ROUGE, BLEU, and BERTScore across all three\nRepo: github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-",
-    "On the Financial QA project:\n• Built with 2 teammates — I led the Streamlit app, HF integration, and evaluation\n• Retrieval-grounded: answers stay anchored to retrieved text, not unsupported model recall\n• Same pattern behind real financial research copilots\nCode: github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-",
-    "Financial Document QA, quickly:\n• Question comes in → FAISS retrieves relevant article chunks → 3 different models attempt the answer\n• We benchmark which generation strategy performs best on grounded financial text\n• Team project — 3 people, my piece was the app + eval harness\nRepo's linked from the project card above.",
+  finllm:{keys:['financial','finance','finllm','roberta','bertscore'], img:'assets/diagrams/finllm-flow.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/Domain-Specific-LLM-Finetuning-on-Finance-Dataset-'}], variants:[
+    "Financial Document QA — a RAG pipeline over financial articles:\n• FAISS index over Sentence-Transformer embeddings for retrieval\n• Compares GPT-3.5, a fine-tuned RoBERTa-large-SQuAD2, and a stock HF QA pipeline\n• Scored with ROUGE, BLEU, and BERTScore across all three",
+    "On the Financial QA project:\n• Built with 2 teammates — I led the Streamlit app, HF integration, and evaluation\n• Retrieval-grounded: answers stay anchored to retrieved text, not unsupported model recall\n• Same pattern behind real financial research copilots",
+    "Financial Document QA, quickly:\n• Question comes in → FAISS retrieves relevant article chunks → 3 different models attempt the answer\n• We benchmark which generation strategy performs best on grounded financial text\n• Team project — 3 people, my piece was the app + eval harness",
   ]},
-  pregnancy:{keys:['pregnancy','flashcard','quiz'], img:'assets/cards/project-pregnancy.svg', variants:[
-    "Adaptive Pregnancy Quiz & Flashcards:\n• Week-specific, non-repetitive quiz questions generated via RAG over a medical knowledge base\n• Daily flashcards using interaction history for spaced repetition\n• FastAPI microservices, Dockerized, JWT-secured profiles\nThis one's a private repository, so no public link — ask via Contact for a walkthrough.",
-    "Quick summary — pregnancy quiz app:\n• RAG-backed so questions stay grounded in real medical content, tuned to the right week\n• Spaced-repetition flashcards instead of static quiz banks\n• Same backend stack as my other work: FastAPI + Docker + JWT\nPrivate repo — happy to demo it directly, just ask.",
-    "Pregnancy Quiz & Flashcards, in short:\n• Personalizes question difficulty/topic by pregnancy week\n• Tracks what you've seen to avoid repeats and reinforce weak spots\n• Containerized FastAPI services behind JWT auth\nCode is private; I can walk through it live — use the Contact button.",
+  pregnancy:{keys:['pregnancy','flashcard','quiz'], img:null, links:[], variants:[
+    "Adaptive Pregnancy Quiz & Flashcards:\n• Week-specific, non-repetitive quiz questions generated via RAG over a medical knowledge base\n• Daily flashcards using interaction history for spaced repetition\n• FastAPI microservices, Dockerized, JWT-secured profiles. This one's a private repository — ask via Contact for a walkthrough.",
+    "Quick summary — pregnancy quiz app:\n• RAG-backed so questions stay grounded in real medical content, tuned to the right week\n• Spaced-repetition flashcards instead of static quiz banks\n• Same backend stack as my other work: FastAPI + Docker + JWT. Private repo — happy to demo it directly.",
+    "Pregnancy Quiz & Flashcards, in short:\n• Personalizes question difficulty/topic by pregnancy week\n• Tracks what you've seen to avoid repeats and reinforce weak spots\n• Containerized FastAPI services behind JWT auth. Code is private; ask via Contact for a live walkthrough.",
   ]},
-  drowsiness:{keys:['drowsiness','drowsy','driver'], img:'assets/diagrams/drowsiness.svg', variants:[
-    "Driver Drowsiness Detection:\n• Haar cascades locate the face/eyes per webcam frame, in real time\n• A small CNN (4 conv blocks, trained from scratch) classifies each eye open vs. closed\n• A persistence-based score only triggers the alarm after sustained closure\nRepo: github.com/ananthakrishna4747/driver_drowsiness_detection",
-    "On the drowsiness detector:\n• Runs at 24×24 grayscale eye crops for speed — real-time on a normal webcam\n• pygame.mixer plays the alert sound, with a live score overlay on screen\n• Classic CV + a small CNN, no heavyweight models needed\nCode: github.com/ananthakrishna4747/driver_drowsiness_detection",
-    "Driver Drowsiness Detection — the gist:\n• OpenCV + Keras\n• Eye-state classifier trained from scratch on cropped eye images\n• Alarm only fires on sustained closure, not single blinks\nRepo's linked from the project card — clone and run it yourself.",
+  drowsiness:{keys:['drowsiness','drowsy','driver'], img:'assets/diagrams/drowsiness.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/driver_drowsiness_detection'}], variants:[
+    "Driver Drowsiness Detection:\n• Haar cascades locate the face/eyes per webcam frame, in real time\n• A small CNN (4 conv blocks, trained from scratch) classifies each eye open vs. closed\n• A persistence-based score only triggers the alarm after sustained closure",
+    "On the drowsiness detector:\n• Runs at 24×24 grayscale eye crops for speed — real-time on a normal webcam\n• pygame.mixer plays the alert sound, with a live score overlay on screen\n• Classic CV + a small CNN, no heavyweight models needed",
+    "Driver Drowsiness Detection — the gist:\n• OpenCV + Keras\n• Eye-state classifier trained from scratch on cropped eye images\n• Alarm only fires on sustained closure, not single blinks",
   ]},
-  meme:{keys:['meme','offensive','multioff'], img:'assets/diagrams/meme.svg', variants:[
-    "Multimodal Offensive Meme Classification:\n• Built on the published MultiOFF dataset — labelled memes with image + text\n• Compares 4 architectures: Stacked LSTM+VGG16, BiLSTM+VGG16, CNN-text+VGG16, classical ML baselines\n• Tests whether multimodal fusion actually beats text-only or image-only\nRepo: github.com/ananthakrishna4747/offensive_meme_detection",
-    "Meme classification, quickly:\n• Image features via pretrained VGG16/InceptionV3, text via GloVe embeddings\n• Late-fusion of both modalities before the final classifier\n• Finding: image+text combined matters more than either alone here\nCode: github.com/ananthakrishna4747/offensive_meme_detection",
-    "On the offensive meme project:\n• 4 model families benchmarked side-by-side on the same dataset\n• Classical baselines (LR/NB/DNN) included as a sanity check vs. deep models\n• Cites the original MultiOFF paper (TRAC-2020)\nRepo's linked from the project card above.",
+  meme:{keys:['meme','offensive','multioff'], img:'assets/diagrams/meme.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/offensive_meme_detection'}], variants:[
+    "Multimodal Offensive Meme Classification:\n• Built on the published MultiOFF dataset — labelled memes with image + text\n• Compares 4 architectures: Stacked LSTM+VGG16, BiLSTM+VGG16, CNN-text+VGG16, classical ML baselines\n• Tests whether multimodal fusion actually beats text-only or image-only",
+    "Meme classification, quickly:\n• Image features via pretrained VGG16/InceptionV3, text via GloVe embeddings\n• Late-fusion of both modalities before the final classifier\n• Finding: image+text combined matters more than either alone here",
+    "On the offensive meme project:\n• 4 model families benchmarked side-by-side on the same dataset\n• Classical baselines (LR/NB/DNN) included as a sanity check vs. deep models\n• Cites the original MultiOFF paper (TRAC-2020)",
   ]},
-  captioning:{keys:['caption','cnn-lstm','encoder-decoder'], img:'assets/diagrams/captioning.svg', variants:[
-    "CNN-LSTM Image Captioning:\n• Classic encoder-decoder ('Show and Tell'-style) architecture\n• Pretrained CNN backbone compresses an image into a fixed embedding\n• An LSTM decoder generates the caption word-by-word from that embedding\nRepo: github.com/ananthakrishna4747/ImageCaptioning",
-    "Image captioning, in brief:\n• Trained on the Open Images caption dataset\n• Custom vocabulary builder maps every caption word to a token\n• Handles variable-length captions via padded/packed sequences\nCode: github.com/ananthakrishna4747/ImageCaptioning",
-    "On the captioning model:\n• PyTorch EncoderCNN + DecoderRNN, trained via Colab\n• Inference utility generates a caption for any arbitrary input image\n• Coursework project for an info science assignment\nRepo's linked from the project card.",
+  captioning:{keys:['caption','cnn-lstm','encoder-decoder'], img:'assets/diagrams/captioning.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/ImageCaptioning'}], variants:[
+    "CNN-LSTM Image Captioning:\n• Classic encoder-decoder ('Show and Tell'-style) architecture\n• Pretrained CNN backbone compresses an image into a fixed embedding\n• An LSTM decoder generates the caption word-by-word from that embedding",
+    "Image captioning, in brief:\n• Trained on the Open Images caption dataset\n• Custom vocabulary builder maps every caption word to a token\n• Handles variable-length captions via padded/packed sequences",
+    "On the captioning model:\n• PyTorch EncoderCNN + DecoderRNN, trained via Colab\n• Inference utility generates a caption for any arbitrary input image\n• Coursework project for an info science assignment",
   ]},
-  player11:{keys:['cricket','player11','player xi','fantasy','beyond cricket'], img:'assets/photos/player11-banner.jpg', variants:[
-    "Beyond Cricket — Player XI Prediction:\n• Linear Regression predicts expected batting performance vs. a given opposition/ground\n• K-Means (elbow-method k) clusters batsmen into performance archetypes\n• Combines prediction + diversity — the pattern behind DFS optimizers like Dream11/FanDuel\nRepo: github.com/ananthakrishna4747/Player11prediction",
-    "Cricket XI predictor, quickly:\n• Pulls historical batting stats from Cricinfo — innings, runs, balls faced, boundaries\n• Lesson: point estimates alone aren't enough for a selection problem — archetypes add diversity\n• Roadmap: wrap it behind a FastAPI endpoint (currently notebook-only)\nCode: github.com/ananthakrishna4747/Player11prediction",
-    "On Beyond Cricket:\n• Recommends a fantasy-cricket XI instead of just ranking top scorers\n• Validates the regression model before trusting its picks\n• Has a live demo gif in the repo\nRepo's linked from the project card above.",
+  player11:{keys:['cricket','player11','player xi','fantasy','beyond cricket'], img:'assets/diagrams/player11-flow.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/Player11prediction'}], variants:[
+    "Beyond Cricket — Player XI Prediction:\n• Linear Regression predicts expected batting performance vs. a given opposition/ground\n• K-Means (elbow-method k) clusters batsmen into performance archetypes\n• Combines prediction + diversity — the pattern behind DFS optimizers like Dream11/FanDuel",
+    "Cricket XI predictor, quickly:\n• Pulls historical batting stats from Cricinfo — innings, runs, balls faced, boundaries\n• Lesson: point estimates alone aren't enough for a selection problem — archetypes add diversity\n• Roadmap: wrap it behind a FastAPI endpoint (currently notebook-only)",
+    "On Beyond Cricket:\n• Recommends a fantasy-cricket XI instead of just ranking top scorers\n• Validates the regression model before trusting its picks\n• Has a live demo gif in the repo",
   ]},
-  automotive:{keys:['automotive','car price','used-car','used car'], img:'assets/diagrams/automotive.svg', variants:[
-    "Automotive Pricing Insights:\n• Structured EDA across pricing, mileage, brand, and spec fields\n• Regression modeling layered on top to separate real price drivers from spurious correlation\n• Secondary research used to sanity-check findings against industry trends\nRepo: github.com/ananthakrishna4747/Insights-on-Automotive-Data",
-    "Quick summary — automotive pricing:\n• The point isn't the scatter plots, it's the regression-backed ranking of what actually moves price\n• pandas + seaborn for EDA, scikit-learn for modeling\n• Coursework project with a written report alongside the notebook\nCode: github.com/ananthakrishna4747/Insights-on-Automotive-Data",
-    "On the automotive insights project:\n• Goes beyond 'mileage correlates with price' into which factors are statistically real drivers\n• Full written report + presentation alongside the analysis notebook\nRepo's linked from the project card.",
+  automotive:{keys:['automotive','car price','used-car','used car'], img:'assets/diagrams/automotive.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/Insights-on-Automotive-Data'}], variants:[
+    "Automotive Pricing Insights:\n• Structured EDA across pricing, mileage, brand, and spec fields\n• Regression modeling layered on top to separate real price drivers from spurious correlation\n• Secondary research used to sanity-check findings against industry trends",
+    "Quick summary — automotive pricing:\n• The point isn't the scatter plots, it's the regression-backed ranking of what actually moves price\n• pandas + seaborn for EDA, scikit-learn for modeling\n• Coursework project with a written report alongside the notebook",
+    "On the automotive insights project:\n• Goes beyond 'mileage correlates with price' into which factors are statistically real drivers\n• Full written report + presentation alongside the analysis notebook",
   ]},
-  salaries:{keys:['salaries','salary','compensation'], img:'assets/diagrams/salaries.svg', variants:[
-    "Data Science Salaries Analysis:\n• Random Forest Regressor predicts salary in USD from role, experience, remote ratio, company size/location\n• Geographic normalization via pycountry for readable geography\n• Feature-importance ranking shows which factors actually drive compensation\nRepo: github.com/ananthakrishna4747/Datascience_salaries_analysis",
-    "Quick take on the salaries project:\n• Trend analysis by job title and year — Data Scientist, Analyst, Engineer, ML Engineer\n• Evaluated with MAE/MSE/RMSE plus predicted-vs-actual plots\n• Global dataset, not just US-centric\nCode: github.com/ananthakrishna4747/Datascience_salaries_analysis",
-    "On data science salaries:\n• Predicts comp from job attributes, then explains it via feature importance\n• Remote work and company size matter more than people assume\n• Coursework project with an accompanying presentation deck\nRepo's linked from the project card above.",
+  salaries:{keys:['salaries','salary','compensation'], img:'assets/diagrams/salaries.svg',
+    links:[{label:'Repo',url:'https://github.com/ananthakrishna4747/Datascience_salaries_analysis'}], variants:[
+    "Data Science Salaries Analysis:\n• Random Forest Regressor predicts salary in USD from role, experience, remote ratio, company size/location\n• Geographic normalization via pycountry for readable geography\n• Feature-importance ranking shows which factors actually drive compensation",
+    "Quick take on the salaries project:\n• Trend analysis by job title and year — Data Scientist, Analyst, Engineer, ML Engineer\n• Evaluated with MAE/MSE/RMSE plus predicted-vs-actual plots\n• Global dataset, not just US-centric",
+    "On data science salaries:\n• Predicts comp from job attributes, then explains it via feature importance\n• Remote work and company size matter more than people assume\n• Coursework project with an accompanying presentation deck",
   ]},
-  certmsazure:{keys:['azure ai','azure apps and agents'], img:'assets/certs/cert-ms-azure-ai.jpg', variants:[
-    "Microsoft Certified: Azure AI Apps and Agents Developer Associate.\n• Earned 2026, valid through 2027\n• Covers building AI app and agent solutions on Azure\nVerify: learn.microsoft.com (link on the cert card above)",
-    "Azure AI Apps and Agents cert, quickly:\n• Microsoft Associate-level credential, online-verifiable\n• Directly relevant to the agent/MCP work I do day to day\nFull verify link is on the Certifications card above.",
-    "On the Azure AI cert:\n• Associate level, earned this year\n• Pairs with the Fabric Data Engineer cert — Azure AI + Azure data, together\nVerify link is on the cert card in the Certifications shelf above.",
+  certmsazure:{keys:['azure ai','azure apps and agents','microsoft azure','azure'], img:'assets/certs/cert-ms-azure-ai.jpg',
+    links:[{label:'Verify Credential',url:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/44c7e9a7912d8ba'}], variants:[
+    "Microsoft Certified: Azure AI Apps and Agents Developer Associate.\n• Earned 2026, valid through 2027\n• Covers building AI app and agent solutions on Azure",
+    "Azure AI Apps and Agents cert, quickly:\n• Microsoft Associate-level credential, online-verifiable\n• Directly relevant to the agent/MCP work I do day to day",
+    "On the Azure AI cert:\n• Associate level, earned this year\n• Pairs with the Fabric Data Engineer cert — Azure AI + Azure data, together",
   ]},
-  certmsfabric:{keys:['fabric','data engineer associate'], img:'assets/certs/cert-ms-fabric.jpg', variants:[
-    "Microsoft Certified: Fabric Data Engineer Associate.\n• Earned 2026, valid through 2027\n• Covers data engineering on Microsoft Fabric\nVerify: learn.microsoft.com (link on the cert card above)",
-    "Fabric Data Engineer cert, in short:\n• Microsoft Associate-level, online-verifiable\n• Complements the cloud/data side of my stack alongside AWS\nVerify link is on the Certifications card above.",
-    "On the Fabric cert:\n• Earned alongside the Azure AI Apps and Agents cert\n• Focused on data engineering pipelines in Microsoft Fabric\nFull verify link is attached to the cert card in the Certifications shelf.",
+  certmsfabric:{keys:['fabric','data engineer associate','microsoft fabric'], img:'assets/certs/cert-ms-fabric.jpg',
+    links:[{label:'Verify Credential',url:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/d64cb9a5f3d7d133'}], variants:[
+    "Microsoft Certified: Fabric Data Engineer Associate.\n• Earned 2026, valid through 2027\n• Covers data engineering on Microsoft Fabric",
+    "Fabric Data Engineer cert, in short:\n• Microsoft Associate-level, online-verifiable\n• Complements the cloud/data side of my stack alongside AWS",
+    "On the Fabric cert:\n• Earned alongside the Azure AI Apps and Agents cert\n• Focused on data engineering pipelines in Microsoft Fabric",
   ]},
-  certdlspec:{keys:['deep learning specialization','deeplearning.ai'], img:'assets/certs/cert-coursera-dl-spec.jpg', variants:[
-    "Deep Learning Specialization (DeepLearning.AI, Coursera):\n• 5 courses: Neural Networks & Deep Learning, Hyperparameter Tuning, Structuring ML Projects, CNNs, Sequence Models\n• Built CNNs, RNNs/LSTMs, and Transformers; applied Dropout, BatchNorm, Xavier/He init\nVerify: coursera.org (link on the cert card above)",
-    "On the Deep Learning Specialization:\n• Andrew Ng's full 5-course sequence, completed 2020\n• The theory/foundation behind most of my later applied NLP/CV work\nVerify link is on the Certifications card above.",
-    "Deep Learning Specialization, quickly:\n• 5 courses, fully completed — not just one module\n• Skills: CNNs, RNNs, Transformers, optimization techniques\nFull verify link on the cert card above.",
+  certdlspec:{keys:['deep learning specialization','deeplearning.ai','coursera'], img:'assets/certs/cert-coursera-dl-spec.jpg',
+    links:[{label:'Verify Credential',url:'https://www.coursera.org/account/accomplishments/specialization/certificate/WYK6WPEQ539T'}], variants:[
+    "Deep Learning Specialization (DeepLearning.AI, Coursera):\n• 5 courses: Neural Networks & Deep Learning, Hyperparameter Tuning, Structuring ML Projects, CNNs, Sequence Models\n• Built CNNs, RNNs/LSTMs, and Transformers; applied Dropout, BatchNorm, Xavier/He init",
+    "On the Deep Learning Specialization:\n• Andrew Ng's full 5-course sequence, completed 2020\n• The theory/foundation behind most of my later applied NLP/CV work",
+    "Deep Learning Specialization, quickly:\n• 5 courses, fully completed — not just one module\n• Skills: CNNs, RNNs, Transformers, optimization techniques",
   ]},
-  certliaiml:{keys:['advance your skills in ai','ai and machine learning'], img:'assets/certs/cert-li-ai-ml.jpg', variants:[
-    "Advance Your Skills in AI and Machine Learning (LinkedIn Learning):\n• Skills learned: Machine Learning, NLP, Text Classification, Deep Learning, AI\n• Completed 2023\nVerify link is on the cert card above.",
-    "On the AI/ML LinkedIn Learning path:\n• Broad path covering applied ML and NLP fundamentals\n• Feeds directly into projects like the meme classifier and captioning model\nVerify link is on the Certifications card above.",
-    "Quick note on this one:\n• Skills learned: text classification, deep learning fundamentals, applied AI\n• One of several LinkedIn Learning paths completed in 2023\nFull verify link on the cert card above.",
+  certliaiml:{keys:['advance your skills in ai','ai and machine learning'], img:'assets/certs/cert-li-ai-ml.jpg',
+    links:[{label:'Verify Credential',url:'https://www.linkedin.com/learning/certificates/2e49161b39afd6993f1051c8533d07a00dac6670204034e144a045c66d4a120f'}], variants:[
+    "Advance Your Skills in AI and Machine Learning (LinkedIn Learning):\n• Skills learned: Machine Learning, NLP, Text Classification, Deep Learning, AI\n• Completed 2023",
+    "On the AI/ML LinkedIn Learning path:\n• Broad path covering applied ML and NLP fundamentals\n• Feeds directly into projects like the meme classifier and captioning model",
+    "Quick note on this one:\n• Skills learned: text classification, deep learning fundamentals, applied AI\n• One of several LinkedIn Learning paths completed in 2023",
   ]},
-  certliaws:{keys:['aws saa','solutions architect','aws certified'], img:'assets/certs/cert-li-aws.jpg', variants:[
-    "Prepare for the AWS Certified Solutions Architect – Associate (SAA-C03):\n• Skills learned: Cloud Administration, Network Virtualization, Technical Solution Design, AWS\n• Completed 2023\nVerify link is on the cert card above.",
-    "On the AWS SAA-C03 prep cert:\n• Cloud architecture fundamentals — backs the AWS work in SURAKSHA and elsewhere\n• LinkedIn Learning path, completed 2023\nVerify link is on the Certifications card above.",
-    "Quick take:\n• Skills learned: network virtualization, technical solution design, AWS services\n• Grounding for production AWS usage (Lambda/ECS/Step Functions) in my projects\nFull verify link on the cert card above.",
+  certliaws:{keys:['aws saa','solutions architect','aws certified'], img:'assets/certs/cert-li-aws.jpg',
+    links:[{label:'Verify Credential',url:'https://www.linkedin.com/learning/certificates/ad80b033b05cd20a43aa8d91a16d1975452a9ea7c6c135453752f387aebfae1f'}], variants:[
+    "Prepare for the AWS Certified Solutions Architect – Associate (SAA-C03):\n• Skills learned: Cloud Administration, Network Virtualization, Technical Solution Design, AWS\n• Completed 2023",
+    "On the AWS SAA-C03 prep cert:\n• Cloud architecture fundamentals — backs the AWS work in SURAKSHA and elsewhere\n• LinkedIn Learning path, completed 2023",
+    "Quick take:\n• Skills learned: network virtualization, technical solution design, AWS services\n• Grounding for production AWS usage (Lambda/ECS/Step Functions) in my projects",
   ]},
-  certlipython:{keys:['python skills for data science','advance your python'], img:'assets/certs/cert-li-python.jpg', variants:[
-    "Advance Your Python Skills for Data Science (LinkedIn Learning):\n• Skills learned: Big Data, Python, Object-Oriented Programming\n• Completed 2023\nVerify link is on the cert card above.",
-    "On the Python for Data Science path:\n• OOP + big-data-scale Python patterns, not just syntax basics\n• Underpins most of the data science coursework projects\nVerify link is on the Certifications card above.",
-    "Quick note:\n• Skills learned: OOP design, big data handling in Python\n• Completed 2023\nFull verify link on the cert card above.",
+  certlipython:{keys:['python skills for data science','advance your python'], img:'assets/certs/cert-li-python.jpg',
+    links:[{label:'Verify Credential',url:'https://www.linkedin.com/learning/certificates/879249e5097515186d327580a2c4de5e88dcb7ee8b846275cd95e7f7ba436c3c'}], variants:[
+    "Advance Your Python Skills for Data Science (LinkedIn Learning):\n• Skills learned: Big Data, Python, Object-Oriented Programming\n• Completed 2023",
+    "On the Python for Data Science path:\n• OOP + big-data-scale Python patterns, not just syntax basics\n• Underpins most of the data science coursework projects",
+    "Quick note:\n• Skills learned: OOP design, big data handling in Python\n• Completed 2023",
   ]},
-  certifications:{keys:['certification','certificate','certs ','credential'], img:null, variants:[
-    "6 certifications so far:\n• Microsoft: Azure AI Apps and Agents Developer Associate, Fabric Data Engineer Associate\n• Coursera: Deep Learning Specialization (DeepLearning.AI)\n• LinkedIn Learning: AI/ML, AWS SAA-C03 prep, Python for Data Science\nAsk about any one by name, or check the Certifications shelf above for verify links.",
-    "On certifications:\n• 2 Microsoft Associate-level credentials, both earned 2026\n• 1 Coursera specialization (5 courses, DeepLearning.AI)\n• 3 LinkedIn Learning paths covering AI/ML, AWS, and Python\nEvery one has a verify link in the Certifications shelf above.",
+  certifications:{keys:['certification','certificate','certs ','credential'], img:null, links:[], variants:[
+    "6 certifications so far:\n• Microsoft: Azure AI Apps and Agents Developer Associate, Fabric Data Engineer Associate\n• Coursera: Deep Learning Specialization (DeepLearning.AI)\n• LinkedIn Learning: AI/ML, AWS SAA-C03 prep, Python for Data Science\nAsk about any one by name for its verify link.",
+    "On certifications:\n• 2 Microsoft Associate-level credentials, both earned 2026\n• 1 Coursera specialization (5 courses, DeepLearning.AI)\n• 3 LinkedIn Learning paths covering AI/ML, AWS, and Python\nAsk about a specific one by name for the verify link.",
     "Quick rundown of certs:\n• Cloud/AI: Azure AI Apps and Agents, Fabric Data Engineer\n• Deep learning theory: the full 5-course DeepLearning.AI specialization\n• Applied skills: AI/ML, AWS architecture, Python — via LinkedIn Learning\nAsk about a specific one and I'll give you the verify link.",
   ]},
-  skills:{keys:['skill','tech stack','stack','tools','technolog'], img:null, variants:[
+  skills:{keys:['skill','tech stack','stack','tools','technolog'], img:null, links:[], variants:[
     "Core stack:\n• AI & Agents: Claude API, MCP, LangChain, RAG, FAISS, Agents SDK\n• Backend: Python, FastAPI, Flask, JWT/RBAC\n• Cloud & Infra: AWS, Docker, Kubernetes, Step Functions\nAsk 'which projects use X' for any specific tool.",
     "On the stack:\n• Gen AI: Claude API + MCP + LangChain, with RAG/FAISS for retrieval\n• Backend: Python (FastAPI/Flask), tested with Pytest\n• Data/ML: NLP, Deep Learning, PySpark, scikit-learn, PyTorch\nTry asking 'where did you use Docker' for project-level detail.",
     "Quick stack summary:\n• 4 domains: AI & Agents, Backend, Cloud & Infra, Data & ML\n• Heaviest usage: MCP/Claude API for agent work, FastAPI for backend services\nFull list with categories is in the Skills section above.",
   ]},
-  experience:{keys:['experience','work','job','sunplusdata','constella'], img:null, variants:[
+  experience:{keys:['experience','work','job','sunplusdata','sunplus','constella'], img:null, links:[], variants:[
     "Currently Gen AI / Backend Engineer at SunPlusData (Jan 2025–present), building MCP tooling and document-intelligence services in Atlanta.\nBefore that: Software Engineer at Constella Intelligence (2021–2023), automating AWS ETL pipelines in Hyderabad.\nAlso a Teaching Assistant in Data Analytics at UNT.",
-    "On work experience:\n• SunPlusData (current): MCP-based agent tooling over enterprise APIs\n• Constella Intelligence (2021–2023): real-time ML threat-scoring API + AWS ETL orchestration\n• UNT: Teaching Assistant, mentoring on DBMS/analytics\nAsk about any of these for more depth.",
-    "Quick career summary:\n• Now: Gen AI/Backend Engineer, SunPlusData, since Jan 2025\n• Before: Software Engineer, Constella Intelligence, 2021–2023\n• Also: Teaching Assistant, University of North Texas\nFull details are in the Experience shelf in the Library above.",
+    "On work experience:\n• SunPlusData (current): MCP-based agent tooling over enterprise APIs\n• Constella Intelligence (2021–2023): real-time ML threat-scoring API + AWS ETL orchestration\n• UNT: Teaching Assistant, mentoring on DBMS/analytics",
+    "Quick career summary:\n• Now: Gen AI/Backend Engineer, SunPlusData, since Jan 2025\n• Before: Software Engineer, Constella Intelligence, 2021–2023\n• Also: Teaching Assistant, University of North Texas",
   ]},
-  education:{keys:['education','study','degree','gpa','university','school'], img:null, variants:[
+  education:{keys:['education','study','degree','gpa','university','school'], img:null, links:[], variants:[
     "M.S. in Data Science, University of North Texas — 3.99/4.0 GPA.\nB.Tech in Computer Science, Keshav Memorial Institute of Technology, Hyderabad — 3.5/4.0 GPA.",
-    "On education:\n• Currently finishing an M.S. in Data Science at UNT, near-perfect GPA\n• Undergrad: B.Tech Computer Science from KMIT, Hyderabad\nFull details in the Education shelf in the Library above.",
-    "Quick education summary:\n• UNT — M.S. Data Science, 3.99 GPA\n• KMIT — B.Tech Computer Science, 3.5 GPA\nAlso a published author — ask about SURAKSHA's ISSRJ paper.",
+    "On education:\n• Currently finishing an M.S. in Data Science at UNT, near-perfect GPA\n• Undergrad: B.Tech Computer Science from KMIT, Hyderabad",
+    "Quick education summary:\n• UNT — M.S. Data Science, 3.99 GPA\n• KMIT — B.Tech Computer Science, 3.5 GPA",
   ]},
-  resume:{keys:['resume','cv'], img:null, variants:[
+  resume:{keys:['resume','cv'], img:null, links:[], variants:[
     "Full résumé is downloadable from the 📄 Resume button near the top of the page.",
     "You can grab the résumé via the 📄 Resume button up top — direct PDF download.",
     "Résumé's right there — 📄 Resume button near the top of the hero section.",
   ]},
-  contact:{keys:['contact','reach','email','hire','schedule','meet','call'], img:null, variants:[
-    "Best way is email — akshaychilappa47@gmail.com — or hit the 💬 Contact button up top, which opens a pre-filled email.",
-    "Easiest path: 💬 Contact button up top (pre-fills an email), or reach out directly at akshaychilappa47@gmail.com.",
-    "Email works best: akshaychilappa47@gmail.com. Or use the 💬 Contact button up top for a quick pre-filled draft.",
+  contact:{keys:['contact','reach','email','hire'], img:null, links:[{label:'Email',url:'mailto:akshaychilappa47@gmail.com'}], variants:[
+    "Best way is email, or hit the 💬 Contact button up top, which opens a pre-filled email.",
+    "Easiest path: 💬 Contact button up top (pre-fills an email), or reach out directly by email.",
+    "Email works best, or use the 💬 Contact button up top for a quick pre-filled draft.",
   ]},
-  github:{keys:['github','repo','code'], img:null, variants:[
-    "All public work lives at github.com/ananthakrishna4747 — repos covering Gen AI agents, RAG pipelines, and applied ML.",
-    "Code's all on GitHub: github.com/ananthakrishna4747. Ask about a specific project and I'll give you the direct repo link.",
-    "Everything's public at github.com/ananthakrishna4747, except the pregnancy-quiz app (private repo).",
+  github:{keys:['github','repo','code'], img:null, links:[{label:'GitHub Profile',url:'https://github.com/ananthakrishna4747'}], variants:[
+    "All public work lives on GitHub — repos covering Gen AI agents, RAG pipelines, and applied ML.",
+    "Code's all on GitHub. Ask about a specific project and I'll give you the direct repo link too.",
+    "Everything's public on GitHub, except the pregnancy-quiz app (private repo).",
   ]},
 };
 const FAQ_HITS={};
 function topicAnswer(key){
   const t=FAQ_TOPICS[key]; if(!t) return null;
   const n=FAQ_HITS[key]||0; FAQ_HITS[key]=n+1;
-  return {text:t.variants[n%t.variants.length], img:t.img};
+  return {text:t.variants[n%t.variants.length], img:t.img, links:t.links||[]};
 }
 function findProjectsBySkill(term){
   const all=[...CARDS.proj,...CARDS.extra];
   return all.filter(c=>c.tags&&c.tags.some(tg=>tg.toLowerCase().includes(term)));
+}
+function wordOverlap(qWords, kw){
+  if(kw.length<3) return qWords.includes(kw);
+  return qWords.some(qw=> qw.length<3 ? qw===kw : (qw.includes(kw)||kw.includes(qw)));
+}
+function fuzzyScore(ql, keys){
+  const qWords=ql.split(/[^a-z0-9.]+/).filter(Boolean);
+  let score=0;
+  for(const k of keys){
+    const kWords=k.split(/[^a-z0-9.]+/).filter(Boolean);
+    if(kWords.some(kw=>wordOverlap(qWords,kw))) score++;
+  }
+  return score;
 }
 const SKILL_TERMS=['fastapi','flask','docker','kubernetes','python','pytorch','scikit-learn','pandas','aws','mcp','langchain','claude api','rag','faiss','nlp','opencv','keras','pyspark','jwt','pytest','step functions','cloudwatch','deep learning','agents sdk','prompt eng','streamlit','tts','seaborn','pycountry','roberta','bertscore'];
 function answerFor(q){
@@ -1040,18 +1071,18 @@ function answerFor(q){
         const matches=findProjectsBySkill(sw);
         if(matches.length){
           const list=matches.map(m=>`• ${m.name}`).join('\n');
-          return {text:`Projects using ${sw}:\n${list}\nAsk about any of these by name for more detail.`, img:null};
+          return {text:`Projects using ${sw}:\n${list}\nAsk about any of these by name for more detail.`, img:null, links:[]};
         }
       }
     }
   }
   let best=null, bestScore=0;
   for(const key in FAQ_TOPICS){
-    const score=FAQ_TOPICS[key].keys.filter(k=>ql.includes(k)).length;
+    const score=fuzzyScore(ql, FAQ_TOPICS[key].keys);
     if(score>bestScore){ bestScore=score; best=key; }
   }
   if(best) return topicAnswer(best);
-  return {text:"I don't have a pre-written answer for that — try asking about a project by name (SURAKSHA, Intellipod, Financial QA, Cricket XI...), skills, certifications, experience, or how to get in touch.", img:null};
+  return {text:"I don't have a pre-written answer for that — try asking about a project by name (SURAKSHA, Intellipod, Financial QA, Cricket XI...), skills, certifications, experience, or how to get in touch.", img:null, links:[]};
 }
 const chatFab=document.getElementById('chat-fab'), chatPanel=document.getElementById('chat-panel'), chatMsgs=document.getElementById('chat-msgs');
 
@@ -1081,12 +1112,13 @@ function pushMsg(payload, who){
   if(who==='bot'){
     const text = (typeof payload==='object'&&payload!==null) ? payload.text : payload;
     const img = (typeof payload==='object'&&payload!==null) ? payload.img : null;
-    typeBotMsg(chatMsgs, text, null, img);
+    const links = (typeof payload==='object'&&payload!==null) ? (payload.links||[]) : [];
+    typeBotMsg(chatMsgs, text, null, img, links);
     return;
   }
   const d=document.createElement('div'); d.className='msg '+who; d.textContent=payload; chatMsgs.appendChild(d); chatMsgs.scrollTop=chatMsgs.scrollHeight;
 }
-function typeBotMsg(container, text, onDone, img){
+function typeBotMsg(container, text, onDone, img, links){
   const indicator=document.createElement('div');
   indicator.className='msg bot typing-indicator';
   indicator.innerHTML='<span></span><span></span><span></span>';
@@ -1112,12 +1144,30 @@ function typeBotMsg(container, text, onDone, img){
           im.className='msg-thumb'; im.src=img; im.alt='';
           container.appendChild(im); container.scrollTop=container.scrollHeight;
         }
+        if(links && links.length){
+          const row=document.createElement('div');
+          row.className='msg-links';
+          row.innerHTML=links.map(l=>`<a class="msg-link-btn" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('');
+          container.appendChild(row); container.scrollTop=container.scrollHeight;
+        }
         if(onDone) onDone();
       }
     })();
   }, thinkTime);
 }
-function askChat(q){ pushMsg(q,'user'); setTimeout(()=>pushMsg(answerFor(q),'bot'), 300); }
+function askChat(q){
+  pushMsg(q,'user');
+  const ql=q.toLowerCase();
+  if(/\bschedul|\bbook a (call|meeting)|set up a (call|meeting)|\bmeet\b/.test(ql) && !/email/.test(ql)){
+    setTimeout(()=>{
+      typeBotMsg(chatMsgs, "Sure — let's get that scheduled. Opening the quick scheduler now…", ()=>{
+        setTimeout(()=>{ chatPanel.classList.remove('open'); if(typeof openSchedModal==='function') openSchedModal(); }, 450);
+      }, null, []);
+    }, 300);
+    return;
+  }
+  setTimeout(()=>pushMsg(answerFor(q),'bot'), 300);
+}
 document.getElementById('chat-send').addEventListener('click', ()=>{ const inp=document.getElementById('chat-input'); if(inp.value.trim()){ askChat(inp.value.trim()); inp.value=''; } });
 document.getElementById('chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('chat-send').click(); });
 document.querySelectorAll('.chip').forEach(chip=>chip.addEventListener('click', ()=>askChat(chip.dataset.q)));
