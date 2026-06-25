@@ -6,6 +6,7 @@
 <title>Anantha Krishna — Gen AI Engineer</title>
 <meta name="description" content="Anantha Krishna Chilappagari — Gen AI Engineer building MCP servers, RAG pipelines, and cloud-native agent systems.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Sora:wght@300;400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <style>
 :root{
   --bg:#070D1A;--bg2:#0B1220;--bg3:#0F1728;
@@ -47,7 +48,9 @@ body.hov #cr{width:48px;height:48px;border-radius:7px;}
 
 /* ===== NAV ===== */
 nav{position:fixed;top:0;left:0;right:0;height:54px;z-index:500;background:rgba(7,13,26,.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
-.nav-brand{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--g);font-weight:500;letter-spacing:.03em;}
+.nav-brand{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);font-weight:500;letter-spacing:.1em;}
+.nav-ak{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;color:var(--g);letter-spacing:0;line-height:1;}
+.nav-divider{color:var(--bdr2);}
 .nping{width:6px;height:6px;border-radius:50%;background:var(--g);animation:ningp 1.8s infinite;}
 @keyframes ningp{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.6);}70%{box-shadow:0 0 0 6px rgba(0,255,136,0);}}
 .nav-links{display:flex;gap:6px;}
@@ -72,7 +75,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .intro-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;}
 .hero-greet{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;}
 .hero-sig{display:block;max-width:420px;width:100%;height:auto;margin-bottom:2px;}
-.hero-name{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(28px,4.2vw,46px);letter-spacing:-0.03em;color:#fff;line-height:1.05;margin-bottom:4px;}
+.intro-text{position:relative;}
+.intro-bg-photo{position:absolute;top:-60px;left:-40px;width:460px;max-width:85vw;height:auto;opacity:0.1;filter:grayscale(1) contrast(1.05) blur(2px);z-index:0;pointer-events:none;mix-blend-mode:luminosity;mask-image:radial-gradient(ellipse 55% 60% at 35% 30%, rgba(0,0,0,0.85), transparent 70%);-webkit-mask-image:radial-gradient(ellipse 55% 60% at 35% 30%, rgba(0,0,0,0.85), transparent 70%);}
+.intro-text > *:not(.intro-bg-photo){position:relative;z-index:1;}
 .hero-handle{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);margin-bottom:12px;}
 .hero-role{font-family:'JetBrains Mono',monospace;font-size:clamp(13px,1.6vw,16px);color:var(--g);min-height:1.6em;border-right:2px solid var(--g);padding-right:6px;animation:caret 1s steps(1) infinite;display:inline-block;}
 @keyframes caret{50%{border-color:transparent;}}
@@ -198,7 +203,15 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 @keyframes msgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 .msg.typing-caret::after{content:'▍';display:inline-block;color:var(--g);margin-left:1px;animation:caretBlink .8s steps(1) infinite;}
 @keyframes caretBlink{50%{opacity:0;}}
-.msg-thumb{max-width:84%;border-radius:10px;border:1px solid var(--bdr2);margin-top:-2px;display:block;animation:msgIn .28s ease;}
+.msg-thumb{max-width:84%;border-radius:10px;border:1px solid var(--bdr2);margin-top:-2px;display:block;animation:msgIn .28s ease;cursor:zoom-in;transition:.2s;position:relative;}
+.msg-thumb:hover{border-color:var(--g);transform:scale(1.015);}
+#img-lightbox{position:fixed;inset:0;background:rgba(5,9,18,0.92);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+#img-lightbox.open{display:flex;animation:lbFade .2s ease;}
+@keyframes lbFade{from{opacity:0;}to{opacity:1;}}
+#img-lightbox img{max-width:88vw;max-height:82vh;border-radius:10px;border:1px solid var(--bdr2);box-shadow:0 20px 80px rgba(0,0,0,.6);animation:lbZoom .25s cubic-bezier(.34,1.56,.64,1);}
+@keyframes lbZoom{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
+#lightbox-close{position:fixed;top:28px;right:32px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt);background:var(--sur);border:1px solid var(--bdr);padding:9px 16px;border-radius:20px;cursor:pointer;transition:.2s;}
+#lightbox-close:hover{border-color:var(--g);color:var(--g);}
 .msg-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:-2px;animation:msgIn .28s ease;}
 .msg-link-btn{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--g);background:var(--sur);border:1px solid rgba(0,255,136,.35);padding:6px 11px;border-radius:8px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:5px;}
 .msg-link-btn:hover{border-color:var(--g);background:rgba(0,255,136,.08);transform:translateY(-1px);}
@@ -284,7 +297,7 @@ footer a:hover{color:var(--g);}
 <div id="cd"></div><div id="cr"></div>
 
 <nav>
-  <div class="nav-brand"><span class="nping"></span> AK · PORTFOLIO</div>
+  <div class="nav-brand"><span class="nping"></span><span class="nav-ak">AK</span><span class="nav-divider">·</span>PORTFOLIO</div>
   <div class="nav-links">
     <a href="#hero">Profile</a><a href="#library">Library</a><a href="#certs">Certifications</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
   </div>
@@ -304,6 +317,7 @@ footer a:hover{color:var(--g);}
 <section id="hero">
   <div class="intro-grid">
     <div class="intro-text">
+      <img class="intro-bg-photo" src="assets/photos/avatar.jpg" alt="">
       <span class="hero-greet">Hello, I'm</span>
       <svg class="hero-sig" viewBox="0 0 460 110" xmlns="http://www.w3.org/2000/svg">
         <defs><clipPath id="sigClip"><rect id="sigReveal" x="0" y="0" width="0" height="110"/></clipPath></defs>
@@ -316,7 +330,6 @@ footer a:hover{color:var(--g);}
         <path id="sig-ul" d="M 8,94 Q 230,104 452,94" fill="none" stroke="#00FF88" stroke-width="1.5" stroke-dasharray="460" stroke-dashoffset="460"/>
         <circle id="sig-dot" cx="452" cy="93" r="3.5" fill="#00FF88" opacity="0"/>
       </svg>
-      <div class="hero-name">Anantha Krishna</div>
       <div class="hero-handle">@ananthakrishna4747 · Denton, TX</div>
       <div><span class="hero-role" id="typing-role">Gen AI Engineer</span></div>
       <p class="hero-sub">4+ years building production GenAI and agentic systems on AWS — Bedrock agents, MCP tool-calling, and document-intelligence pipelines that turn enterprise APIs into safe, auditable actions. MS in Data Science, University of North Texas.</p>
@@ -437,15 +450,20 @@ footer a:hover{color:var(--g);}
     <div class="hbtns"><span class="min" id="chat-min" title="Minimize">─</span><span class="x" id="chat-close" title="Close">✕</span></div>
   </div>
   <div class="chat-msgs" id="chat-msgs">
-    <div class="msg bot">Hi! I'm a lightweight FAQ bot — ask me about Anantha's projects, skills, certifications, or how to get in touch. Try one of these, or type your own:</div>
+    <div class="msg bot">Namaste 🙏 I'm Krishna's assistant — ask me about Anantha's projects, skills, certifications, or how to get in touch. 😊 Try one of these, or type your own:</div>
   </div>
   <div class="chat-suggest">
-    <span class="chip" data-q="suraksha">SURAKSHA</span><span class="chip" data-q="intellipod">Intellipod</span><span class="chip" data-q="text-to-sql">Text-to-SQL Agent</span><span class="chip" data-q="constella">Constella</span><span class="chip" data-q="skills">Tech Stack</span><span class="chip" data-q="certifications">Certifications</span><span class="chip" data-q="schedule">Schedule</span>
+    <span class="chip" data-q="suraksha">SURAKSHA</span><span class="chip" data-q="intellipod">Intellipod</span><span class="chip" data-q="constella">Constella</span><span class="chip" data-q="certifications">Certifications</span><span class="chip" data-q="schedule">Schedule</span>
   </div>
   <div class="chat-input-row">
     <input id="chat-input" type="text" maxlength="200" placeholder="Ask a question…">
     <button class="chat-send" id="chat-send">➤</button>
   </div>
+</div>
+
+<div id="img-lightbox">
+  <div id="lightbox-close">✕ Back to chat</div>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <footer>
@@ -490,9 +508,21 @@ const CARDS = {
   ],
   edu: [
     {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', name:'University of North Texas', org:'M.S. Data Science · Denton, TX',
-     desc:'CGPA 3.99 / 4.0', tags:['Data Science','Statistics','ML'], bullets:['Master of Science in Data Science, CGPA 3.99/4.0.']},
+     desc:'Built advanced competencies in data architecture, knowledge systems, and information management — applied directly into shipped projects.',
+     tags:['Data Architecture','Knowledge Systems','Information Management'],
+     bullets:[
+       'M.S. in Data Science, University of North Texas — CGPA 3.99/4.0.',
+       'Built advanced competencies in data architecture, knowledge systems, and information management practices applicable to enterprise and research environments.',
+       'Applied that coursework directly into shipped projects during this program: Intellipod (paper-to-podcast pipeline), Financial Document QA (domain-specific LLM + RAG), and Beyond Cricket (player-performance prediction) — implemented, not just studied.'
+     ]},
     {id:'kmit', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', name:'Keshav Memorial Institute of Technology', org:'B.Tech Computer Science · Hyderabad, India',
-     desc:'CGPA 3.5 / 4.0', tags:['Computer Science'], bullets:['Bachelor of Technology in Computer Science, CGPA 3.5/4.0.']},
+     desc:'First Class with Distinction — lab-intensive foundations in Python, SQL, Web Tech, AI, and Data Mining.',
+     tags:['Python','SQL','Web Technologies','AI','Data Mining'],
+     bullets:[
+       'B.Tech in Computer Science & Engineering — First Class with Distinction, CGPA 3.5/4.0.',
+       'Built strong foundations in core CS through lab-intensive coursework in Python, SQL, Web Technologies, Artificial Intelligence, and Data Mining.',
+       'Completed an internship plus a two-stage capstone project on Offensive Meme Detection.'
+     ]},
   ],
   cert: [
     {id:'ms-azure-ai', type:'CERTIFICATION', color:'g', art:'assets/certs/cert-ms-azure-ai.jpg', name:'Azure AI Apps and Agents Developer Associate', org:'Microsoft · 2026 · Expires 2027',
@@ -530,8 +560,7 @@ const CARDS = {
        'Automated password resets and access updates using AWS Lambda and Step Functions under JWT authentication and RBAC, with DynamoDB for state — a federated design that keeps sensitive logs local.',
        'Published as "SURAKSHA: AI-Driven IT Support and Automation" (ISSRJ, 2025); 2nd place, AIS National Competition 2025.',
        'Mirrors the natural-language ops pattern used in enterprise ITSM tools (e.g. ServiceNow Virtual Agent), applied here directly to SolarWinds via MCP on AWS-native infrastructure.'
-     ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf',
-     sample:{q:'Show me all unauthorized entry attempts to Server Room B this week, and create an incident for the most recent one.', a:'Found 3 unauthorized attempts: Tue 9:14 AM (badge #4471, denied), Thu 2:03 PM (badge #2290, denied), Fri 11:47 PM (badge unknown, denied). Created Incident #INC-10432 for the Friday 11:47 PM attempt — flagged high priority due to after-hours timing.'}},
+     ], repo:'https://github.com/ananthakrishna4747/ai_driven_IT_support_system', paper:'https://www.issrj.org/wp-content/uploads/2025/12/SURAKSHA-AI-Driven-IT-Support-and-Automation.pdf'},
     {id:'intellipod', type:'PROJECT', color:'p', art:'assets/photos/intellipod-banner.jpg', art2:'assets/diagrams/intellipod.svg', art3:'assets/diagrams/intellipod-flow.svg', video:'assets/video/intellipod-demo.mp4', modalMedia:['video','art2','art3'], name:'Intellipod', org:'OpenAI Agents SDK + MCP · Multi-agent pipeline',
      desc:'Turns an arXiv paper into a multi-speaker podcast — search, parse, script, and synthesize, end to end.',
      tags:['OpenAI Agents SDK','MCP','Streamlit','TTS'],
@@ -715,6 +744,11 @@ const SCHED_Q = [
 ];
 let schedAnswers = [];
 let schedStep = 0;
+let schedName = '';
+function extractFirstName(raw){
+  let s = raw.split(',')[0].split('@')[0].trim().split(/\s+/)[0].replace(/[^a-zA-Z'-]/g,'');
+  return s ? s.charAt(0).toUpperCase()+s.slice(1).toLowerCase() : '';
+}
 const schedOverlay = document.getElementById('sched-overlay');
 const schedMsgs = document.getElementById('sched-msgs');
 const schedInput = document.getElementById('sched-input');
@@ -732,7 +766,7 @@ function schedSetStep(i){
   }
 }
 function openSchedModal(){
-  schedAnswers = []; schedStep = 0;
+  schedAnswers = []; schedStep = 0; schedName = '';
   schedMsgs.innerHTML = '';
   schedPush("Hi! Let's get a meeting on the calendar — just answer a few quick questions.", 'bot');
   schedPush(SCHED_Q[0], 'bot');
@@ -746,11 +780,13 @@ function schedSubmit(){
   if(!val) return;
   schedPush(val, 'user');
   schedAnswers.push(val);
+  if(schedStep===0) schedName = extractFirstName(val);
   schedInput.value='';
   schedStep++;
   if(schedStep < 4){
     schedSetStep(schedStep);
-    setTimeout(()=>schedPush(SCHED_Q[schedStep], 'bot'), 350);
+    const nextQ = schedName ? (schedStep===1 ? `Nice to meet you, ${schedName}! ${SCHED_Q[schedStep]}` : `${schedName}, ${SCHED_Q[schedStep]}`) : SCHED_Q[schedStep];
+    setTimeout(()=>schedPush(nextQ, 'bot'), 350);
   } else {
     schedSetStep(4);
     const subject = encodeURIComponent("Let's connect — meeting request");
@@ -763,7 +799,7 @@ function schedSubmit(){
     );
     const link = `mailto:akshaychilappa47@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(()=>{
-      schedPush("Got it — opening a pre-filled email to Anantha now. Nothing sends until you hit send yourself.", 'bot', ()=>{
+      schedPush(`Got it${schedName ? ', '+schedName : ''} — opening a pre-filled email to Anantha now. Nothing sends until you hit send yourself.`, 'bot', ()=>{
         const a = document.createElement('a'); a.href = link; a.id='sched-final-link'; a.textContent='Open email →';
         a.className='btn btn-fill'; a.style.marginTop='6px'; a.style.display='inline-block';
         schedMsgs.appendChild(a);
@@ -1136,6 +1172,12 @@ setTimeout(()=>{
 }, 3500);
 
 chatFab.addEventListener('click', ()=>{ chatPanel.classList.add('open'); chatPanel.classList.remove('minimized'); document.getElementById('chat-badge').style.display='none'; });
+const imgLightbox=document.getElementById('img-lightbox'), lightboxImg=document.getElementById('lightbox-img');
+chatMsgs.addEventListener('click', e=>{
+  if(e.target.classList.contains('msg-thumb')){ lightboxImg.src=e.target.src; imgLightbox.classList.add('open'); }
+});
+document.getElementById('lightbox-close').addEventListener('click', ()=>imgLightbox.classList.remove('open'));
+imgLightbox.addEventListener('click', e=>{ if(e.target===imgLightbox) imgLightbox.classList.remove('open'); });
 document.getElementById('chat-close').addEventListener('click', ()=>chatPanel.classList.remove('open'));
 document.getElementById('chat-min').addEventListener('click', (e)=>{ e.stopPropagation(); chatPanel.classList.toggle('minimized'); });
 document.getElementById('chat-head-bar').addEventListener('click', ()=>{ if(chatPanel.classList.contains('minimized')) chatPanel.classList.remove('minimized'); });
