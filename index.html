@@ -69,7 +69,7 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 
 /* ===== HERO / INTRO (merged hero + profile, side-by-side) ===== */
 #hero{min-height:auto;padding-top:120px;padding-bottom:60px;}
-.intro-grid{display:grid;grid-template-columns:1fr 220px;gap:48px;align-items:center;}
+.intro-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;}
 .hero-greet{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;}
 .hero-sig{display:block;max-width:420px;width:100%;height:auto;margin-bottom:2px;}
 .hero-name{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(28px,4.2vw,46px);letter-spacing:-0.03em;color:#fff;line-height:1.05;margin-bottom:4px;}
@@ -102,34 +102,23 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .pcard-social svg{width:14px;height:14px;}
 
 /* photo column */
-.intro-photo{position:relative;width:220px;height:220px;justify-self:center;}
+.intro-photo{position:relative;width:300px;height:300px;justify-self:center;}
 .intro-photo-glow{position:absolute;inset:8px;border-radius:50%;overflow:hidden;opacity:.32;filter:blur(1px);}
 .intro-photo-glow img{width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity;}
 .intro-photo-card{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr2);background:radial-gradient(circle,rgba(0,255,136,0.05),transparent 70%);}
-.intro-photo-card .pcard-avatar{width:148px;height:148px;}
+.intro-photo-card .pcard-avatar{width:220px;height:220px;}
 @media (max-width:780px){
   .intro-grid{grid-template-columns:1fr;}
-  .intro-photo{order:-1;width:160px;height:160px;margin:0 auto 8px;}
-  .intro-photo-card .pcard-avatar{width:110px;height:110px;}
+  .intro-photo{order:-1;width:220px;height:220px;margin:0 auto 8px;}
+  .intro-photo-card .pcard-avatar{width:160px;height:160px;}
 }
 
-/* ===== ABOUT ===== */
-.about-grid{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:start;margin-bottom:34px;}
-.about-photo-frame{width:200px;height:200px;border-radius:16px;overflow:hidden;border:1px solid var(--bdr);background:var(--bg2);position:relative;}
-.about-photo-frame::after{content:'';position:absolute;inset:0;border-radius:16px;border:1px solid rgba(0,255,136,.25);box-shadow:0 0 30px rgba(0,255,136,.06) inset;}
-.about-photo-frame img{width:100%;height:100%;object-fit:cover;}
-.about-copy p{font-size:14.5px;color:var(--txt2);line-height:1.75;max-width:640px;}
-.about-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:22px;}
-.about-facts > div{display:flex;flex-direction:column;gap:3px;border-left:2px solid var(--bdr2);padding-left:12px;}
-.af-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);}
-.af-v{font-size:13px;color:var(--txt);}
-@media (max-width:680px){.about-grid{grid-template-columns:1fr;} .about-photo-frame{width:120px;height:120px;}}
-
-.interest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+/* ===== INTERESTS (moved into hero) ===== */
+.interest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px;}
 .int-tile{background:var(--sur);border:1px solid var(--bdr2);border-radius:10px;padding:14px 14px;font-size:12.5px;color:var(--txt2);display:flex;align-items:center;gap:10px;transition:.2s;}
 .int-tile:hover{border-color:var(--g);color:var(--txt);transform:translateY(-1px);}
 .int-ic{font-size:16px;}
-@media (max-width:780px){.interest-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:780px){.interest-grid{grid-template-columns:repeat(2,1fr);margin-top:28px;}}
 #library-grid{display:grid;grid-template-columns:84px 1fr;gap:28px;}
 .lib-robot-col{position:sticky;top:90px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:14px;}
 @media (max-width:720px){#library-grid{grid-template-columns:1fr;} .lib-robot-col{display:none;}}
@@ -154,6 +143,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .btn-toggle:hover{border-color:var(--g);}
 #hidden-projects{display:none;}
 #hidden-projects.open{display:contents;}
+.more-projects-panel{display:none;}
+.more-projects-panel.open{display:block;animation:moreIn .35s ease;}
+@keyframes moreIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
 .lib-rbody{width:78px;height:78px;}
 
 /* ---- Other Projects: filter tabs + hover/click polish (scoped, Featured cards untouched) ---- */
@@ -186,13 +178,6 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .pill-b{border-color:rgba(74,158,255,.3);} .pill-b:hover{border-color:#4A9EFF;color:#4A9EFF;}
 .pill-a{border-color:rgba(255,181,71,.3);} .pill-a:hover{border-color:#FFB547;color:#FFB547;}
 @media (max-width:680px){.skills-cats{grid-template-columns:1fr;}}
-.stat-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:18px 20px 8px;overflow:hidden;}
-.stat-card-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
-.stat-ic{font-size:16px;}
-.stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--txt2);}
-.stat-card-h a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);margin-left:auto;}
-.stat-card-h a:hover{color:var(--g);}
-.stat-card-img{width:100%;max-width:680px;min-height:165px;display:block;margin:0 auto;background:var(--bg3);border-radius:8px;}
 
 /* ===== CHAT FAB ===== */
 #chat-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;font-size:22px;box-shadow:0 6px 24px rgba(0,255,136,.3);transition:transform .2s;transform:scale(0);}
@@ -296,7 +281,7 @@ footer a:hover{color:var(--g);}
 <nav>
   <div class="nav-brand"><span class="nping"></span> AK · PORTFOLIO</div>
   <div class="nav-links">
-    <a href="#hero">Profile</a><a href="#about">About</a><a href="#library">Library</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+    <a href="#hero">Profile</a><a href="#library">Library</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
   </div>
   <div class="nav-social">
     <a href="https://github.com/ananthakrishna4747" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.01 3.24 9.26 7.74 10.76.56.1.78-.24.78-.54v-1.9c-3.15.34-3.97-1.36-4.22-1.84-.14-.36-.74-1.46-1.27-1.76-.43-.23-1.05-.8-.02-.81.97-.02 1.66.89 1.89 1.26 1.1 1.85 2.86 1.33 3.56 1 .1-.79.43-1.33.78-1.64-2.72-.3-5.57-1.36-5.57-6.05 0-1.34.48-2.44 1.27-3.3-.14-.31-.6-1.56.12-3.24 0 0 1.04-.33 3.42 1.27.99-.28 2.05-.42 3.1-.42 1.05 0 2.11.14 3.1.42 2.38-1.61 3.42-1.27 3.42-1.27.72 1.68.27 2.93.13 3.24.79.86 1.27 1.95 1.27 3.3 0 4.7-2.86 5.74-5.59 6.04.45.39.83 1.14.83 2.31v3.43c0 .3.22.65.78.54 4.49-1.51 7.73-5.76 7.73-10.77C23.5 5.74 18.27.5 12 .5Z"/></svg></a>
@@ -344,30 +329,11 @@ footer a:hover{color:var(--g);}
           <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" title="Instagram handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
         </div>
       </div>
-      <div class="scroll-cue"><div class="line"></div><span>SCROLL</span></div>
     </div>
     <div class="intro-photo">
       <div class="intro-photo-glow"><img src="assets/photos/profile-banner-bg.jpg" alt=""></div>
       <div class="intro-photo-card">
         <div class="pcard-avatar"><img class="pcard-photo" src="assets/photos/avatar.jpg" alt="Anantha Krishna"><span class="pcard-dot"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about" class="reveal">
-  <span class="eyebrow">About</span>
-  <h2 class="sectitle">Beyond the tagline</h2>
-  <div class="about-grid">
-    <div class="about-photo-frame"><img src="assets/photos/avatar.jpg" alt="Anantha Krishna"></div>
-    <div class="about-copy">
-      <p>I turn "wouldn't it be nice if the LLM could just do this" into a working tool call. That's the actual job — designing MCP servers and agent pipelines that take enterprise REST APIs and database procedures and make them safely callable by an LLM, with the auth, retries, and error handling that production needs and demos skip.</p>
-      <div class="about-facts">
-        <div><span class="af-k">City</span><span class="af-v">Denton, TX</span></div>
-        <div><span class="af-k">Education</span><span class="af-v">MS Data Science, UNT</span></div>
-        <div><span class="af-k">Currently</span><span class="af-v">Microsoft Azure AI cert, in progress</span></div>
-        <div><span class="af-k">Email</span><span class="af-v">akshaychilappa47@gmail.com</span></div>
       </div>
     </div>
   </div>
@@ -381,6 +347,7 @@ footer a:hover{color:var(--g);}
     <div class="int-tile"><span class="int-ic">📝</span>Research &amp; Technical Writing</div>
     <div class="int-tile"><span class="int-ic">🛠️</span>Open-Source Tooling</div>
   </div>
+  <div class="scroll-cue"><div class="line"></div><span>SCROLL</span></div>
 </section>
 
 <!-- ===== LIBRARY ===== -->
@@ -426,25 +393,8 @@ footer a:hover{color:var(--g);}
       </div>
     </div>
   </div>
-  <div class="stat-card">
-    <div class="stat-card-h"><span class="stat-ic">🐙</span><span class="stat-label">GITHUB</span><a href="https://github.com/ananthakrishna4747" target="_blank" rel="noopener">github.com/ananthakrishna4747</a></div>
-    <img class="stat-card-img" src="https://github-readme-stats.vercel.app/api?username=ananthakrishna4747&show_icons=true&theme=transparent&hide_border=true&title_color=00FF88&icon_color=4A9EFF&text_color=7A8FA8&count_private=true" alt="GitHub stats for ananthakrishna4747" loading="lazy">
-  </div>
 </section>
 
-<!-- ===== PROJECTS (anchor target, same data as library projects shelf) ===== -->
-<section id="projects" class="reveal">
-  <span class="eyebrow">All Projects</span>
-  <h2 class="sectitle">More from the lab</h2>
-  <p style="color:var(--txt2);font-size:14px;max-width:600px;margin-bottom:20px;">Coursework, computer-vision, and applied ML projects — jump to the <a href="#library" style="color:var(--g);">Library</a> above for the flagship Gen AI work.</p>
-  <div class="proj-tabs" id="proj-tabs">
-    <button class="proj-tab active" data-cat="all">All</button>
-    <button class="proj-tab" data-cat="cv">Computer Vision</button>
-    <button class="proj-tab" data-cat="nlp">NLP</button>
-    <button class="proj-tab" data-cat="ds">Data Science</button>
-  </div>
-  <div class="card-grid" id="projects-extra-grid"></div>
-</section>
 
 </main>
 
@@ -811,8 +761,18 @@ function nmcHTML(card){
 const shelves=document.getElementById('shelves');
 shelves.innerHTML=`
   <div class="shelf"><div class="shelf-label">Experience</div><div class="card-grid">${CARDS.exp.map(nmcHTML).join('')}</div></div>
-  <div class="shelf"><div class="shelf-label">Projects</div><div class="card-grid">${CARDS.proj.map(nmcHTML).join('')}</div>
+  <div class="shelf" id="projects"><div class="shelf-label">Projects</div><div class="card-grid">${CARDS.proj.map(nmcHTML).join('')}</div>
     <div class="show-more-row"><button class="btn-toggle" id="toggle-more">▼ Show more projects</button></div>
+    <div class="more-projects-panel" id="more-projects-panel">
+      <p style="color:var(--txt2);font-size:13.5px;max-width:600px;margin:18px 0 16px;">Coursework, computer-vision, and applied ML projects.</p>
+      <div class="proj-tabs" id="proj-tabs">
+        <button class="proj-tab active" data-cat="all">All</button>
+        <button class="proj-tab" data-cat="cv">Computer Vision</button>
+        <button class="proj-tab" data-cat="nlp">NLP</button>
+        <button class="proj-tab" data-cat="ds">Data Science</button>
+      </div>
+      <div class="card-grid" id="projects-extra-grid"></div>
+    </div>
   </div>
   <div class="shelf"><div class="shelf-label">Education</div><div class="card-grid">${CARDS.edu.map(nmcHTML).join('')}</div></div>
   <div class="shelf"><div class="shelf-label">Certifications</div><div class="card-grid">${CARDS.cert.map(nmcHTML).join('')}</div></div>
@@ -842,7 +802,13 @@ document.getElementById('projects-extra-grid').innerHTML = CARDS.extra.map(nmcHT
   });
 })();
 
-document.getElementById('toggle-more').addEventListener('click', ()=>{ document.getElementById('projects').scrollIntoView({behavior:'smooth'}); });
+const moreProjectsPanel = document.getElementById('more-projects-panel');
+const toggleMoreBtn = document.getElementById('toggle-more');
+toggleMoreBtn.addEventListener('click', ()=>{
+  const open = moreProjectsPanel.classList.toggle('open');
+  toggleMoreBtn.textContent = open ? '▲ Show fewer projects' : '▼ Show more projects';
+  if(open) moreProjectsPanel.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
 
 /* ============ DETAIL PANEL ============ */
 const ALL_CARDS=[...CARDS.exp,...CARDS.edu,...CARDS.proj,...CARDS.extra,...CARDS.cert];
@@ -895,13 +861,12 @@ function speakSummary(c){
 /* ============ ROBO GUIDE (section-aware) ============ */
 const RG_MSGS={
   hero:"Welcome to AK's portfolio! Scroll or click around — I'll point things out.",
-  about:"3.99 GPA, 1 published paper, 2nd place at AIS Nationals 2025.",
   library:"Click any card — Experience, Projects, or Education — for the full story.",
   skills:"Grouped by domain — Agents, Backend, Cloud, and Data/ML.",
-  projects:"More applied ML work — computer vision, NLP, and predictive models."
+  projects:"Flagship work above — hit \u201cShow more projects\u201d for the rest of the lab.",
 };
 const rgText=document.getElementById('rg-text');
-const sectionIds=['hero','about','library','skills','projects'];
+const sectionIds=['hero','library','skills','projects'];
 const rgObserver=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ currentSection = e.target.id; rgText.textContent = RG_MSGS[e.target.id] || RG_MSGS.hero; } });
 }, {threshold:0.5});
