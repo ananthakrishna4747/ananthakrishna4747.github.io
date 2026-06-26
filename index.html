@@ -128,7 +128,7 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .lib-robot-col{position:sticky;top:90px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:14px;}
 @media (max-width:720px){#library-grid{grid-template-columns:1fr;} .lib-robot-col{display:none;}}
 .shelf{margin-bottom:46px;}
-.shelf-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--txt2);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--bdr2);margin-bottom:20px;}
+.shelf-label{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;letter-spacing:.1em;color:var(--txt);text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--bdr2);margin-bottom:20px;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
 .nmc{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;}
 .nmc:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35);}
@@ -306,7 +306,7 @@ footer a:hover{color:var(--g);}
     <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
     <a href="mailto:akshaychilappa47@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" aria-label="Twitter / X (placeholder — links to LinkedIn until a handle is set)" title="X handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.2 8.23L23.3 22h-6.9l-5.4-7.06L4.6 22H1.4l7.7-8.8L1 2h7l4.9 6.47L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg></a>
-    <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" aria-label="Medium (placeholder — links to LinkedIn until a handle is set)" title="Medium handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="12" r="4.5"/><ellipse cx="15.5" cy="12" rx="3" ry="4.5"/><ellipse cx="21" cy="12" rx="1.2" ry="4.5"/></svg></a>
+    <a href="https://medium.com/@ananthakrishnach" target="_blank" rel="noopener" aria-label="Medium"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="12" r="4.5"/><ellipse cx="15.5" cy="12" rx="3" ry="4.5"/><ellipse cx="21" cy="12" rx="1.2" ry="4.5"/></svg></a>
     <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" aria-label="Instagram (placeholder — links to LinkedIn until a handle is set)" title="Instagram handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
   </div>
 </nav>
@@ -317,7 +317,7 @@ footer a:hover{color:var(--g);}
 <section id="hero">
   <div class="intro-grid">
     <div class="intro-text">
-      <img class="intro-bg-photo" src="assets/photos/avatar.jpg" alt="">
+      <img class="intro-bg-photo" src="assets/photos/avatar-watermark.png" alt="">
       <span class="hero-greet">Hello, I'm</span>
       <svg class="hero-sig" viewBox="0 0 460 110" xmlns="http://www.w3.org/2000/svg">
         <defs><clipPath id="sigClip"><rect id="sigReveal" x="0" y="0" width="0" height="110"/></clipPath></defs>
@@ -343,7 +343,7 @@ footer a:hover{color:var(--g);}
           <a href="https://github.com/ananthakrishna4747" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.01 3.24 9.26 7.74 10.76.56.1.78-.24.78-.54v-1.9c-3.15.34-3.97-1.36-4.22-1.84-.14-.36-.74-1.46-1.27-1.76-.43-.23-1.05-.8-.02-.81.97-.02 1.66.89 1.89 1.26 1.1 1.85 2.86 1.33 3.56 1 .1-.79.43-1.33.78-1.64-2.72-.3-5.57-1.36-5.57-6.05 0-1.34.48-2.44 1.27-3.3-.14-.31-.6-1.56.12-3.24 0 0 1.04-.33 3.42 1.27.99-.28 2.05-.42 3.1-.42 1.05 0 2.11.14 3.1.42 2.38-1.61 3.42-1.27 3.42-1.27.72 1.68.27 2.93.13 3.24.79.86 1.27 1.95 1.27 3.3 0 4.7-2.86 5.74-5.59 6.04.45.39.83 1.14.83 2.31v3.43c0 .3.22.65.78.54 4.49-1.51 7.73-5.76 7.73-10.77C23.5 5.74 18.27.5 12 .5Z"/></svg></a>
           <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
           <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" title="X handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.2 8.23L23.3 22h-6.9l-5.4-7.06L4.6 22H1.4l7.7-8.8L1 2h7l4.9 6.47L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg></a>
-          <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" title="Medium handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="12" r="4.5"/><ellipse cx="15.5" cy="12" rx="3" ry="4.5"/><ellipse cx="21" cy="12" rx="1.2" ry="4.5"/></svg></a>
+          <a href="https://medium.com/@ananthakrishnach" target="_blank" rel="noopener" aria-label="Medium"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="12" r="4.5"/><ellipse cx="15.5" cy="12" rx="3" ry="4.5"/><ellipse cx="21" cy="12" rx="1.2" ry="4.5"/></svg></a>
           <a href="https://www.linkedin.com/in/anantha-krishna-ch/" target="_blank" rel="noopener" title="Instagram handle not set yet — links to LinkedIn for now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
         </div>
       </div>
@@ -1152,7 +1152,7 @@ function answerFor(q){
     if(score>bestScore){ bestScore=score; best=key; }
   }
   if(best) return topicAnswer(best);
-  return {text:"I don't have a pre-written answer for that — try asking about a project by name (SURAKSHA, Intellipod, Financial QA, Cricket XI...), skills, certifications, experience, or how to get in touch.", img:null, links:[]};
+  return {text:"I can't assist you with that — I'm trained only on his personal information. Try asking about a project (SURAKSHA, Intellipod, Financial QA, Cricket XI...), skills, certifications, experience, or how to get in touch.", img:null, links:[]};
 }
 const chatFab=document.getElementById('chat-fab'), chatPanel=document.getElementById('chat-panel'), chatMsgs=document.getElementById('chat-msgs');
 
