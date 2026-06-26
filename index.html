@@ -64,6 +64,14 @@ nav{position:fixed;top:0;left:0;right:0;height:54px;z-index:500;background:rgba(
 
 /* ===== LAYOUT ===== */
 main{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px;}
+.nebula{position:absolute;left:50%;transform:translateX(-50%);width:1400px;max-width:160vw;height:700px;pointer-events:none;z-index:-1;filter:blur(2px);}
+.nebula-1{top:120px;background:radial-gradient(ellipse 38% 50% at 22% 40%, rgba(0,212,255,0.10) 0%, transparent 68%),radial-gradient(ellipse 30% 40% at 75% 60%, rgba(0,255,136,0.05) 0%, transparent 65%);animation:nebDrift1 26s ease-in-out infinite alternate;}
+.nebula-2{top:1500px;background:radial-gradient(ellipse 34% 46% at 78% 45%, rgba(155,123,255,0.11) 0%, transparent 68%),radial-gradient(ellipse 26% 36% at 30% 65%, rgba(255,107,180,0.06) 0%, transparent 65%);animation:nebDrift2 30s ease-in-out infinite alternate;}
+.nebula-3{top:2900px;background:radial-gradient(ellipse 36% 48% at 30% 50%, rgba(74,158,255,0.10) 0%, transparent 68%),radial-gradient(ellipse 24% 34% at 80% 35%, rgba(255,181,71,0.05) 0%, transparent 65%);animation:nebDrift1 28s ease-in-out infinite alternate-reverse;}
+.nebula-4{top:4300px;background:radial-gradient(ellipse 32% 44% at 68% 55%, rgba(0,255,200,0.09) 0%, transparent 68%),radial-gradient(ellipse 28% 38% at 25% 40%, rgba(190,123,255,0.07) 0%, transparent 65%);animation:nebDrift2 24s ease-in-out infinite alternate;}
+@keyframes nebDrift1{ from{transform:translateX(-50%) translateY(0);} to{transform:translateX(-50%) translateY(30px);} }
+@keyframes nebDrift2{ from{transform:translateX(-50%) translateY(0);} to{transform:translateX(-50%) translateY(-26px);} }
+@media (max-width:720px){ .nebula{height:480px;} }
 section{padding:90px 0;}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;}
 .reveal.vis{opacity:1;transform:none;}
@@ -130,9 +138,11 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 .shelf{margin-bottom:46px;}
 .shelf-label{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;letter-spacing:.1em;color:var(--txt);text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--bdr2);margin-bottom:20px;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
-.nmc{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;}
+.nmc{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;position:relative;}
+.nmc-logo-badge{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.96);border:1px solid rgba(0,0,0,0.06);box-shadow:0 2px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;padding:4px;z-index:2;pointer-events:none;}
+.nmc-logo-badge img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
 .nmc:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35);}
-.nmc-art{height:120px;width:100%;display:block;object-fit:cover;background:var(--bg3);}
+.nmc-art{height:120px;width:100%;display:block;object-fit:cover;background:var(--bg3);cursor:zoom-in;}
 .nmc-accent{height:3px;width:100%;}
 .nmc-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;}
 .nmc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
@@ -187,9 +197,9 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 #chat-fab:hover{transform:scale(1.06);}
 #chat-fab .badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .3s;}
 #chat-fab .badge.in{opacity:1;}
-#chat-panel{position:fixed;bottom:90px;right:24px;width:min(560px,94vw);height:min(620px,80vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease;}
+#chat-panel{position:fixed;bottom:90px;right:24px;width:min(560px,94vw);height:min(620px,80vh);background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;z-index:901;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:height .25s ease,min-height .25s ease,bottom .25s ease;}
 #chat-panel.open{display:flex;}
-#chat-panel.minimized{height:60px!important;min-height:60px;}
+#chat-panel.minimized{height:60px!important;min-height:60px;bottom:24px;}
 #chat-panel.minimized .chat-msgs,#chat-panel.minimized .chat-suggest,#chat-panel.minimized .chat-input-row{display:none;}
 .chat-head{padding:14px 16px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;gap:10px;cursor:default;}
 .chat-head .rb{width:30px;height:30px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:16px;}
@@ -243,7 +253,7 @@ h2.sectitle{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3
 #detail-panel{background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;width:min(720px,94vw);max-height:85vh;overflow-y:auto;padding:30px;position:relative;animation:dpIn .32s cubic-bezier(.34,1.56,.64,1);}
 @keyframes dpIn{from{opacity:0;transform:scale(.93) translateY(14px);}to{opacity:1;transform:none;}}
 #detail-panel .dp-close{position:absolute;top:18px;right:18px;cursor:pointer;color:var(--txt2);font-size:20px;}
-#detail-panel img.dp-art{width:100%;border-radius:10px;margin:16px 0;border:1px solid var(--bdr2);}
+#detail-panel img.dp-art{width:100%;border-radius:10px;margin:16px 0;border:1px solid var(--bdr2);cursor:zoom-in;}
 #detail-panel video.dp-art{width:100%;max-height:320px;object-fit:cover;border-radius:10px;margin:16px 0;border:1px solid var(--bdr2);background:#000;}
 #detail-panel h3{font-family:'Sora',sans-serif;font-size:21px;margin-bottom:4px;}
 #detail-panel .dp-sub{color:var(--txt2);font-size:13px;margin-bottom:14px;}
@@ -312,6 +322,10 @@ footer a:hover{color:var(--g);}
 </nav>
 
 <main>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+<div class="nebula nebula-3"></div>
+<div class="nebula nebula-4"></div>
 
 <!-- ===== HERO ===== -->
 <section id="hero">
@@ -474,7 +488,7 @@ footer a:hover{color:var(--g);}
 /* ============ DATA ============ */
 const CARDS = {
   exp: [
-    {id:'sunplusdata', type:'EXPERIENCE', color:'g', art:'assets/cards/exp-sunplusdata.svg', name:'SunPlusData', org:'Gen AI / Backend Engineer · Jan 2025 – Present · Atlanta, GA',
+    {id:'sunplusdata', type:'EXPERIENCE', color:'g', art:'assets/cards/exp-sunplusdata.svg', logo:'assets/logos/sunplusdata.png', name:'SunPlusData', org:'Gen AI / Backend Engineer · Jan 2025 – Present · Atlanta, GA',
      desc:'AI assistant for a Physical Identity & Access Management platform, plus an event-driven, AWS-native document-intelligence pipeline.',
      tags:['MCP','Amazon Bedrock','Textract','Rekognition','Step Functions','FastAPI'],
      bullets:[
@@ -489,7 +503,7 @@ const CARDS = {
        'Built a data quality validation framework with automated checks for schema compliance, completeness, and accuracy ahead of downstream processing.'
      ],
      sample:{q:'Show me all unauthorized entry attempts to Server Room B this week, and create an incident for the most recent one.', a:'Found 3 unauthorized attempts: Tue 9:14 AM (badge #4471, denied), Thu 2:03 PM (badge #2290, denied), Fri 11:47 PM (badge unknown, denied). Created Incident #INC-10432 for the Friday 11:47 PM attempt — flagged high priority due to after-hours timing.'}},
-    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', name:'Constella Intelligence', org:'Software Engineer · Jan 2021 – Jul 2023 · Hyderabad, India',
+    {id:'constella', type:'EXPERIENCE', color:'b', art:'assets/cards/exp-constella.svg', logo:'assets/logos/constella.png', name:'Constella Intelligence', org:'Software Engineer · Jan 2021 – Jul 2023 · Hyderabad, India',
      desc:'Event-driven AWS ETL orchestration, plus an ML-driven cybersecurity pipeline re-platformed onto SageMaker.',
      tags:['AWS Step Functions','ECS','PySpark/EMR','SageMaker','XGBoost','CI/CD'],
      bullets:[
@@ -501,7 +515,7 @@ const CARDS = {
        'Re-platformed the malicious-email model onto Amazon SageMaker with an XGBoost classifier — managed training jobs, hyperparameter tuning, versioned artifacts, and SageMaker Model Monitor for drift tracking.',
        'Built CI/CD pipelines for ML workflows in AWS Step Functions, with Lambda triggers for real-time build-failure monitoring and alerting.'
      ]},
-    {id:'unt-ta', type:'EXPERIENCE', color:'a', art:'assets/cards/exp-unt-ta.svg', name:'University of North Texas', org:'Teaching Assistant, Data Analytics · 2024 – Present · Denton, TX',
+    {id:'unt-ta', type:'EXPERIENCE', color:'a', art:'assets/cards/exp-unt-ta.svg', logo:'assets/logos/unt.png', name:'University of North Texas', org:'Teaching Assistant, Data Analytics · 2024 – Present · Denton, TX',
      desc:'Mentored students in DBMS/analytics and built dashboards for departmental decision-making.',
      tags:['Dashboards','SQL','Mentorship'],
      bullets:[
@@ -510,7 +524,7 @@ const CARDS = {
      ]},
   ],
   edu: [
-    {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', name:'University of North Texas', org:'M.S. Data Science · Denton, TX',
+    {id:'unt-ms', type:'EDUCATION', color:'a', art:'assets/cards/edu-unt.svg', logo:'assets/logos/unt.png', name:'University of North Texas', org:'M.S. Data Science · Denton, TX',
      desc:'Built advanced competencies in data architecture, knowledge systems, and information management — applied directly into shipped projects.',
      tags:['Data Architecture','Knowledge Systems','Information Management'],
      bullets:[
@@ -518,7 +532,7 @@ const CARDS = {
        'Built advanced competencies in data architecture, knowledge systems, and information management practices applicable to enterprise and research environments.',
        'Applied that coursework directly into shipped projects during this program: Intellipod (paper-to-podcast pipeline), Financial Document QA (domain-specific LLM + RAG), and Beyond Cricket (player-performance prediction) — implemented, not just studied.'
      ]},
-    {id:'kmit', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', name:'Keshav Memorial Institute of Technology', org:'B.Tech Computer Science · Hyderabad, India',
+    {id:'kmit', type:'EDUCATION', color:'b', art:'assets/cards/edu-jntu.svg', logo:'assets/logos/kmit.png', name:'Keshav Memorial Institute of Technology', org:'B.Tech Computer Science · Hyderabad, India',
      desc:'First Class with Distinction — lab-intensive foundations in Python, SQL, Web Tech, AI, and Data Mining.',
      tags:['Python','SQL','Web Technologies','AI','Data Mining'],
      bullets:[
@@ -684,7 +698,7 @@ let W,H,particles=[],frame=0;
 function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
 window.addEventListener('resize', resize); resize();
 const pcolors=['rgba(0,255,136,', 'rgba(74,158,255,', 'rgba(155,123,255,'];
-for(let i=0;i<80;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*0.56, vy:(Math.random()-.5)*0.56, r:0.4+Math.random()*0.7, c:pcolors[i%3]}); }
+for(let i=0;i<160;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*0.56, vy:(Math.random()-.5)*0.56, r:0.4+Math.random()*0.7, c:pcolors[i%3]}); }
 let mouseX=-9999, mouseY=-9999;
 window.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
 window.addEventListener('mouseleave', ()=>{ mouseX=-9999; mouseY=-9999; });
@@ -823,6 +837,7 @@ document.getElementById('contact-btn').removeAttribute('href');
 function nmcHTML(card){
   return `<div class="nmc" data-id="${card.id}"${card.cat?` data-cat="${card.cat}"`:''}>
     <img class="nmc-art" src="${card.art}" alt="">
+    ${card.logo?`<div class="nmc-logo-badge"><img src="${card.logo}" alt=""></div>`:''}
     <div class="nmc-accent" style="background:${COLORS[card.color]}"></div>
     <div class="nmc-hover-cue"><span class="nmc-hover-ic">ℹ</span></div>
     <div class="nmc-body">
@@ -1174,14 +1189,26 @@ setTimeout(()=>{
   }catch(e){}
 }, 3500);
 
-chatFab.addEventListener('click', ()=>{ chatPanel.classList.add('open'); chatPanel.classList.remove('minimized'); document.getElementById('chat-badge').style.display='none'; });
-const imgLightbox=document.getElementById('img-lightbox'), lightboxImg=document.getElementById('lightbox-img');
+chatFab.addEventListener('click', ()=>{ chatPanel.classList.add('open'); chatPanel.classList.remove('minimized'); document.getElementById('chat-badge').style.display='none'; chatFab.style.display='none'; });
+const imgLightbox=document.getElementById('img-lightbox'), lightboxImg=document.getElementById('lightbox-img'), lightboxClose=document.getElementById('lightbox-close');
+function openLightbox(src, fromChat){
+  lightboxImg.src=src;
+  lightboxClose.textContent = fromChat ? '✕ Back to chat' : '✕ Close';
+  imgLightbox.classList.add('open');
+}
+function closeLightbox(){ imgLightbox.classList.remove('open'); }
 chatMsgs.addEventListener('click', e=>{
-  if(e.target.classList.contains('msg-thumb')){ lightboxImg.src=e.target.src; imgLightbox.classList.add('open'); }
+  if(e.target.classList.contains('msg-thumb')){ openLightbox(e.target.src, true); }
 });
-document.getElementById('lightbox-close').addEventListener('click', ()=>imgLightbox.classList.remove('open'));
-imgLightbox.addEventListener('click', e=>{ if(e.target===imgLightbox) imgLightbox.classList.remove('open'); });
-document.getElementById('chat-close').addEventListener('click', ()=>chatPanel.classList.remove('open'));
+lightboxClose.addEventListener('click', closeLightbox);
+imgLightbox.addEventListener('click', e=>{ if(e.target===imgLightbox) closeLightbox(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && imgLightbox.classList.contains('open')) closeLightbox(); });
+/* Click any card-face artwork or detail-panel media image to zoom it full-screen */
+document.addEventListener('click', e=>{
+  const art = e.target.closest('.nmc-art, .dp-art');
+  if(art && art.tagName==='IMG'){ e.stopImmediatePropagation(); openLightbox(art.src, false); }
+}, true);
+document.getElementById('chat-close').addEventListener('click', ()=>{ chatPanel.classList.remove('open'); chatFab.style.display='flex'; });
 document.getElementById('chat-min').addEventListener('click', (e)=>{ e.stopPropagation(); chatPanel.classList.toggle('minimized'); });
 document.getElementById('chat-head-bar').addEventListener('click', ()=>{ if(chatPanel.classList.contains('minimized')) chatPanel.classList.remove('minimized'); });
 function pushMsg(payload, who){
