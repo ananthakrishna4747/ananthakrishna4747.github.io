@@ -542,14 +542,6 @@ const CARDS = {
      ]},
   ],
   cert: [
-    {id:'ms-azure-ai', type:'CERTIFICATION', color:'g', art:'assets/certs/cert-ms-azure-ai.jpg', name:'Azure AI Apps and Agents Developer Associate', org:'Microsoft · 2026 · Expires 2027',
-     desc:'Microsoft Certified Associate-level credential for building AI app and agent solutions on Azure.',
-     tags:['Azure AI','Agents','Associate'], bullets:['Credential ID 44C7E9A7912D8BA — online-verifiable through Microsoft Learn.'],
-     link:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/44c7e9a7912d8ba', linkLabel:'Verify Credential'},
-    {id:'ms-fabric', type:'CERTIFICATION', color:'b', art:'assets/certs/cert-ms-fabric.jpg', name:'Fabric Data Engineer Associate', org:'Microsoft · 2026 · Expires 2027',
-     desc:'Microsoft Certified Associate-level credential for data engineering on Microsoft Fabric.',
-     tags:['Microsoft Fabric','Data Engineering','Associate'], bullets:['Credential ID D64CB9A5F3D7D133 — online-verifiable through Microsoft Learn.'],
-     link:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/d64cb9a5f3d7d133', linkLabel:'Verify Credential'},
     {id:'coursera-dl-spec', type:'CERTIFICATION', color:'p', art:'assets/certs/cert-coursera-dl-spec.jpg', name:'Deep Learning Specialization', org:'DeepLearning.AI (Coursera) · 5 courses · 2020',
      desc:'CNNs, RNNs/LSTMs, and Transformers — architecture design plus Dropout, BatchNorm, and Xavier/He initialization.',
      tags:['CNNs','RNNs','Transformers'], bullets:['5-course specialization: Neural Networks & Deep Learning, Hyperparameter Tuning, Structuring ML Projects, CNNs, Sequence Models.','Applied to speech recognition, music synthesis, chatbots, and machine translation case studies.'],
@@ -1042,18 +1034,6 @@ const FAQ_TOPICS={
     "Quick take on the salaries project:\n• Trend analysis by job title and year — Data Scientist, Analyst, Engineer, ML Engineer\n• Evaluated with MAE/MSE/RMSE plus predicted-vs-actual plots\n• Global dataset, not just US-centric",
     "On data science salaries:\n• Predicts comp from job attributes, then explains it via feature importance\n• Remote work and company size matter more than people assume\n• Coursework project with an accompanying presentation deck",
   ]},
-  certmsazure:{keys:['azure ai','azure apps and agents','microsoft azure','azure'], img:'assets/certs/cert-ms-azure-ai.jpg',
-    links:[{label:'Verify Credential',url:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/44c7e9a7912d8ba'}], variants:[
-    "Microsoft Certified: Azure AI Apps and Agents Developer Associate.\n• Earned 2026, valid through 2027\n• Covers building AI app and agent solutions on Azure",
-    "Azure AI Apps and Agents cert, quickly:\n• Microsoft Associate-level credential, online-verifiable\n• Directly relevant to the agent/MCP work I do day to day",
-    "On the Azure AI cert:\n• Associate level, earned this year\n• Pairs with the Fabric Data Engineer cert — Azure AI + Azure data, together",
-  ]},
-  certmsfabric:{keys:['fabric','data engineer associate','microsoft fabric'], img:'assets/certs/cert-ms-fabric.jpg',
-    links:[{label:'Verify Credential',url:'https://learn.microsoft.com/en-us/users/chilappagariananthakrishna-0811/credentials/d64cb9a5f3d7d133'}], variants:[
-    "Microsoft Certified: Fabric Data Engineer Associate.\n• Earned 2026, valid through 2027\n• Covers data engineering on Microsoft Fabric",
-    "Fabric Data Engineer cert, in short:\n• Microsoft Associate-level, online-verifiable\n• Complements the cloud/data side of my stack alongside AWS",
-    "On the Fabric cert:\n• Earned alongside the Azure AI Apps and Agents cert\n• Focused on data engineering pipelines in Microsoft Fabric",
-  ]},
   certdlspec:{keys:['deep learning specialization','deeplearning.ai','coursera'], img:'assets/certs/cert-coursera-dl-spec.jpg',
     links:[{label:'Verify Credential',url:'https://www.coursera.org/account/accomplishments/specialization/certificate/WYK6WPEQ539T'}], variants:[
     "Deep Learning Specialization (DeepLearning.AI, Coursera):\n• 5 courses: Neural Networks & Deep Learning, Hyperparameter Tuning, Structuring ML Projects, CNNs, Sequence Models\n• Built CNNs, RNNs/LSTMs, and Transformers; applied Dropout, BatchNorm, Xavier/He init",
@@ -1079,9 +1059,9 @@ const FAQ_TOPICS={
     "Quick note:\n• Skills learned: OOP design, big data handling in Python\n• Completed 2023",
   ]},
   certifications:{keys:['certification','certificate','certs ','credential'], img:null, links:[], variants:[
-    "6 certifications so far:\n• Microsoft: Azure AI Apps and Agents Developer Associate, Fabric Data Engineer Associate\n• Coursera: Deep Learning Specialization (DeepLearning.AI)\n• LinkedIn Learning: AI/ML, AWS SAA-C03 prep, Python for Data Science\nAsk about any one by name for its verify link.",
-    "On certifications:\n• 2 Microsoft Associate-level credentials, both earned 2026\n• 1 Coursera specialization (5 courses, DeepLearning.AI)\n• 3 LinkedIn Learning paths covering AI/ML, AWS, and Python\nAsk about a specific one by name for the verify link.",
-    "Quick rundown of certs:\n• Cloud/AI: Azure AI Apps and Agents, Fabric Data Engineer\n• Deep learning theory: the full 5-course DeepLearning.AI specialization\n• Applied skills: AI/ML, AWS architecture, Python — via LinkedIn Learning\nAsk about a specific one and I'll give you the verify link.",
+    "4 certifications so far:\n• Coursera: Deep Learning Specialization (DeepLearning.AI)\n• LinkedIn Learning: AI/ML, AWS SAA-C03 prep, Python for Data Science\nAsk about any one by name for its verify link.",
+    "On certifications:\n• 1 Coursera specialization (5 courses, DeepLearning.AI)\n• 3 LinkedIn Learning paths covering AI/ML, AWS, and Python\nAsk about a specific one by name for the verify link.",
+    "Quick rundown of certs:\n• Deep learning theory: the full 5-course DeepLearning.AI specialization\n• Applied skills: AI/ML, AWS architecture, Python — via LinkedIn Learning\nAsk about a specific one and I'll give you the verify link.",
   ]},
   skills:{keys:['skill','tech stack','stack','tools','technolog'], img:null, links:[], variants:[
     "Core stack:\n• AI & Agents: Claude API, MCP, LangChain, RAG, FAISS, Agents SDK\n• Backend: Python, FastAPI, Flask, JWT/RBAC\n• Cloud & Infra: AWS, Docker, Kubernetes, Step Functions\nAsk 'which projects use X' for any specific tool.",
